@@ -5,6 +5,7 @@ require_relative './question_data/data_structure_questions'
 require 'pry'
 require 'colorize'
 
+`reset`
 print "Welcome to the Battleroom. ".blue
 while true
   print "What would you like to work on?\n".blue
@@ -32,7 +33,7 @@ while true
           b.eval(answer)
           if b.eval("#{var_name} == #{var_value}")
             answered_correctly = true
-            puts "Great job!".green
+            puts ["Great job!","Wonderful.", "Well done.", "Capital work, friendo."].sample.green
           else
             print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
           end
@@ -44,9 +45,11 @@ while true
       end
     end
   when "2"
-    2.times do
+    `reset`
+    5.times do
       question = DATA_STRUCTURE_QUESTIONS.sample
-      answer_value = question[:data_structure].sample
+      data_structure = question[:data_structure]
+      answer_value = data_structure.class == Array ? data_structure.sample : data_structure[data_structure.keys.sample]
       data_structure_binding = binding
       # provides the binding scope with the variable assignment necessary for future
       data_structure_binding.eval("#{question[:variable_name]} = #{question[:data_structure].to_s}")
@@ -55,11 +58,15 @@ while true
       answered_correctly = false
       until answered_correctly
         input = gets.chomp
-        if data_structure_binding.eval(input) == answer_value
-          puts "Lovely work, my friend!\n".green
-          answered_correctly = true
-        else
-          puts "Close, but no cigar. Try again.\n"
+        begin
+          if data_structure_binding.eval(input) == answer_value
+            puts "Lovely work, my friend!\n".green
+            answered_correctly = true
+          else
+            puts "Close, but no cigar. Try again.\n"
+          end
+        rescue NameError
+          puts "You're referencing a variable that doesn't exist. Check your spelling.".red
         end
       end
     end
