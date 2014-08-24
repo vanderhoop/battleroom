@@ -36,7 +36,9 @@ while true
             print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
           end
         rescue NameError
-          puts "Looks like you misnamed your variable. Try again.".red
+          print "Looks like you misnamed your variable. Often this will result in an error that says: \n\n".red
+          print "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n\n".green
+          puts "Try again.".red
         rescue Exception => e
           puts e.message
         end
@@ -62,10 +64,13 @@ while true
             sleep 2
             `reset`
           else
-            puts "Wrong. Try again.".red
+            hint = data_structure.class == Array ? "index values start at 0" : "If a hash key is a string, use a string as a key. Similarly, a symbol only "
+            puts "Wrong. Remember, index values start at 0, and you have to use the exact hash key to retrieve the value you want. Try again.".red
           end
         rescue NameError
-          puts "You're referencing a variable that doesn't exist. Check your spelling.".red
+          puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
+          puts "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
+          puts "Get used to it and try again.".red
         end
       end
     end
@@ -73,7 +78,6 @@ while true
     puts "Goodbye!".green
     break
   else
-    `reset`
     puts "You entered a non-option. Try again.".red
   end
 end

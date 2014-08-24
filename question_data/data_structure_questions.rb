@@ -26,7 +26,7 @@ DATA_STRUCTURE_QUESTIONS = [
     variable_name: "rom_coms"
   },
   {
-    data_structure: ["Tide", "Clorox", "Febreze"],
+    data_structure: ["Tide", "Clorox", "Wisk", "Cheer"],
     variable_name: "name_brand_detergents"
   },
   {
