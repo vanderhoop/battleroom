@@ -19,9 +19,9 @@ VARIABLE_QUESTIONS = [
       "time_elapsed_since_last_title"
     ],
     var_value: [
-      "'#{rand(1..11)} month(s)'",
-      "'#{rand(1..20)} year(s)'",
-      "'#{rand(1..3)} day(s)'"
+      "'#{rand(2..11)} months'",
+      "'#{rand(2..20)} years'",
+      "'#{rand(2..3)} days'"
     ],
     value_type: "String" },
   {
