@@ -1,7 +1,7 @@
 !# /Users/vanderhoop/.rbenv/shims/ruby
 
-require_relative 'variable_questions'
-require_relative 'data_structure_questions'
+require_relative './question_data/variable_questions'
+require_relative './question_data/data_structure_questions'
 require 'pry'
 require 'colorize'
 
