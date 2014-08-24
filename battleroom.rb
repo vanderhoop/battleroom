@@ -53,17 +53,19 @@ while true
       data_structure_binding = binding
       # provides the binding scope with the variable assignment necessary for future
       data_structure_binding.eval("#{question[:variable_name]} = #{question[:data_structure].to_s}")
-      puts "Given the data structure below, how would you access '#{answer_value}'?".red
+      puts "Given the data structure below, how would you access '#{answer_value}'?".blue
       puts  "#{question[:variable_name]} = #{question[:data_structure].to_s}".green
       answered_correctly = false
       until answered_correctly
         input = gets.chomp
         begin
           if data_structure_binding.eval(input) == answer_value
-            puts "Lovely work, my friend!\n".green
+            puts ["Lovely work, my friend!\n", "Beautiful!\n", "Lovely!\n", "Splendid!\n", "Nice job! Keep it rolling!\n", "Capital display, you!\n", "You're on your way!\n", "Exemplary work!\n", "Yeah!\n"].sample.green
             answered_correctly = true
+            sleep 2
+            `reset`
           else
-            puts "Close, but no cigar. Try again.\n"
+            puts "Wrong. Try again.".red
           end
         rescue NameError
           puts "You're referencing a variable that doesn't exist. Check your spelling.".red
