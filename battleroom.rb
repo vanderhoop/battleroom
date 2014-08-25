@@ -8,7 +8,7 @@ require 'colorize'
 require 'pry'
 
 clear_display
-print "Welcome to the Battleroom. ".blue
+print "Welcome to the Battleroom.".blue
 while true
   print_prompt_with_options
   choice = gets.chomp.downcase
@@ -48,6 +48,13 @@ while true
     5.times do
       question = DATA_STRUCTURE_QUESTIONS.sample
       data_structure = question[:data_structure]
+      if data_structure.class == Array
+        answer_value = data_structure.sample
+        hint = "index values start at 0."
+      else
+        answer_value = data_structure[data_structure.keys.sample]
+        hint = "you have to use the EXACT hash key to retrieve the associated value."
+      end
       answer_value = data_structure.class == Array ? data_structure.sample : data_structure[data_structure.keys.sample]
       # data_structure_binding = binding
       # provides the binding scope with the variable assignment necessary for future
@@ -61,11 +68,10 @@ while true
           if b.eval(input) == answer_value
             puts random_congratulation.green
             answered_correctly = true
-            sleep 2
-            `reset`
+            sleep 1.5
+            clear_display
           else
-            hint = data_structure.class == Array ? "index values start at 0" : "If a hash key is a string, use a string as a key. Similarly, a symbol only "
-            puts "Wrong. Remember, index values start at 0, and you have to use the exact hash key to retrieve the value you want. Try again.".red
+            puts "Wrong. Remember, #{hint} Try again.".red
           end
         rescue NameError
           puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
