@@ -1,4 +1,4 @@
-!# /Users/vanderhoop/.rbenv/shims/ ruby
+#!/usr/bin/env ruby
 
 require_relative './question_data/variable_questions'
 require_relative './question_data/data_structure_questions'
