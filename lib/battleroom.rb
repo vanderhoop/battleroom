@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative './question_data/variable_questions'
-require_relative './question_data/data_structure_questions'
-require_relative './lib/battleroom_machinery'
+require_relative '../question_data/variable_questions'
+require_relative '../question_data/data_structure_questions'
+require_relative './battleroom_machinery'
 include BattleroomMachinery
 require 'colorize'
 require 'pry'
