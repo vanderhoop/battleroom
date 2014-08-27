@@ -5,7 +5,9 @@ VARIABLE_QUESTIONS = [
       "num_cats",
       "num_dogs",
       "num_steaks",
-      "percent_of_love_maintained"
+      "percent_of_love_maintained",
+      "fav_number",
+      "days_without_rain"
     ],
     var_value: (1..100).to_a,
     value_type: "FixNum"
