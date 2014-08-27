@@ -1,11 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative 'battleroom/question_data/variable_assignment'
-require_relative 'battleroom/question_data/data_structure_access'
-require_relative 'battleroom/battleroom_machinery'
-include BattleroomMachinery
-require 'colorize'
-require 'pry'
+require 'battleroom'
 
 clear_display
 print "Welcome to the Battleroom.".blue
