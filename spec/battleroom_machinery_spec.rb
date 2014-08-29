@@ -1,6 +1,6 @@
-require_relative "../lib/battleroom_machinery"
+require_relative "../lib/battleroom/battleroom_machinery"
 
-describe BatteroomMachinery do
+describe BattleroomMachinery do
 
 
 end
