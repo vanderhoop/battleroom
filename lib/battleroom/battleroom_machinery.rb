@@ -37,4 +37,24 @@ module BattleroomMachinery
     puts "Get used to it and try again.".red
   end
 
+  def evaluate_variable_assignment(evaluation_scope)
+    answered_correctly = false
+    until answered_correctly
+      answer = gets.chomp
+      begin
+        evaluation_scope.eval(answer)
+        if evaluation_scope.eval("#{@var_name} == #{@var_value}")
+          print_congratulation
+          answered_correctly = true
+        else
+          print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
+        end
+      rescue NameError
+        print_colorized_name_error_prompt
+      rescue Exception => e
+        puts e.message
+      end
+    end
+  end
+
 end

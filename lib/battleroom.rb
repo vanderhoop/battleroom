@@ -17,23 +17,7 @@ while true
   when "1"
     10.times do
       provide_variable_prompt
-      answered_correctly = false
-      until answered_correctly
-        answer = gets.chomp
-        begin
-          b.eval(answer)
-          if b.eval("#{@var_name} == #{@var_value}")
-            print_congratulation
-            answered_correctly = true
-          else
-            print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
-          end
-        rescue NameError
-          print_colorized_name_error_prompt
-        rescue Exception => e
-          puts e.message
-        end
-      end
+      evaluate_variable_assignment(b)
     end
   when "2"
     5.times do
