@@ -40,7 +40,13 @@ VARIABLE_QUESTIONS = [
       "'PJ'",
       "'Peter'",
       "'Greg'",
-      "'Yaniv'"
+      "'Yaniv'",
+      "'Ben'",
+      "'Jeff'",
+      "'Dave'",
+      "'Sammypants'",
+      "'Tony'",
+      "'Frost'",
     ],
     value_type: "String"
   },

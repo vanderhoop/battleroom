@@ -1,16 +1,12 @@
 #!/usr/bin/env ruby
 
-require_relative 'battleroom/question_data/variable_assignment'
-require_relative 'battleroom/question_data/data_structure_access'
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
-require 'colorize'
-require 'pry'
 
 clear_display
 print "Welcome to the Battleroom.".blue
 while true
-  print_prompt_with_options
+  print_menu_options
   choice = gets.chomp.downcase
   clear_display
 
@@ -20,25 +16,20 @@ while true
   case choice
   when "1"
     10.times do
-      question = VARIABLE_QUESTIONS.sample
-      var_name = question[:var_name].sample
-      var_value = question[:var_value].sample
-      puts "Create a variable, #{var_name}, and assign it the #{question[:value_type]} value #{var_value}".blue
+      provide_variable_prompt
       answered_correctly = false
       until answered_correctly
         answer = gets.chomp
         begin
           b.eval(answer)
-          if b.eval("#{var_name} == #{var_value}")
+          if b.eval("#{@var_name} == #{@var_value}")
+            print_congratulation
             answered_correctly = true
-            puts random_congratulation.green
           else
             print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
           end
         rescue NameError
-          print "Looks like you misnamed your variable. Often this will result in an error that says: \n\n".red
-          print "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n\n".green
-          puts "Try again.".red
+          print_colorized_name_error_prompt
         rescue Exception => e
           puts e.message
         end
@@ -56,7 +47,6 @@ while true
         hint = "you have to use the EXACT hash key to retrieve the associated value."
       end
       answer_value = data_structure.class == Array ? data_structure.sample : data_structure[data_structure.keys.sample]
-      # data_structure_binding = binding
       # provides the binding scope with the variable assignment necessary for future
       b.eval("#{question[:variable_name]} = #{question[:data_structure].to_s}")
       puts "Given the data structure below, how would you access '#{answer_value}'?".blue
@@ -66,7 +56,7 @@ while true
         input = gets.chomp
         begin
           if b.eval(input) == answer_value
-            puts random_congratulation.green
+            print_congratulation
             answered_correctly = true
             sleep 1.5
             clear_display
@@ -74,13 +64,11 @@ while true
             puts "Wrong. Remember, #{hint} Try again.".red
           end
         rescue NameError
-          puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
-          puts "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
-          puts "Get used to it and try again.".red
+          print_colorized_name_error_prompt
         end
       end
     end
-  when "q"
+  when /^(q|exit\s?)/i
     puts "Goodbye!".green
     break
   else

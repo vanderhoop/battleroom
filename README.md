@@ -6,8 +6,8 @@ A simple command-line REPL designed to give Ruby newbies countless reps doing si
 
 #### Config
 
-1. Within your terminal or BASH prompt `gem install battleroom`
-1. Quit your terminal. 
+1. `gem install battleroom`
+1. Reload your terminal
 
 
 
