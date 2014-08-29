@@ -92,7 +92,7 @@ module BattleroomMachinery
           sleep 1.5
           clear_display
         else
-          puts "Wrong. Remember, #{question[:hint]} Try again.".red
+          puts "Wrong. Remember, #{question_hash[:hint]} Try again.".red
         end
       rescue NameError
         print_colorized_name_error_prompt
