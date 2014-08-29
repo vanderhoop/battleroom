@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1x'
   s.date        = '2010-04-28'
   s.summary     = "A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures."
   s.description = "A Battleroom"

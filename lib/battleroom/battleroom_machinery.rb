@@ -2,6 +2,8 @@ require_relative 'question_data/variable_assignment'
 require_relative 'question_data/data_structure_access'
 require 'pry'
 require 'colorize'
+require 'readline'
+require 'rb-readline'
 
 module BattleroomMachinery
 
@@ -78,7 +80,7 @@ module BattleroomMachinery
   def evaluate_data_structure_access_response(evaluation_scope)
     question_hash = DATA_STRUCTURE_QUESTIONS.sample
     question_hash = format_question_hash_based_on_data_structure_class(question_hash)
-    # provides the binding scope with the variable assignment necessary for future
+    # provides the scope necessary for answer eval later on
     evaluation_scope.eval("#{question_hash[:variable_name]} = #{question_hash[:data_structure].to_s}")
     print_data_structure_access_prompt(question_hash)
     answered_correctly = false

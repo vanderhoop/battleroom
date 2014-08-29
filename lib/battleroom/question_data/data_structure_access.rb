@@ -1,18 +1,22 @@
 DATA_STRUCTURE_QUESTIONS = [
   {
-    data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle"],
+    data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"].shuffle[0,3],
     variable_name: "sci_fi_books"
   },
   {
-    data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sam"],
+    data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"].shuffle[0,3],
     variable_name: "cat_names"
+  },
+  {
+    data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine"].shuffle[0,3],
+    variable_name: "beatles_songs"
   },
   {
     data_structure: {
       num_wishes: 3,
       location: ["Madison, WI", "Vancover, BC", "Denver, CO"].sample,
     },
-    variable_name: ["genie_encounter", "meeting_with_satan_at_crossroads"].sample
+    variable_name: ["genie_encounter", "meeting_with_satan_at_crossroads", "wishing_well"].sample
   },
   {
     data_structure: {
@@ -22,7 +26,7 @@ DATA_STRUCTURE_QUESTIONS = [
     variable_name: "brooklyn_half_marathon"
   },
   {
-    data_structure: ["When Harry Met Sally", "There's Something About Mary", "How to Lose a Guy in 10 Days"],
+    data_structure: ["When Harry Met Sally", "There's Something About Mary", "How to Lose a Guy in 10 Days", "Bridesmaids", "Knocked Up", "High Fidelity", "America's Sweethearts", "My Best Friend's Wedding", "Chasing Amy", "What Women Want", "Four Weddings and a Funeral", "About a Boy", "Notting Hill"].shuffle[0,3],
     variable_name: "rom_coms"
   },
   {
@@ -30,11 +34,11 @@ DATA_STRUCTURE_QUESTIONS = [
     variable_name: "name_brand_detergents"
   },
   {
-    data_structure: ["The Moon and Antartica", "Frank's Wild Years", "Perfect From Now On"],
+    data_structure: ["The Moon and Antartica", "Frank's Wild Years", "Perfect From Now On", "Nighthawks at the Diner", "Songs From a Room", "Transformer", "Songs of Love and Hate"].shuffle[0,3],
     variable_name: "lyrically_brilliant_albums"
   },
   {
-    data_structure: ["Sixteen Stone", "Nirvana MTV Unplugged 1994", "Jagged Little Pill"],
+    data_structure: ["Sixteen Stone", "Nirvana MTV Unplugged 1994", "Jagged Little Pill", "Ten", "Nevermind", "Illmatic", "The Downward Spiral", "Odelay", "Mellowgold", "All Eyez On Me", "Ready 2 Die", "Blur", "Parklife", "What's the Story (Morning Glory)?", "Definitely Maybe", "13", "Keep It Like a Secret", "...Come Down", "XO", "Exile in Guyville", "The Lonesome Crowded West", "Crooked Rain, Crooked Rain", "The Blue Album", "Pinkerton", "OK Computer", "The Bends", "Slanted & Enchanted"].shuffle[0,3],
     variable_name: "classics_from_the_nineties"
   },
   {
@@ -67,10 +71,45 @@ DATA_STRUCTURE_QUESTIONS = [
   },
   {
     data_structure: {
-      "stars" => ["John Cusack", "John Malkavich", "Catherine Keener"],
-      "released" => 1999,
+      :stars => ["John Cusack", "John Malkavich", "Catherine Keener"],
+      :released => 1999,
     },
     variable_name: "being_john_malkavich"
+  },
+  {
+    data_structure: {
+      :stars => ["Nicholas Cage", "Meryl Streep", "Chris Cooper"],
+      :released => 2002,
+    },
+    variable_name: "adaptation"
+  },
+  {
+    data_structure: {
+      "stars" => ["Jim Carrey", "Kate Winslet"],
+      "released" => 2004,
+    },
+    variable_name: "eternal_sunshine"
+  },
+  {
+    data_structure: {
+      :stars => ["Al Pacino", "Robert De Niro"],
+      :released => 1974,
+    },
+    variable_name: "godfather_two"
+  },
+  {
+    data_structure: {
+      "stars" => ["Jim Carrey", "Ed Harris"],
+      "released" => 1998,
+    },
+    variable_name: "truman_show"
+  },
+  {
+    data_structure: {
+      "stars" => ["Jim Carrey", "Ed Harris"],
+      "released" => 1998,
+    },
+    variable_name: "truman_show"
   },
     {
     data_structure: {
