@@ -1,14 +1,12 @@
-## Battleroom
+# Battleroom
 
 A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures.
 
 #### Config
 
-Clone the repo down and `cd` into it. Then run `ruby battleroom.rb` to enter the battleroom
+1. Within your terminal or BASH prompt `gem install battleroom`
+1. Quit your terminal. 
 
-__Note:__ Battleroom has the following dependencies:
-- colorize, which can be installed via `gem install colorize`
-- pry, which can be installed via `gem install pry`
 
 
 #### Contribute!
