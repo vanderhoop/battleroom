@@ -6,10 +6,10 @@ A simple command-line REPL designed to give Ruby newbies countless reps doing si
 
 #### Config
 
-1. `gem install battleroom`
-1. Reload your terminal
-
-
+1. Clone the repo down
+1. cd into the `battleroom` directory
+1. run `bundle install`
+1. run `ruby lib/battleroom.rb`
 
 #### Contribute!
 
