@@ -16,12 +16,15 @@ while true
   case choice
   when "1"
     10.times do
-      provide_variable_prompt
+      provide_random_variable_prompt
       evaluate_variable_assignment(b)
     end
   when "2"
     5.times do
-      evaluate_data_structure_access_response(b)
+      question_hash = DATA_STRUCTURE_QUESTIONS.sample
+      question_hash = format_question_hash_based_on_data_structure_class(question_hash)
+      print_data_structure_access_prompt(question_hash)
+      evaluate_data_structure_access_response(b, question_hash)
     end
   when /^(q|exit\s?)/i
     puts "Goodbye!".green
