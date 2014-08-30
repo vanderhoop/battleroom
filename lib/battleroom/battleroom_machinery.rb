@@ -61,19 +61,28 @@ module BattleroomMachinery
   end
 
   def format_question_hash_based_on_data_structure_class(randomly_assigned_question)
-    data_structure = randomly_assigned_question[:data_structure]
+    # clone data structure for data_structure maintenance
+    question_clone = randomly_assigned_question.clone
+    data_structure = question_clone[:data_structure]
     if data_structure.class == Array
-      randomly_assigned_question[:answer_value] = data_structure.sample
-      randomly_assigned_question[:hint] = "index values start at 0."
+      # randomizes and shuffles the items in the arrays, so there aren't repeat questions
+      question_clone[:data_structure] = question_clone[:data_structure].shuffle[0,3]
+      question_clone[:answer_value] = question_clone[:data_structure].sample
+      question_clone[:hint] = "index values start at 0."
+      question_clone[:class] = "Array"
     else
-      randomly_assigned_question[:answer_value] = data_structure[data_structure.keys.sample]
-      randomly_assigned_question[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
+      question_clone[:answer_value] = data_structure[data_structure.keys.sample]
+      question_clone[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
+      question_clone[:class] = "Hash"
     end
-    randomly_assigned_question
+    question_clone
   end
 
   def print_data_structure_access_prompt(given_question)
-    puts "Given the data structure below, how would you access '#{given_question[:answer_value]}'?".blue
+    answer_value_class = given_question[:answer_value].class.to_s
+    answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
+    answer_value_string = answer_value_class == "String" ? "'#{given_question[:answer_value]}'" : given_question[:answer_value].to_s
+    puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
     puts "#{given_question[:variable_name]} = #{given_question[:data_structure].to_s}".green
   end
 
@@ -94,7 +103,7 @@ module BattleroomMachinery
           sleep 1.5
           clear_display
         else
-          puts "Wrong. Remember, #{question_hash[:hint]} Try again.".red
+          puts "Remember, #{question_hash[:hint]} Try again.".red
         end
       rescue NameError
         print_colorized_name_error_prompt
