@@ -9,9 +9,9 @@ require 'readline'
 module BattleroomMachinery
   class Question
     attr_reader :type, :data
-    attr_accessor :variable_name, :variable_value, :value_type
+    attr_accessor :variable_name, :variable_value, :value_type, :data_structure, :hint, :data_structure_class, :answer_value
 
-    def initialize(options = {}, type)
+    def initialize(type, options = {})
       @data = options
       @type = type
       format!
@@ -24,16 +24,18 @@ module BattleroomMachinery
         self.variable_value = data[:possible_variable_values].sample
         self.value_type = data[:value_type]
       when :data_structure_access
-        if data_structure.class == Array
+        self.data_structure = data[:data_structure]
+        self.variable_name = data[:variable_name]
+        if self.data_structure.class == Array
           # randomizes and shuffles the items in the arrays, so repeats remain interesting
-          question_clone[:data_structure] = question_clone[:data_structure].shuffle[0,3]
-          question_clone[:answer_value] = question_clone[:data_structure].sample
-          question_clone[:hint] = "index values start at 0."
-          question_clone[:class] = "Array"
+          self.data_structure = self.data[:data_structure].shuffle[0,3]
+          self.answer_value = self.data_structure.sample
+          self.hint = "index values start at 0."
+          self.data_structure_class = "Array"
         else
-          question_clone[:answer_value] = data_structure[data_structure.keys.sample]
-          question_clone[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
-          question_clone[:class] = "Hash"
+          self.answer_value = self.data_structure[self.data_structure.keys.sample]
+          self.hint = "you have to use the EXACT hash key to retrieve the associated value."
+          self.data_structure_class = "Hash"
         end
       end
     end
@@ -63,6 +65,41 @@ module BattleroomMachinery
       end
     end # evaluate_variable_assignment
 
+    def print_data_structure_access_prompt
+      # question_hash = DATA_STRUCTURE_QUESTIONS.sample
+      # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
+      answer_value_class = self.answer_value.class.to_s
+      answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
+      answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
+      puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
+      puts "#{self.variable_name} = #{self.data_structure.to_s}".green
+    end
+
+    def evaluate_data_structure_access_response(evaluation_scope)
+      # question_hash = DATA_STRUCTURE_QUESTIONS.sample
+      # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
+      # provides the scope necessary for answer eval later on
+      evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
+      # print_data_structure_access_prompt(question_hash)
+      answered_correctly = false
+      until answered_correctly
+        input = Readline.readline("> ", true)
+        break if input === /^exit\s?/i
+        begin
+          if evaluation_scope.eval(input) == self.answer_value
+            print_congratulation
+            answered_correctly = true
+            sleep 1.5
+            clear_display
+          else
+            puts "Remember, #{self.hint} Try again.".red
+          end
+        rescue NameError
+          print_colorized_name_error_prompt
+        end
+      end
+    end
+
   end
 
   def clear_display
@@ -91,57 +128,57 @@ module BattleroomMachinery
     puts "Get used to it and try again.".red
   end
 
-  def format_question_hash_based_on_data_structure_class(randomly_assigned_question)
-    # clone data structure for question_specific data_structure
-    question_clone = randomly_assigned_question.clone
-    data_structure = question_clone[:data_structure]
-    if data_structure.class == Array
-      # randomizes and shuffles the items in the arrays, so repeats remain interesting
-      question_clone[:data_structure] = question_clone[:data_structure].shuffle[0,3]
-      question_clone[:answer_value] = question_clone[:data_structure].sample
-      question_clone[:hint] = "index values start at 0."
-      question_clone[:class] = "Array"
-    else
-      question_clone[:answer_value] = data_structure[data_structure.keys.sample]
-      question_clone[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
-      question_clone[:class] = "Hash"
-    end
-    question_clone
-  end
+  # def format_question_hash_based_on_data_structure_class(randomly_assigned_question)
+  #   # clone data structure for question_specific data_structure
+  #   question_clone = randomly_assigned_question.clone
+  #   data_structure = question_clone[:data_structure]
+  #   if data_structure.class == Array
+  #     # randomizes and shuffles the items in the arrays, so repeats remain interesting
+  #     question_clone[:data_structure] = question_clone[:data_structure].shuffle[0,3]
+  #     question_clone[:answer_value] = question_clone[:data_structure].sample
+  #     question_clone[:hint] = "index values start at 0."
+  #     question_clone[:class] = "Array"
+  #   else
+  #     question_clone[:answer_value] = data_structure[data_structure.keys.sample]
+  #     question_clone[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
+  #     question_clone[:class] = "Hash"
+  #   end
+  #   question_clone
+  # end
 
-  def print_data_structure_access_prompt(given_question)
-    # question_hash = DATA_STRUCTURE_QUESTIONS.sample
-    # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
-    answer_value_class = given_question[:answer_value].class.to_s
-    answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
-    answer_value_string = answer_value_class == "String" ? "'#{given_question[:answer_value]}'" : given_question[:answer_value].to_s
-    puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
-    puts "#{given_question[:variable_name]} = #{given_question[:data_structure].to_s}".green
-  end
+  # def print_data_structure_access_prompt
+  #   # question_hash = DATA_STRUCTURE_QUESTIONS.sample
+  #   # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
+  #   answer_value_class = self.answer_value.class.to_s
+  #   answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
+  #   answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
+  #   puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
+  #   puts "#{self.variable_name} = #{self.data_structure.to_s}".green
+  # end
 
-  def evaluate_data_structure_access_response(evaluation_scope, question_hash)
-    # question_hash = DATA_STRUCTURE_QUESTIONS.sample
-    # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
-    # provides the scope necessary for answer eval later on
-    evaluation_scope.eval("#{question_hash[:variable_name]} = #{question_hash[:data_structure].to_s}")
-    # print_data_structure_access_prompt(question_hash)
-    answered_correctly = false
-    until answered_correctly
-      input = Readline.readline(">", true)
-      break if input === /^exit\s?/i
-      begin
-        if evaluation_scope.eval(input) == question_hash[:answer_value]
-          print_congratulation
-          answered_correctly = true
-          sleep 1.5
-          clear_display
-        else
-          puts "Remember, #{question_hash[:hint]} Try again.".red
-        end
-      rescue NameError
-        print_colorized_name_error_prompt
-      end
-    end
-  end
+  # def evaluate_data_structure_access_response(evaluation_scope, question_hash)
+  #   # question_hash = DATA_STRUCTURE_QUESTIONS.sample
+  #   # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
+  #   # provides the scope necessary for answer eval later on
+  #   evaluation_scope.eval("#{question_hash[:variable_name]} = #{question_hash[:data_structure].to_s}")
+  #   # print_data_structure_access_prompt(question_hash)
+  #   answered_correctly = false
+  #   until answered_correctly
+  #     input = Readline.readline(">", true)
+  #     break if input === /^exit\s?/i
+  #     begin
+  #       if evaluation_scope.eval(input) == question_hash[:answer_value]
+  #         print_congratulation
+  #         answered_correctly = true
+  #         sleep 1.5
+  #         clear_display
+  #       else
+  #         puts "Remember, #{question_hash[:hint]} Try again.".red
+  #       end
+  #     rescue NameError
+  #       print_colorized_name_error_prompt
+  #     end
+  #   end
+  # end
 
 end
