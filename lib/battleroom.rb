@@ -25,7 +25,7 @@ while true
     end
   when "2"
     5.times do
-      question_hash = DATA_STRUCTURE_QUESTIONS.sample
+      data_structure_question = Question.new(DATA_STRUCTURE_ACCESS_QUESTIONS.sample, :data_structure_access)
       question_hash = format_question_hash_based_on_data_structure_class(question_hash)
       print_data_structure_access_prompt(question_hash)
       evaluate_data_structure_access_response(b, question_hash)

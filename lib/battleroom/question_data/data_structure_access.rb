@@ -1,4 +1,4 @@
-DATA_STRUCTURE_QUESTIONS = [
+DATA_STRUCTURE_ACCESS_QUESTIONS = [
   {
     data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
     variable_name: "sci_fi_books"

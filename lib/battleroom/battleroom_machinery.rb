@@ -3,7 +3,8 @@ require_relative 'question_data/data_structure_access'
 require 'pry'
 require 'colorize'
 require 'readline'
-require 'rb-readline'
+
+# include Readline
 
 module BattleroomMachinery
   class Question
@@ -22,6 +23,18 @@ module BattleroomMachinery
         self.variable_name = data[:possible_variable_names].sample
         self.variable_value = data[:possible_variable_values].sample
         self.value_type = data[:value_type]
+      when :data_structure_access
+        if data_structure.class == Array
+          # randomizes and shuffles the items in the arrays, so repeats remain interesting
+          question_clone[:data_structure] = question_clone[:data_structure].shuffle[0,3]
+          question_clone[:answer_value] = question_clone[:data_structure].sample
+          question_clone[:hint] = "index values start at 0."
+          question_clone[:class] = "Array"
+        else
+          question_clone[:answer_value] = data_structure[data_structure.keys.sample]
+          question_clone[:hint] = "you have to use the EXACT hash key to retrieve the associated value."
+          question_clone[:class] = "Hash"
+        end
       end
     end
 
@@ -32,7 +45,7 @@ module BattleroomMachinery
     def evaluate_variable_assignment(evaluation_scope)
       answered_correctly = false
       until answered_correctly
-        answer = gets.chomp
+        answer = Readline.readline("> ", true)
         abort("Goodbye!".green) if answer.match /^exit\s?/i
         begin
           evaluation_scope.eval(answer)
@@ -51,8 +64,6 @@ module BattleroomMachinery
     end # evaluate_variable_assignment
 
   end
-
-  q = Question.new(VARIABLE_QUESTIONS.sample, :variable)
 
   def clear_display
     `reset`
@@ -80,30 +91,8 @@ module BattleroomMachinery
     puts "Get used to it and try again.".red
   end
 
-  def evaluate_variable_assignment(evaluation_scope)
-    answered_correctly = false
-    until answered_correctly
-      answer = gets.chomp
-      abort("Goodbye!".green) if answer.match /^exit\s?/i
-      begin
-        evaluation_scope.eval(answer)
-        binding.pry
-        if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
-          print_congratulation
-          answered_correctly = true
-        else
-          print "You mis-assigned #{variable_name}. ".red + "Try Again!\n".green
-        end
-      rescue NameError
-        puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
-      rescue Exception => e
-        puts e.message
-      end
-    end
-  end
-
   def format_question_hash_based_on_data_structure_class(randomly_assigned_question)
-    # clone data structure for data_structure maintenance
+    # clone data structure for question_specific data_structure
     question_clone = randomly_assigned_question.clone
     data_structure = question_clone[:data_structure]
     if data_structure.class == Array
@@ -138,7 +127,7 @@ module BattleroomMachinery
     # print_data_structure_access_prompt(question_hash)
     answered_correctly = false
     until answered_correctly
-      input = gets.chomp
+      input = Readline.readline(">", true)
       break if input === /^exit\s?/i
       begin
         if evaluation_scope.eval(input) == question_hash[:answer_value]
