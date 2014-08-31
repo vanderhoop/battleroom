@@ -7,10 +7,52 @@ require 'rb-readline'
 
 module BattleroomMachinery
   class Question
-    def initialize(options = {})
-      @variable_name = options[:variable_name]
+    attr_reader :type, :data
+    attr_accessor :variable_name, :variable_value, :value_type
+
+    def initialize(options = {}, type)
+      @data = options
+      @type = type
+      format!
     end
+
+    def format!
+      case self.type
+      when :variable
+        self.variable_name = data[:possible_variable_names].sample
+        self.variable_value = data[:possible_variable_values].sample
+        self.value_type = data[:value_type]
+      end
+    end
+
+    def provide_variable_prompt
+      puts "Create a variable, #{self.variable_name}, and assign it the #{self.value_type} value #{self.variable_value}".blue
+    end
+
+    def evaluate_variable_assignment(evaluation_scope)
+      answered_correctly = false
+      until answered_correctly
+        answer = gets.chomp
+        abort("Goodbye!".green) if answer.match /^exit\s?/i
+        begin
+          evaluation_scope.eval(answer)
+          if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
+            print_congratulation
+            answered_correctly = true
+          else
+            print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
+          end
+        rescue NameError
+          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+        rescue Exception => e
+          puts e.message
+        end
+      end
+    end # evaluate_variable_assignment
+
   end
+
+  q = Question.new(VARIABLE_QUESTIONS.sample, :variable)
 
   def clear_display
     `reset`
@@ -31,12 +73,6 @@ module BattleroomMachinery
     puts random_congratulation.green
   end
 
-  def provide_random_variable_prompt
-    question = VARIABLE_QUESTIONS.sample
-    @var_name = question[:var_name].sample
-    @var_value = question[:var_value].sample
-    puts "Create a variable, #{@var_name}, and assign it the #{question[:value_type]} value #{@var_value}".blue
-  end
 
   def print_colorized_name_error_prompt
     puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
@@ -51,11 +87,12 @@ module BattleroomMachinery
       abort("Goodbye!".green) if answer.match /^exit\s?/i
       begin
         evaluation_scope.eval(answer)
-        if evaluation_scope.eval("#{@var_name} == #{@var_value}")
+        binding.pry
+        if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
           print_congratulation
           answered_correctly = true
         else
-          print "You mis-assigned #{var_name}. ".red + "Try Again!\n".green
+          print "You mis-assigned #{variable_name}. ".red + "Try Again!\n".green
         end
       rescue NameError
         puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red

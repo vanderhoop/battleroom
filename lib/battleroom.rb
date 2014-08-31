@@ -3,6 +3,9 @@
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
 
+ q = Question.new(VARIABLE_QUESTIONS.sample, :variable)
+ q.format!
+
 clear_display
 print "Welcome to the Battleroom.".blue
 while true
@@ -16,8 +19,9 @@ while true
   case choice
   when "1"
     10.times do
-      provide_random_variable_prompt
-      evaluate_variable_assignment(b)
+      q = Question.new(VARIABLE_QUESTIONS.sample, :variable)
+      q.provide_variable_prompt
+      q.evaluate_variable_assignment(b)
     end
   when "2"
     5.times do
