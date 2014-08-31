@@ -10,7 +10,7 @@ clear_display
 print "Welcome to the Battleroom.".blue
 while true
   print_menu_options
-  choice = gets.chomp.downcase
+  choice = Readline.readline(">", true)
   clear_display
 
   # for eval
