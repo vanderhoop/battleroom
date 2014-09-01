@@ -15,7 +15,7 @@ module BattleroomMachinery
       @type = type
       @data_structure = data[:data_structure]
       @variable_name = data[:possible_variable_names].sample
-      @variable_value = data[:possible_variable_values].sample
+      # @variable_value = data[:possible_variable_values].sample
       format!
     end
 
@@ -23,7 +23,7 @@ module BattleroomMachinery
       case self.type
       when :variable
         # self.variable_name = data[:possible_variable_names].sample
-        # self.variable_value = data[:possible_variable_values].sample
+        self.variable_value = data[:possible_variable_values].sample
         self.value_type = data[:value_type]
       when :data_structure_access
         if data_structure.class == Array
@@ -122,7 +122,7 @@ module BattleroomMachinery
           e.message.match /conversion\sof\s(.+)\sinto\sInteger/i
           # self.explanation = "Here's what's happening: Ruby saw a pair of square backets tacked on to the end of an array, and because array values are accessed via index (an integer), Ruby expected the value between square brackets TO BE AN INTEGER. Ruby played nice and tried to convert the given #{$1} to an integer, but doing so broke the world."
 
-          puts "\nBasically, you put a #{$1} between square brackets, and Ruby was expecting an index value, i.e. an integer. This commonly arises when programmers think they're dealing with a hash, when in fact they're dealing with an array.\n".red
+          puts "\nBasically, you put a #{$1} between square brackets, whereas Ruby was expecting an index value, i.e. an integer. This commonly arises when programmers think they're dealing with a hash, when in fact they're dealing with an array.\n".red
         end
       end
     end
