@@ -15,7 +15,7 @@ module BattleroomMachinery
       @type = type
       @data_structure = data[:data_structure]
       @variable_name = data[:possible_variable_names].sample
-      @variable_value = data[:possible_variable_names].sample
+      @variable_value = data[:possible_variable_values].sample
       format!
     end
 
