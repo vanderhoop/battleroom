@@ -7,7 +7,7 @@ clear_display
 print "Welcome to the Battleroom.".blue
 while true
   print_menu_options
-  choice = Readline.readline(">", true)
+  choice = Readline.readline("> ", true)
   clear_display
 
   # for eval
@@ -17,8 +17,9 @@ while true
   when "1"
     10.times do
       q = Question.new(:variable, VARIABLE_QUESTIONS.sample)
-      q.provide_variable_prompt
-      q.evaluate_variable_assignment(b)
+      q.print_variable_assignment_prompt
+      # q.evaluate_variable_assignment(b)
+      q.evaluate_variable_assignment_input(b)
     end
   when "2"
     5.times do

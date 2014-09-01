@@ -40,8 +40,16 @@ module BattleroomMachinery
       end
     end
 
-    def provide_variable_prompt
+    def print_variable_assignment_prompt
       puts "Create a variable, #{self.variable_name}, and assign it the #{self.value_type} value #{self.variable_value}".blue
+    end
+
+    def print_data_structure_access_prompt
+      answer_value_class = self.answer_value.class.to_s
+      answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
+      answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
+      puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
+      puts "#{self.variable_name} = #{self.data_structure.to_s}".green
     end
 
     def evaluate_variable_assignment(evaluation_scope)
@@ -65,32 +73,50 @@ module BattleroomMachinery
       end
     end # evaluate_variable_assignment
 
-    def print_data_structure_access_prompt
-      # question_hash = DATA_STRUCTURE_QUESTIONS.sample
-      # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
-      answer_value_class = self.answer_value.class.to_s
-      answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
-      answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
-      puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
-      puts "#{self.variable_name} = #{self.data_structure.to_s}".green
+    def enter_evaluation_loop(evaluation_scope)
+      answered_correctly = false
+      until answered_correctly
+        user_input = Readline.readline("> ", true)
+        abort("Goodbye!".green) if user_input.match /^exit\s?/i
+        if yield(user_input, evaluation_scope)
+          print_congratulation
+          sleep 1.5
+          clear_display
+          answered_correctly = true
+        end
+      end
+    end
+
+    def evaluate_variable_assignment_input(evaluation_scope)
+      enter_evaluation_loop(evaluation_scope) do |user_input, evaluation_scope|
+        begin
+          evaluation_scope.eval(user_input)
+          if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
+            true
+          else
+            print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
+          end
+        rescue NameError
+          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+        rescue Exception => e
+          puts e.message
+        end
+      end
     end
 
     def evaluate_data_structure_access_response(evaluation_scope)
-      # question_hash = DATA_STRUCTURE_QUESTIONS.sample
-      # question_hash = format_question_hash_based_on_data_structure_class(question_hash)
-      # provides the scope necessary for answer eval later on
-      evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
-      # print_data_structure_access_prompt(question_hash)
       answered_correctly = false
       until answered_correctly
         input = Readline.readline("> ", true)
         break if input === /^exit\s?/i
         begin
+          # provides the evaluation scope with values necessary for answer eval
+          evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
           if evaluation_scope.eval(input) == self.answer_value
             print_congratulation
-            answered_correctly = true
             sleep 1.5
             clear_display
+            answered_correctly = true
           else
             puts "Remember, #{self.hint} Try again.".red
           end
@@ -120,7 +146,6 @@ module BattleroomMachinery
   def print_congratulation
     puts random_congratulation.green
   end
-
 
   def print_colorized_name_error_prompt
     puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
