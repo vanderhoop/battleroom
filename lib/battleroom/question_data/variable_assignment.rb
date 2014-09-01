@@ -7,7 +7,10 @@ VARIABLE_QUESTIONS = [
       "num_steaks",
       "percent_of_love_maintained",
       "fav_number",
-      "days_without_rain"
+      "lucky_number",
+      "unlucky_num",
+      "days_without_rain",
+      "years_without_championship",
     ],
     possible_variable_values: (1..100).to_a,
     value_type: "FixNum"

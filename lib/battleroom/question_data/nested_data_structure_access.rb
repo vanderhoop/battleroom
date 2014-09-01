@@ -10,6 +10,16 @@ NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS = [
       { title: "The Stone Roses", released: 1989 },
       { title: "Second Coming", released: 1994 },
     ],
-    variable_name: "stone_roses_albums"
+    possible_variable_names: ["stone_roses_albums"]
   },
+  {
+    data_structure: [
+      { song_title: "Material Girl", peak_chart_position: 2 },
+      { song_title: "Borderline", peak_chart_position: 10 },
+      { song_title: "Lucky Star", peak_chart_position: 4 },
+      { song_title: "Holiday", peak_chart_position: 16 },
+      { song_title: "Vogue", peak_chart_position: 1 },
+    ],
+    possible_variable_names: ["madonna_singles"]
+  }
 ]
