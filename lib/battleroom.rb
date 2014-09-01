@@ -25,7 +25,8 @@ while true
     5.times do
       data_structure_question = Question.new(:data_structure_access, DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
       data_structure_question.print_data_structure_access_prompt
-      data_structure_question.evaluate_data_structure_access_response(b)
+      # data_structure_question.evaluate_data_structure_access_response(b)
+      data_structure_question.evaluate_data_structure_access_input(b)
     end
   when /^(q|exit\s?)/i
     puts "Goodbye!".green

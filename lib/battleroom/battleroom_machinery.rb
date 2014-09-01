@@ -71,6 +71,7 @@ module BattleroomMachinery
         begin
           evaluation_scope.eval(user_input)
           if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
+            # this last returned value of 'true' within is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
             print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
@@ -83,9 +84,21 @@ module BattleroomMachinery
       end
     end
 
-    # def evaluate_data_structure_access_input(evaluation_scope)
-    #   enter_evaluation_loop(evaluation_scope) do |user_input|
-    # end
+    def evaluate_data_structure_access_input(evaluation_scope)
+      enter_evaluation_loop do |user_input|
+        begin
+          # provides the evaluation scope with variable assignment necessary for answer eval
+          evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
+          if evaluation_scope.eval(user_input) == self.answer_value
+            true
+          else
+            puts "Remember, #{self.hint} Try again.".red
+          end
+        rescue NameError
+          print_colorized_name_error_prompt
+        end
+      end
+    end
 
     def evaluate_data_structure_access_response(evaluation_scope)
       answered_correctly = false
