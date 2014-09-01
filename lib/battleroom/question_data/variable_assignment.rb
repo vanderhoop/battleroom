@@ -23,7 +23,7 @@ VARIABLE_QUESTIONS = [
     possible_variable_values: [
       "'#{rand(2..11)} months'",
       "'#{rand(2..20)} years'",
-      "'#{rand(2..3)} days'"
+      "'#{rand(2..6)} days'"
     ],
     value_type: "String" },
   {

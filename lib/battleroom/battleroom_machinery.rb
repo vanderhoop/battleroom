@@ -4,7 +4,9 @@ require_relative 'question_data/nested_data_structure_access'
 require 'awesome_print'
 require 'pry'
 require 'colorize'
-require 'readline'
+# require 'readline'
+
+binding.pry
 
 # include Readline
 
@@ -72,7 +74,8 @@ module BattleroomMachinery
     def enter_evaluation_loop(&block)
       answered_correctly = false
       until answered_correctly
-        user_input = Readline.readline("> ", true)
+        # printf "> ".blue
+        user_input = Readline.readline("> ".blue, true)
         abort("Goodbye!".green) if user_input.match /^exit\s?/i
         if yield(user_input)
           print_congratulation
@@ -125,7 +128,7 @@ module BattleroomMachinery
   end
 
   def print_menu_options
-    puts "What would you like to work on?".blue
+    puts " What would you like to work on?".blue
     puts "1. Variable assignment"
     puts "2. Accessing values from arrays/hashes"
     puts "3. Accessing values from within nested data structures"
