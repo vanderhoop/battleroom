@@ -7,7 +7,8 @@ clear_display
 print "Welcome to the Battleroom.".blue
 while true
   print_menu_options
-  choice = Readline.readline("> ", true)
+  print "> ".blue
+  choice = Readline.readline("", true)
   clear_display
 
   # for eval
@@ -22,14 +23,15 @@ while true
     end
   when "2"
     5.times do
-      data_structure_question = Question.new(:data_structure_access, DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
-      data_structure_question.print_data_structure_access_prompt
-      data_structure_question.evaluate_data_structure_access_input(b)
+      q = Question.new(:data_structure_access, DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
+      q.print_data_structure_access_prompt
+      q.evaluate_data_structure_access_input(b)
     end
   when "3"
     5.times do
-      nested_data_structure_access_q = Question.new(:nested_data_structure_access, NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
-      binding.pry
+      q = Question.new(:nested_data_structure_access, NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
+      q.print_data_structure_access_prompt
+      q.evaluate_data_structure_access_input(b)
     end
   when /^(q|exit\s?)/i
     puts "Goodbye!".green

@@ -1,6 +1,7 @@
 require_relative 'question_data/variable_assignment'
 require_relative 'question_data/data_structure_access'
 require_relative 'question_data/nested_data_structure_access'
+require 'awesome_print'
 require 'pry'
 require 'colorize'
 require 'readline'
@@ -10,7 +11,7 @@ require 'readline'
 module BattleroomMachinery
   class Question
     attr_reader :type, :data
-    attr_accessor :variable_name, :variable_value, :value_type, :data_structure, :hint, :data_structure_class, :answer_value
+    attr_accessor :variable_name, :variable_value, :value_type, :data_structure, :hint, :data_structure_class, :answer_value, :inner_hash, :inner_array
 
     def initialize(type, options = {})
       @data = options
@@ -39,7 +40,18 @@ module BattleroomMachinery
           self.data_structure_class = "Hash"
         end
       when :nested_data_structure_access
-        binding.pry
+        if data_structure.class == Array
+          # randomizes and shuffles the items in the arrays, so repeats remain interesting
+          self.data_structure = data_structure.shuffle[0,3]
+          self.inner_hash = data_structure.sample
+          self.answer_value = inner_hash[inner_hash.keys.sample]
+          # self.hint = "index values start at 0."
+          self.data_structure_class = "Array"
+        else
+          self.answer_value = data_structure[data_structure.keys.sample]
+          self.hint = "you have to use the EXACT hash key to retrieve the associated value."
+          self.data_structure_class = "Hash"
+        end
       end
     end
 
@@ -51,8 +63,10 @@ module BattleroomMachinery
       answer_value_class = self.answer_value.class.to_s
       answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
       answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
-      puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?".blue
-      puts "#{self.variable_name} = #{self.data_structure.to_s}".green
+      puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?\n".blue
+      print "#{self.variable_name} = ".green
+      ap(data_structure, { indent: 2, index: false, multiline: true, plain: true})
+      puts ""
     end
 
     def enter_evaluation_loop(&block)
