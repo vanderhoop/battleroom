@@ -90,29 +90,8 @@ module BattleroomMachinery
           # provides the evaluation scope with variable assignment necessary for answer eval
           evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
           if evaluation_scope.eval(user_input) == self.answer_value
+            # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
-          else
-            puts "Remember, #{self.hint} Try again.".red
-          end
-        rescue NameError
-          print_colorized_name_error_prompt
-        end
-      end
-    end
-
-    def evaluate_data_structure_access_response(evaluation_scope)
-      answered_correctly = false
-      until answered_correctly
-        input = Readline.readline("> ", true)
-        break if input === /^exit\s?/i
-        begin
-          # provides the evaluation scope with values necessary for answer eval
-          evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
-          if evaluation_scope.eval(input) == self.answer_value
-            print_congratulation
-            sleep 1.5
-            clear_display
-            answered_correctly = true
           else
             puts "Remember, #{self.hint} Try again.".red
           end
