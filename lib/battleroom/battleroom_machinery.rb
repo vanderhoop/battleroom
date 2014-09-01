@@ -52,35 +52,14 @@ module BattleroomMachinery
       puts "#{self.variable_name} = #{self.data_structure.to_s}".green
     end
 
-    def evaluate_variable_assignment(evaluation_scope)
-      answered_correctly = false
-      until answered_correctly
-        answer = Readline.readline("> ", true)
-        abort("Goodbye!".green) if answer.match /^exit\s?/i
-        begin
-          evaluation_scope.eval(answer)
-          if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
-            print_congratulation
-            answered_correctly = true
-          else
-            print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
-          end
-        rescue NameError
-          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
-        rescue Exception => e
-          puts e.message
-        end
-      end
-    end # evaluate_variable_assignment
-
-    def enter_evaluation_loop(evaluation_scope)
+    def enter_evaluation_loop(&block)
       answered_correctly = false
       until answered_correctly
         user_input = Readline.readline("> ", true)
         abort("Goodbye!".green) if user_input.match /^exit\s?/i
-        if yield(user_input, evaluation_scope)
+        if yield(user_input)
           print_congratulation
-          sleep 1.5
+          sleep 1.6
           clear_display
           answered_correctly = true
         end
@@ -88,7 +67,7 @@ module BattleroomMachinery
     end
 
     def evaluate_variable_assignment_input(evaluation_scope)
-      enter_evaluation_loop(evaluation_scope) do |user_input, evaluation_scope|
+      enter_evaluation_loop do |user_input|
         begin
           evaluation_scope.eval(user_input)
           if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
@@ -103,6 +82,10 @@ module BattleroomMachinery
         end
       end
     end
+
+    # def evaluate_data_structure_access_input(evaluation_scope)
+    #   enter_evaluation_loop(evaluation_scope) do |user_input|
+    # end
 
     def evaluate_data_structure_access_response(evaluation_scope)
       answered_correctly = false
