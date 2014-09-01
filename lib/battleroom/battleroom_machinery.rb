@@ -1,5 +1,6 @@
 require_relative 'question_data/variable_assignment'
 require_relative 'question_data/data_structure_access'
+require_relative 'question_data/nested_data_structure_access'
 require 'pry'
 require 'colorize'
 require 'readline'
@@ -14,6 +15,8 @@ module BattleroomMachinery
     def initialize(type, options = {})
       @data = options
       @type = type
+      @data_structure = data[:data_structure]
+      @variable_name = data[:variable_name]
       format!
     end
 
@@ -24,19 +27,19 @@ module BattleroomMachinery
         self.variable_value = data[:possible_variable_values].sample
         self.value_type = data[:value_type]
       when :data_structure_access
-        self.data_structure = data[:data_structure]
-        self.variable_name = data[:variable_name]
-        if self.data_structure.class == Array
+        if data_structure.class == Array
           # randomizes and shuffles the items in the arrays, so repeats remain interesting
-          self.data_structure = self.data[:data_structure].shuffle[0,3]
-          self.answer_value = self.data_structure.sample
+          self.data_structure = data_structure.shuffle[0,3]
+          self.answer_value = data_structure.sample
           self.hint = "index values start at 0."
           self.data_structure_class = "Array"
         else
-          self.answer_value = self.data_structure[self.data_structure.keys.sample]
+          self.answer_value = data_structure[data_structure.keys.sample]
           self.hint = "you have to use the EXACT hash key to retrieve the associated value."
           self.data_structure_class = "Hash"
         end
+      when :nested_data_structure_access
+        binding.pry
       end
     end
 
@@ -111,6 +114,7 @@ module BattleroomMachinery
     puts "What would you like to work on?".blue
     puts "1. Variable assignment"
     puts "2. Accessing values from arrays/hashes"
+    puts "3. Accessing values from within nested data structures"
     puts "Q. Quit\r\n\n"
   end
 
