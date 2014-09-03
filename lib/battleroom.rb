@@ -17,7 +17,7 @@ while true
   case choice
   when "1"
     10.times do
-      q = Question.new(:variable, VARIABLE_QUESTIONS.sample)
+      q = Question.new(:variable, Question.variable_question)
       q.print_variable_assignment_prompt
       q.evaluate_variable_assignment_input(b)
     end

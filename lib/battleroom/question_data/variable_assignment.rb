@@ -28,7 +28,8 @@ VARIABLE_QUESTIONS = [
       "'#{rand(2..20)} years'",
       "'#{rand(2..6)} days'"
     ],
-    value_type: "String" },
+    value_type: "String"
+  },
   {
     possible_variable_names: [
       "instructor_name",

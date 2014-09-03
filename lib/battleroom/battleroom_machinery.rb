@@ -8,15 +8,35 @@ require 'colorize'
 module BattleroomMachinery
   class Question
     attr_reader :type, :data
-    attr_accessor :variable_name, :variable_value, :value_type, :data_structure, :hint, :data_structure_class, :answer_value, :inner_hash, :inner_array, :explanation
+    attr_accessor :variable_name, :variable_value, :value_type, :data_structure,
+                  :hint, :data_structure_class, :answer_value, :inner_hash,
+                  :inner_array, :explanation
 
-    def initialize(type, options = {})
-      @data = options
+    @@variable_questions = VARIABLE_QUESTIONS.shuffle
+    @@data_structure_access_questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
+    @@nested_data_structure_access_questions = NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
+
+    def initialize(type, question_data)
+      @data = question_data
       @type = type
       @data_structure = data[:data_structure]
       @variable_name = data[:possible_variable_names].sample
       # @variable_value = data[:possible_variable_values].sample
       format!
+    end
+
+    def self.variable_question
+      question = @@variable_questions.shift
+      @@variable_questions.push(question)
+      question
+    end
+
+    def self.data_structure_access_question
+      @@data_structure_access_questions.shift
+    end
+
+    def self.nested_data_structure_access_question
+      @@nested_data_structure_access_questions.shift
     end
 
     def format!
