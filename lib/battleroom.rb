@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+require_relative './battleroom/models/nested_data_structure_access_question'
+require_relative './battleroom/models/data_structure_access_question'
+require_relative './battleroom/models/variable_question'
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
 
@@ -7,8 +10,7 @@ clear_display
 print "Welcome to the Battleroom.".blue
 while true
   print_menu_options
-  print "> ".blue
-  choice = Readline.readline("", true)
+  choice = Readline.readline("> ".blue, true)
   clear_display
 
   # for eval
@@ -29,7 +31,7 @@ while true
     end
   when "3"
     5.times do
-      q = Question.new(:nested_data_structure_access, NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
+      q = NestedDataStructureAccessQuestion.new
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
     end
