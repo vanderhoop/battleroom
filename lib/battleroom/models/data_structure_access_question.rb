@@ -14,11 +14,9 @@ class DataStructureAccessQuestion < Question
       self.answer_value = data_structure.sample
       self.assignment_value = data[:possible_assignments].sample
       self.hint = "index values start at 0."
-      self.data_structure_class = "Array"
     else
       self.answer_value = data_structure[data_structure.keys.sample]
       self.hint = "you have to use the EXACT hash key to retrieve the associated value."
-      self.data_structure_class = "Hash"
       self.assignment_value = data[:possible_assignments].sample.values[0]
       self.assignment_key = data[:possible_assignments].sample.keys[0]
     end
@@ -47,7 +45,7 @@ class DataStructureAccessQuestion < Question
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
         evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
-        if self.data_structure_class == Array
+        if self.data_structure.class == Array
           evaluation_scope.eval(user_input)
           if evaluation_scope.eval("#{self.variable_name}.last == #{self.assignment_value_string}") && user_input.include?(self.variable_name)
             # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.

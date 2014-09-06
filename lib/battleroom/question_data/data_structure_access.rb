@@ -5,14 +5,14 @@ random_name_array = []
 50.times { random_name_array << Faker::Name.first_name }
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
-  # {
-  #   data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
-  #   possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles"],
-  #   # if I'm working with arrays, all the students need to know is the value to add to the array
-  #   # if I'm working with a hash, the students need to have a key to put into the hash, as well as a value.
-  #     # What's more extensible. Having a single key and multiple possible values?
-  #   possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
-  # },
+  {
+    data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
+    possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles"],
+    # if I'm working with arrays, all the students need to know is the value to add to the array
+    # if I'm working with a hash, the students need to have a key to put into the hash, as well as a value.
+      # What's more extensible. Having a single key and multiple possible values?
+    possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
+  },
   # {
   #   data_structure: random_name_array,
   #   possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends"]
