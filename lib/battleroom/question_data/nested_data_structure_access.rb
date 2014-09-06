@@ -3,6 +3,7 @@
   # is awesome_print the best solution?
   # I should keep whatever data structures I create brief
   # I should keep the first key-value pair of a hash to simple datatypes. the second k-v pair should be the nested data structure
+  # key lengths should be close, for readability (keep in mind this is for absolute beginners)
 
 NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS = [
   {

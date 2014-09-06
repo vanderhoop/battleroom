@@ -63,11 +63,9 @@ module BattleroomMachinery
           self.data_structure = data_structure.shuffle[0,4]
           self.inner_hash = data_structure.sample
           self.answer_value = inner_hash[inner_hash.keys.sample]
-          # self.hint = "index values start at 0."
           self.data_structure_class = "Array"
         else
           self.answer_value = data_structure[data_structure.keys.sample]
-          self.hint = "you have to use the EXACT hash key to retrieve the associated value."
           self.data_structure_class = "Hash"
         end
       end
