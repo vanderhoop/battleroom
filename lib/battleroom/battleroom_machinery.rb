@@ -14,6 +14,7 @@ module BattleroomMachinery
 
     def initialize
       @data = self.class.generate_question
+      @variable_name = data[:possible_variable_names].sample
     end
 
     # calls on class instance variables set in the subclasses
@@ -119,7 +120,6 @@ module BattleroomMachinery
 
     def initialize
       super
-      @variable_name = data[:possible_variable_names].sample
       @variable_value = data[:possible_variable_values].sample
       @value_type = data[:value_type]
     end
@@ -146,6 +146,15 @@ module BattleroomMachinery
       end
     end
   end # VariableQuestion
+
+  class DataStructureAccessQuestion < Question
+    @questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
+
+    def initialize
+      super
+      binding.pry
+    end
+  end
 
 
   def clear_display

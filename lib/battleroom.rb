@@ -23,7 +23,7 @@ while true
     end
   when "2"
     5.times do
-      q = Question.new(:data_structure_access, DATA_STRUCTURE_ACCESS_QUESTIONS.sample)
+      q = DataStructureAccessQuestion.new
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
     end
