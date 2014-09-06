@@ -12,39 +12,27 @@ module BattleroomMachinery
                   :hint, :data_structure_class, :answer_value, :inner_hash,
                   :inner_array, :explanation
 
-    @@variable_questions = VARIABLE_QUESTIONS.shuffle
-    @@data_structure_access_questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
-    @@nested_data_structure_access_questions = NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
-
-    def initialize(type, question_data)
-      @data = question_data
-      @type = type
-      @data_structure = data[:data_structure]
-      @variable_name = data[:possible_variable_names].sample
-      # @variable_value = data[:possible_variable_values].sample
-      format!
+    def initialize
+      @data = self.class.generate_question
     end
 
-    def self.variable_question
-      question = @@variable_questions.shift
-      @@variable_questions.push(question)
+    # calls on class instance variables set in the subclasses
+    def self.generate_question
+      question = @questions.shift
+      @questions.push(question)
       question
     end
 
-    def self.data_structure_access_question
+    def generate_data_structure_access_question
       @@data_structure_access_questions.shift
     end
 
-    def self.nested_data_structure_access_question
+    def generate_nested_data_structure_access_question
       @@nested_data_structure_access_questions.shift
     end
 
     def format!
       case self.type
-      when :variable
-        # self.variable_name = data[:possible_variable_names].sample
-        self.variable_value = data[:possible_variable_values].sample
-        self.value_type = data[:value_type]
       when :data_structure_access
         if data_structure.class == Array
           # randomizes and shuffles the items in the arrays, so repeats remain interesting
@@ -71,10 +59,6 @@ module BattleroomMachinery
       end
     end
 
-    def print_variable_assignment_prompt
-      puts "Create a variable, #{self.variable_name}, and assign it the #{self.value_type} value #{self.variable_value}".blue
-    end
-
     def print_data_structure_access_prompt
       answer_value_class = self.answer_value.class.to_s
       answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
@@ -96,24 +80,6 @@ module BattleroomMachinery
           sleep 1.6
           clear_display
           answered_correctly = true
-        end
-      end
-    end
-
-    def evaluate_variable_assignment_input(evaluation_scope)
-      enter_evaluation_loop do |user_input|
-        begin
-          evaluation_scope.eval(user_input)
-          if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
-            # this last returned value of 'true' within is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
-            true
-          else
-            print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
-          end
-        rescue NameError
-          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
-        rescue Exception => e
-          puts e.message
         end
       end
     end
@@ -145,7 +111,42 @@ module BattleroomMachinery
       end
     end
 
-  end
+  end # Question
+
+  class VariableQuestion < Question
+    # using a class instance variable, as manipulating a single class variable in the parent class is troublesome
+    @questions = VARIABLE_QUESTIONS.shuffle
+
+    def initialize
+      super
+      @variable_name = data[:possible_variable_names].sample
+      @variable_value = data[:possible_variable_values].sample
+      @value_type = data[:value_type]
+    end
+
+    def print_variable_assignment_prompt
+      puts "Create a variable, #{self.variable_name}, and assign it the #{self.value_type} value #{self.variable_value}".blue
+    end
+
+    def evaluate_variable_assignment_input(evaluation_scope)
+      enter_evaluation_loop do |user_input|
+        begin
+          evaluation_scope.eval(user_input)
+          if evaluation_scope.eval("#{self.variable_name} == #{self.variable_value}")
+            # this last returned value of 'true' within is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
+            true
+          else
+            print "You mis-assigned #{self.variable_name}. ".red + "Try Again!\n".green
+          end
+        rescue NameError
+          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+        rescue Exception => e
+          puts e.message
+        end
+      end
+    end
+  end # VariableQuestion
+
 
   def clear_display
     `reset`
