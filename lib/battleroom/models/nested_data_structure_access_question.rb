@@ -3,6 +3,7 @@ require_relative '../question_data/nested_data_structure_access'
 
 class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
 
+  # class instance variable used within the initialize method for Question
   @questions = NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
 
   def initialize
@@ -14,6 +15,5 @@ class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
       self.answer_value = data_structure[data_structure.keys.sample]
     end
   end
-
 
 end

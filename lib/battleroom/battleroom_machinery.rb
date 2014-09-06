@@ -1,7 +1,3 @@
-# require_relative 'question_data/variable_assignment'
-# require_relative 'question_data/data_structure_access'
-# require_relative 'question_data/nested_data_structure_access'
-
 require 'awesome_print'
 require 'pry'
 require 'colorize'
