@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative './battleroom/models/nested_data_structure_access_question'
+require_relative './battleroom/models/data_structure_assignment_question'
 require_relative './battleroom/models/data_structure_access_question'
 require_relative './battleroom/models/variable_question'
 require_relative 'battleroom/battleroom_machinery'
@@ -24,13 +25,13 @@ while true
       q.evaluate_variable_assignment_input(b)
     end
   when "2"
-    # 5.times do
-    #   q = DataStructureAccessQuestion.new
-    #   q.print_data_structure_access_prompt
-    #   q.evaluate_data_structure_access_input(b)
-    # end
     5.times do
       q = DataStructureAccessQuestion.new
+      q.print_data_structure_access_prompt
+      q.evaluate_data_structure_access_input(b)
+    end
+    5.times do
+      q = DataStructureAssignmentQuestion.new
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input(b)
     end
