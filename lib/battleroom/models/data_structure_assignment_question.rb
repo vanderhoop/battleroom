@@ -9,8 +9,9 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     if data_structure.class == Array
       self.assignment_value = data[:possible_assignments].sample
     else
-      self.assignment_value = data[:possible_assignments].sample.values[0]
-      self.assignment_key = data[:possible_assignments].sample.keys[0]
+      assignment = data[:possible_assignments].sample
+      self.assignment_value = assignment.values[0]
+      self.assignment_key = assignment.keys[0]
     end
     self.assignment_value_class = self.assignment_value.class.to_s
     self.assignment_value_class = "Boolean" if assignment_value_class.match /(TrueClass|FalseClass)/

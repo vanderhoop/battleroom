@@ -52,20 +52,28 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
     ]
 
   },
-  # {
-  #   data_structure: {
-  #     tiring: true,
-  #     distance: "13.1 miles",
-  #   },
-  #   possible_variable_names: ["brooklyn_half_marathon"]
-  # },
-  # {
-  #   data_structure: {
-  #     home_team: "Green Bay Packers",
-  #     capacity: 72_928,
-  #   },
-  #   possible_variable_names: ["lambeau_field"]
-  # },
+  {
+    data_structure: {
+      tiring: true,
+      distance: "13.1 miles",
+    },
+    possible_variable_names: ["brooklyn_half_marathon"],
+    possible_assignments: [
+      { distance_in_km: 21.097 },
+      { top_sponsor: "New Balance" },
+    ],
+  },
+  {
+    data_structure: {
+      home_team: "Green Bay Packers",
+      capacity: 72_928,
+    },
+    possible_variable_names: ["lambeau_field"],
+    possible_assignments: [
+      { real_grass: true },
+      { price_of_beer: 5.5 }
+    ],
+  },
   # {
   #   data_structure: {
   #     home_team: "Boston Red Sox",
@@ -73,20 +81,30 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   },
   #   possible_variable_names: ["fenway_park"]
   # },
-  # {
-  #   data_structure: {
-  #     stars: ["Ryan Gosling", "Rachel McAdams"],
-  #     released: 2004,
-  #   },
-  #   possible_variable_names: ["the_notebook"]
-  # },
-  # {
-  #   data_structure: {
-  #     director: "Spike Jonze",
-  #     released: 1999,
-  #   },
-  #   possible_variable_names: ["being_john_malkavich"]
-  # },
+  {
+    data_structure: {
+      stars: ["Ryan Gosling", "Rachel McAdams"],
+      released: 2004,
+    },
+    possible_variable_names: ["the_notebook"],
+    possible_assignments: [
+      { tearjerker: true },
+      { box_office: 81_500_000 },
+      { director: "Nick Cassavetes" },
+    ]
+  },
+  {
+    data_structure: {
+      director: "Spike Jonze",
+      released: 1999,
+    },
+    possible_variable_names: ["being_john_malkavich"],
+    possible_assignments: [
+      { stars: ["John Cusack", "Cameron Diaz"] },
+      { screenwriter: "Charlie Kaufman" },
+      { rt_rating: 93.0 },
+    ]
+  },
   # {
   #   data_structure: {
   #     stars: ["Nicholas Cage", "Meryl Streep"],
