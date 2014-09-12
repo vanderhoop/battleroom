@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
+require 'readline'
 
 require_relative './battleroom/models/nested_data_structure_access_question'
 require_relative './battleroom/models/data_structure_assignment_question'
 require_relative './battleroom/models/data_structure_access_question'
 require_relative './battleroom/models/variable_question'
 require_relative 'battleroom/battleroom_machinery'
+
 include BattleroomMachinery
 
 clear_display
