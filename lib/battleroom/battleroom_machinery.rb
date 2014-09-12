@@ -30,4 +30,18 @@ module BattleroomMachinery
     puts "Get used to it and try again.".red
   end
 
+  def format_value_for_stdout_and_eval(object)
+    case object.class.to_s
+    when "String" then return "'#{object}'"
+    when "Symbol" then return ":#{object}"
+    else
+      object
+    end
+  end
+
+  def format_class_for_output(klass)
+    return "Boolean" if klass.to_s.match /(TrueClass|FalseClass)/
+    klass.to_s
+  end
+
 end

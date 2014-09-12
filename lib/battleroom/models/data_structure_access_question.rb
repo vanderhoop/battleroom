@@ -17,10 +17,9 @@ class DataStructureAccessQuestion < DataStructureQuestion
   end
 
   def print_data_structure_access_prompt
-    answer_value_class = self.answer_value.class.to_s
-    answer_value_class = "Boolean" if answer_value_class.match /(TrueClass|FalseClass)/
-    answer_value_string = answer_value_class == "String" ? "'#{self.answer_value}'" : self.answer_value.to_s
-    puts "Given the data structure below, how would you access the #{answer_value_class} value, ".blue + "#{answer_value_string}".yellow + " ?\n".blue
+    answer_value_class = format_class_for_output(answer_value.class)
+    answer_value_string = format_value_for_stdout_and_eval(answer_value)
+    puts "Given the data structure below, how would you access the #{answer_value_class} value ".blue + "#{answer_value_string}".yellow + " ?\n".blue
     print "#{self.variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
     puts ""

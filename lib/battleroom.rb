@@ -25,11 +25,11 @@ while true
       q.evaluate_variable_assignment_input(b)
     end
   when "2"
-    # 5.times do
-    #   q = DataStructureAccessQuestion.new
-    #   q.print_data_structure_access_prompt
-    #   q.evaluate_data_structure_access_input(b)
-    # end
+    5.times do
+      q = DataStructureAccessQuestion.new
+      q.print_data_structure_access_prompt
+      q.evaluate_data_structure_access_input(b)
+    end
     5.times do
       q = DataStructureAssignmentQuestion.new
       q.print_data_structure_assignment_prompt
