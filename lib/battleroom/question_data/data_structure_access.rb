@@ -57,10 +57,11 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       tiring: true,
       distance: "13.1 miles",
     },
-    possible_variable_names: ["brooklyn_half_marathon"],
+    possible_variable_names: ["brooklyn_half_marathon", "madison_half_marathon"],
     possible_assignments: [
       { distance_in_km: 21.097 },
       { top_sponsor: "New Balance" },
+      { season: "Spring" },
     ],
   },
   {
@@ -89,8 +90,9 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
     possible_variable_names: ["the_notebook"],
     possible_assignments: [
       { tearjerker: true },
-      { box_office: 81_500_000 },
       { director: "Nick Cassavetes" },
+      { mtv_movie_award_count: 1 },
+      { box_office_millions: 81.5 },
     ]
   },
   {
@@ -103,15 +105,21 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       { stars: ["John Cusack", "Cameron Diaz"] },
       { screenwriter: "Charlie Kaufman" },
       { rt_rating: 93.0 },
+      { charlie_sheen_cameo: true },
     ]
   },
-  # {
-  #   data_structure: {
-  #     stars: ["Nicholas Cage", "Meryl Streep"],
-  #     rt_rating: "98%",
-  #   },
-  #   possible_variable_names: ["adaptation"]
-  # },
+  {
+    data_structure: {
+      stars: ["Nicholas Cage", "Meryl Streep"],
+      rt_rating: 98.0,
+    },
+    possible_variable_names: ["adaptation"],
+    possible_assignments: [
+      { releasted: 2002 },
+      { screenwriters: ["Charlie Kaufman", "Donald Kaufman"] },
+      { charlie_sheen_cameo: true },
+    ]
+  },
   # {
   #   data_structure: {
   #     screenwriter: "Charlie Kaufman",
