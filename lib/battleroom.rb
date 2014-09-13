@@ -32,12 +32,13 @@ while true
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
     end
+  when "3"
     5.times do
       q = DataStructureAssignmentQuestion.new
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input(b)
     end
-  when "3"
+  when "4"
     5.times do
       q = NestedDataStructureAccessQuestion.new
       q.print_data_structure_access_prompt

@@ -11,8 +11,9 @@ module BattleroomMachinery
   def print_menu_options
     puts " What would you like to work on?".blue
     puts "1. Variable assignment"
-    puts "2. Accessing values from arrays/hashes"
-    puts "3. Accessing values from within nested data structures"
+    puts "2. Accessing values in arrays and hashes"
+    puts "3. Adding values to arrays and hashes"
+    puts "4. Accessing values from within nested data structures"
     puts "Q. Quit\r\n\n"
   end
 
