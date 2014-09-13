@@ -7,24 +7,21 @@ $random_names_array.uniq
 array_of_floats =
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
-  # {
-  #   data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
-  #   possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles", "books"],
-  #   # if I'm working with arrays, all the students need to know is the value to add to the array
-  #   # if I'm working with a hash, the students need to have a key to put into the hash, as well as a value.
-  #     # What's more extensible. Having a single key and multiple possible values?
-  #   possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
-  # },
-  # {
-  #   data_structure: $random_names_array,
-  #   possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"],
-  #   possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
-  # },
-  # {
-  #   data_structure: (7..29).to_a.shuffle,
-  #   possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers"].shuffle,
-  #   possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41].shuffle
-  # },
+  {
+    data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
+    possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles", "books", "paperback_titles"],
+    possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
+  },
+  {
+    data_structure: $random_names_array,
+    possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"],
+    possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
+  },
+  {
+    data_structure: (7..29).to_a.shuffle,
+    possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers"].shuffle,
+    possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41].shuffle
+  },
   {
     data_structure: [
       rand(0.0..100.0).round(2),
@@ -88,7 +85,7 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   possible_variable_names: ["lyrically_brilliant_albums"]
   # },
   # {
-  #   data_structure: ["Sixteen Stone", "Nirvana MTV Unplugged 1994", "Jagged Little Pill", "Ten", "Nevermind", "Illmatic", "The Downward Spiral", "Odelay", "Mellowgold", "All Eyez On Me", "Ready 2 Die", "Blur", "Parklife", "What's the Story (Morning Glory)?", "Definitely Maybe", "13", "Keep It Like a Secret", "...Come Down", "XO", "Exile in Guyville", "The Lonesome Crowded West", "Crooked Rain, Crooked Rain", "The Blue Album", "Pinkerton", "OK Computer", "The Bends", "Slanted & Enchanted"],
+  #   data_structure: ["Sixteen Stone", "Nirvana MTV Unplugged 1994", "Jagged Little Pill", "Ten", "Nevermind", "Illmatic", "The Downward Spiral", "Odelay", "Mellowgold", "All Eyez On Me", "Ready 2 Die", "Blur", "Parklife", "What's the Story (Morning Glory)?", "Definitely Maybe", "Keep It Like a Secret", "...Come Down", "XO", "Exile in Guyville", "The Lonesome Crowded West", "Crooked Rain, Crooked Rain", "The Blue Album", "Pinkerton", "OK Computer", "The Bends", "Slanted & Enchanted"],
   #   possible_variable_names: ["classics_from_the_nineties"]
   # },
   # {

@@ -20,7 +20,7 @@ class Question
       answered_correctly = false
       until answered_correctly
         begin
-          user_input = Readline.readline('> '.blue, true)
+          user_input = Readline.readline("> ".blue, true)
           abort('Goodbye!'.green) if user_input.match /^exit\s?/i
           if yield(user_input)
             print_congratulation
