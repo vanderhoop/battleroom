@@ -21,7 +21,11 @@ class DataStructureAccessQuestion < DataStructureQuestion
     answer_value_string = format_value_for_stdout_and_eval(answer_value)
     puts "Given the data structure below, how would you access the #{answer_value_class} value ".blue + "#{answer_value_string}".yellow + " ?\n".blue
     print "#{self.variable_name} = ".green
-    ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
+    if data_structure.to_s.length < 40
+      puts data_structure.to_s
+    else
+      ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
+    end
     puts ""
   end
 

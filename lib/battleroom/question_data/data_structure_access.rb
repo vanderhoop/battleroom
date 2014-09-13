@@ -4,6 +4,7 @@ require 'pry'
 $random_names_array = []
 200.times { $random_names_array << Faker::Name.first_name }
 $random_names_array.uniq
+array_of_floats =
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
   # {
@@ -19,15 +20,52 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"],
   #   possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
   # },
+  # {
+  #   data_structure: (7..29).to_a.shuffle,
+  #   possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers"].shuffle,
+  #   possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41].shuffle
+  # },
   {
-    data_structure: [rand(7..29), rand(7..29), rand(7..29)].uniq.sort,
-    possible_variable_names: ["fav_nums", "lotto_nums"],
-    possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41]
-  },
-  {
-    data_structure: [rand(0.0..100.0).round(2), rand(0.0..100.0).round(2), rand(0.0..100.0).round(2)].uniq.sort,
+    data_structure: [
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+    ].uniq,
     possible_variable_names: ["floats"],
-    possible_assignments: [0.21, 0.21]
+    possible_assignments: [
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+    ]
   },
   # {
   #   data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
