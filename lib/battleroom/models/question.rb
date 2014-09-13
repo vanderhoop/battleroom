@@ -1,8 +1,7 @@
 class Question
     attr_reader :type, :data
     attr_accessor :variable_name, :variable_value, :data_structure,
-                  :hint, :data_structure_class, :answer_value, :inner_hash,
-                  :inner_array, :explanation
+                  :hint, :data_structure_class, :answer_value, :explanation
 
     def initialize
       @data = self.class.generate_question

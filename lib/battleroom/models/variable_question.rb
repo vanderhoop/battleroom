@@ -11,7 +11,7 @@ class VariableQuestion < Question
     end
 
     def print_variable_assignment_prompt
-      puts "Create a variable, ".blue + self.variable_name.yellow + " and assign it the #{format_class_for_output(self.variable_value.class)} value ".blue + "#{format_value_for_stdout_and_eval(self.variable_value)}".yellow + ".".blue
+      puts "Create a variable ".blue + self.variable_name.yellow + " and assign it the #{format_class_for_output(self.variable_value.class)} value ".blue + "#{format_value_for_stdout_and_eval(self.variable_value)}".yellow + ".".blue
     end
 
     def evaluate_variable_assignment_input(evaluation_scope)
@@ -23,12 +23,23 @@ class VariableQuestion < Question
             # this last returned value of 'true' within is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
-            print "You mis-assigned #{self.variable_name}. Try again!".red
+            puts "You mis-assigned #{self.variable_name}. Try again!".red
           end
         rescue NameError
-          puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+          if !user_input.match /("|')/
+            puts "Rats! You've just made a common rookie mistake! Strings are always surrounded by quotes. Otherwise, Ruby will think you're referencing a variable or method name. Try again.".red
+          else
+            puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+          end
         rescue Exception => e
-          puts e.message
+          # binding.pry
+          if !user_input.match /("|')/
+            puts "Rats! You've just made a common rookie mistake! Strings are always surrounded by quotes. Otherwise, Ruby will think you're referencing a variable or method name. Try again.".red
+          elsif e.message.match /unterminated string/
+            puts "Blurg! You neglected to provide closing quotes for your string. Try again!".red
+          else
+            puts e.message
+          end
         end
       end
     end

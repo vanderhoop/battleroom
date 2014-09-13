@@ -15,11 +15,11 @@ NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS = [
   },
   {
     data_structure: [
-      { song_title: "Material Girl", peak_chart_position: 2 },
-      { song_title: "Borderline", peak_chart_position: 10 },
-      { song_title: "Lucky Star", peak_chart_position: 4 },
-      { song_title: "Holiday", peak_chart_position: 16 },
-      { song_title: "Vogue", peak_chart_position: 1 },
+      { song_title: "Material Girl", billboard_peak: 2 },
+      { song_title: "Borderline", billboard_peak: 10 },
+      { song_title: "Lucky Star", billboard_peak: 4 },
+      { song_title: "Holiday", billboard_peak: 16 },
+      { song_title: "Vogue", billboard_peak: 1 },
     ],
     possible_variable_names: ["madonna_singles"]
   }

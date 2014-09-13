@@ -2,7 +2,7 @@ require_relative 'data_structure_access_question'
 require_relative '../question_data/nested_data_structure_access'
 
 class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
-
+  attr_accessor :inner_hash, :inner_array
   # class instance variable used within the initialize method for Question
   @questions = NESTED_DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
 
