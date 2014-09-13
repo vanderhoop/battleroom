@@ -20,13 +20,22 @@ class Question
     def enter_evaluation_loop(&block)
       answered_correctly = false
       until answered_correctly
-        user_input = Readline.readline("> ".blue, true)
-        abort("Goodbye!".green) if user_input.match /^exit\s?/i
-        if yield(user_input)
-          print_congratulation
-          sleep 1.6
-          clear_display
-          answered_correctly = true
+        begin
+          user_input = Readline.readline('> '.blue, true)
+          abort('Goodbye!'.green) if user_input.match /^exit\s?/i
+          if yield(user_input)
+            print_congratulation
+            sleep 1.6
+            clear_display
+            answered_correctly = true
+          end
+        rescue SyntaxError => e
+          # binding.pry
+          if e.message.match /unexpected end-of-input/
+            puts "\nNope! You just triggered a common Ruby error that reads:\n".red
+            puts "\tsyntax error, unexpected end-of-input\n".green
+            puts "Basically, when you used the assignment operator,".red + " = ".green + ", you told Ruby you were going to assign a value to a variable, but you neglected to provide a value, and Ruby freaked out. Try again.".red
+          end
         end
       end
     end

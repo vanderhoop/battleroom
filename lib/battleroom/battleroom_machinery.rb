@@ -17,7 +17,7 @@ module BattleroomMachinery
   end
 
   def random_congratulation
-    ["Lovely work, my friend!", "Beautiful!", "Lovely!", "Splendid!", "Nice job! Keep it rolling!", "Capital work, battlestar!", "You're on your way!", "Exemplary work!", "Yeah!", "Roll on.", "You're making a prosperous go of this programming thing.", "Bullseye!", "Woo!", "Let it ride!"].sample
+    ["Lovely work, my friend!", "Beautiful!", "Lovely!", "Splendid!", "Nice job! Keep it rolling!", "Capital work, battlestar!", "You're on your way!", "Exemplary work!", "Yeah!", "Roll on.", "You're making a prosperous go of this programming thing.", "Bullseye!", "Woo!", "Let it ride!", "Touchdown!"].sample
   end
 
   def print_congratulation
@@ -25,7 +25,9 @@ module BattleroomMachinery
   end
 
   def print_colorized_name_error_prompt(error)
-    puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n\n".red
+    # binding.pry
+    error.message.match /`(.+)'/
+    puts "You're referencing a variable, #{$1}, that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n".red
     puts "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
     puts "Get used to it and try again.".red
   end
