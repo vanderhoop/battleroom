@@ -11,7 +11,7 @@ class Question
 
     # retrieves question from front of the array and rotates it to the back to avoid immediate re-sampling of questions
     def self.generate_question
-      # calls upon *class instance* variable set in the subclasses
+      # calls upon *class instance* variable assigned in the subclasses
       question = @questions.shift
       @questions.push(question)
       question
