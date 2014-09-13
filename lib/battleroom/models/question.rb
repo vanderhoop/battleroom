@@ -1,12 +1,12 @@
 class Question
     attr_reader :type, :data
-    attr_accessor :variable_name, :variable_value, :value_type, :data_structure,
+    attr_accessor :variable_name, :variable_value, :data_structure,
                   :hint, :data_structure_class, :answer_value, :inner_hash,
                   :inner_array, :explanation
 
     def initialize
       @data = self.class.generate_question
-      @variable_name = data[:possible_variable_names].sample
+      @variable_name = rotate_array(data[:possible_variable_names]).first
     end
 
     # retrieves question from front of the array and rotates it to the back to avoid immediate re-sampling of questions

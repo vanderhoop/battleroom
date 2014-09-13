@@ -2,6 +2,8 @@ require 'awesome_print'
 require 'pry'
 require 'colorize'
 
+
+
 module BattleroomMachinery
 
   def clear_display
@@ -23,6 +25,11 @@ module BattleroomMachinery
 
   def print_congratulation
     puts "#{random_congratulation}\n".green
+  end
+
+  def rotate_array(array)
+    item = array.shift
+    array << item
   end
 
   def print_colorized_name_error_prompt(error)

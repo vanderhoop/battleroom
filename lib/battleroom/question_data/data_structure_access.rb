@@ -1,8 +1,9 @@
 require 'Faker'
 require 'pry'
 
-random_name_array = []
-50.times { random_name_array << Faker::Name.first_name }
+$random_names_array = []
+200.times { $random_names_array << Faker::Name.first_name }
+$random_names_array.uniq
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
   # {
@@ -14,7 +15,7 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
   # },
   # {
-  #   data_structure: random_name_array.uniq,
+  #   data_structure: $random_names_array,
   #   possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"],
   #   possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
   # },
@@ -22,6 +23,11 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
     data_structure: [rand(7..29), rand(7..29), rand(7..29)].uniq.sort,
     possible_variable_names: ["fav_nums", "lotto_nums"],
     possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41]
+  },
+  {
+    data_structure: [rand(0.0..100.0).round(2), rand(0.0..100.0).round(2), rand(0.0..100.0).round(2)].uniq.sort,
+    possible_variable_names: ["floats"],
+    possible_assignments: [0.21, 0.21]
   },
   # {
   #   data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
