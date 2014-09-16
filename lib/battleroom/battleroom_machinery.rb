@@ -33,9 +33,10 @@ module BattleroomMachinery
   end
 
   def print_colorized_error_prompt(error)
-    puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n".red
+    method_or_variable = (error.class == NoMethodError) ? "method" : "variable"
+    puts "\nYou're referencing a #{method_or_variable} that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n".red
     puts "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
-    puts "Get used to it and try again.".red
+    puts "Get used to it and try again.\n".red
   end
 
   def format_value_for_stdout_and_eval(object)

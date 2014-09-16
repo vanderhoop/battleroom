@@ -57,6 +57,8 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             true
           end
         end
+      rescue NoMethodError => e
+        print_colorized_error_prompt(e)
       rescue NameError => e
         print_colorized_error_prompt(e)
       rescue TypeError => e
