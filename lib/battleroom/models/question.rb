@@ -33,7 +33,7 @@ class Question
           if e.message.match /unexpected end-of-input/
             puts "\nNope! You just triggered a common Ruby error that reads:\n".red
             puts "\tsyntax error, unexpected end-of-input\n".green
-            puts "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a value. Try again.".red
+            puts "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.".red
           end
         end
       end
