@@ -64,14 +64,16 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       rand(0.0..100.0).round(2),
     ]
   },
-  # {
-  #   data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
-  #   possible_variable_names: ["cat_names", "cats"]
-  # },
-  # {
-  #   data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine"],
-  #   possible_variable_names: ["beatles_songs", "fav_beatles_tracks"]
-  # },
+  {
+    data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
+    possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"],
+    possible_assignments: ["Pinot", "Claude", "Jackson", "Bootsniffer", "Frank", "Dogboy", "Kittyhawk", "Kitty the Cat", "Tiny"]
+  },
+  {
+    data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine"],
+    possible_variable_names: ["beatles_songs", "fav_beatles_tracks"],
+    possible_assignments: ["Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"]
+  },
   # {
   #   data_structure: ["When Harry Met Sally", "There's Something About Mary", "How to Lose a Guy in 10 Days", "Bridesmaids", "Knocked Up", "High Fidelity", "America's Sweethearts", "My Best Friend's Wedding", "Chasing Amy", "What Women Want", "Four Weddings and a Funeral", "About a Boy", "Notting Hill", "His Girl Friday"],
   #   possible_variable_names: ["rom_coms"]
@@ -110,17 +112,21 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #     { season: "spring" },
   #   ],
   # },
-  # {
-  #   data_structure: {
-  #     home_team: "Green Bay Packers",
-  #     capacity: 72_928,
-  #   },
-  #   possible_variable_names: ["lambeau_field"],
-  #   possible_assignments: [
-  #     { real_grass: true },
-  #     { price_of_beer: 5.5 }
-  #   ],
-  # },
+  {
+    data_structure: {
+      home_team: "Green Bay Packers",
+      capacity: 72_928,
+    },
+    possible_variable_names: ["lambeau_field"],
+    possible_assignments: [
+      { real_grass: true },
+      { price_of_beer: 5.5 },
+      { namesake: "Curly Lambeau" },
+      { address: "1265 Lombardi" },
+      { executive_suite_count: 168 },
+      { championship_banners: true },
+    ],
+  },
   # {
   #   data_structure: {
   #     home_team: "Boston Red Sox",
@@ -128,19 +134,20 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   },
   #   possible_variable_names: ["fenway_park"]
   # },
-  # {
-  #   data_structure: {
-  #     stars: ["Ryan Gosling", "Rachel McAdams"],
-  #     released: 2004,
-  #   },
-  #   possible_variable_names: ["the_notebook"],
-  #   possible_assignments: [
-  #     { tearjerker: true },
-  #     { director: "Nick Cassavetes" },
-  #     { mtv_movie_award_count: 1 },
-  #     { box_office_millions: 81.5 },
-  #   ]
-  # },
+  {
+    data_structure: {
+      stars: ["Ryan Gosling", "Rachel McAdams"],
+      released: 2004,
+    },
+    possible_variable_names: ["the_notebook"],
+    possible_assignments: [
+      { tearjerker: true },
+      { director: "Nick Cassavetes" },
+      { mtv_movie_award_count: 1 },
+      { box_office_millions: 81.5 },
+      { macho: false },
+    ]
+  },
   # {
   #   data_structure: {
   #     director: "Spike Jonze",
@@ -187,6 +194,6 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   },
   #   possible_variable_names: ["truman_show"]
   # },
-]
+].shuffle
 
 # binding.pry
