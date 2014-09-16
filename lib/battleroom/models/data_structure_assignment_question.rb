@@ -21,7 +21,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
 
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
-      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{assignment_value}".yellow + " to the end of the Array below\n\n".blue
+      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{assignment_value}".yellow + " to the end of the Array below.\n".blue
     else
       puts "Given the Hash below, add a key of ".blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{assignment_value}".yellow + ".\n\n"
     end
@@ -37,19 +37,21 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
         evaluation_scope.eval(user_input)
         if self.data_structure.class == Array
-          cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?\\[")
+          cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
           # checks if user reassigned the variable to a new array of identical values
-          if user_input.match(cheater_regex)
-            puts "You rewrote the entire array! Save yourself the work and look up Ruby's Array#push method!".red
+          if user_input.match(cheater_regex) && $1 == "["
+            puts "You reassigned the variable to an entirely new array! Save yourself the work and look up Ruby's Array#push method!".red
+            false
+          elsif user_input.match(cheater_regex) && $1.nil?
+            puts "You reassigned ".red + variable_name.yellow + " rather than working with it. Try again.".red
             false
           elsif evaluation_scope.eval("#{self.variable_name}.last == #{self.assignment_value}") && user_input.include?(self.variable_name)
             # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
-            puts "Remember, #{self.hint} Try again.".red
+            puts "Nope! Ruby's Array#push method will be your salvation. Look it up!"
           end
         else
-          # evaluation_scope.eval(user_input)
           if evaluation_scope.eval("#{self.variable_name}[#{self.assignment_key}] == #{self.assignment_value}") && user_input.include?(self.variable_name)
             true
           end

@@ -50,7 +50,7 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       rand(0.0..100.0).round(2),
       rand(0.0..100.0).round(2),
     ].uniq,
-    possible_variable_names: ["floats", "test_scores", "win_percentages", "yield_percentages", "dividends", "multiples", "sums", "products"].shuffle,
+    possible_variable_names: ["test_scores", "win_percentages", "yield_percentages", "dividends", "multiples", "sums", "products", "monthly_bill_totals"].shuffle,
     possible_assignments: [
       rand(0.0..100.0).round(2),
       rand(0.0..100.0).round(2),
