@@ -39,11 +39,12 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         if self.data_structure.class == Array
           cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
           # checks if user reassigned the variable to a new array of identical values
-          if user_input.match(cheater_regex) && $1 == "["
-            puts "You reassigned the variable to an entirely new array! Save yourself the work and look up Ruby's Array#push method!".red
-            false
-          elsif user_input.match(cheater_regex) && $1.nil?
-            puts "You reassigned ".red + variable_name.yellow + " rather than working with it. Try again.".red
+          if user_input.match(cheater_regex)
+            if $1
+              puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Save yourself the fingerwork and look up Ruby's Array#push method!".red
+            else
+              puts "You reassigned the variable ".red + variable_name.green + " rather than working with it. Try again.".red
+            end
             false
           elsif evaluation_scope.eval("#{self.variable_name}.last == #{self.assignment_value}") && user_input.include?(self.variable_name)
             # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
@@ -57,7 +58,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
           end
         end
       rescue NameError => e
-        print_colorized_name_error_prompt(e)
+        print_colorized_error_prompt(e)
       rescue TypeError => e
         puts "\nNope! You just triggered a common Ruby error that reads:\n".red
         puts "\tin '[]', #{e.message}".green

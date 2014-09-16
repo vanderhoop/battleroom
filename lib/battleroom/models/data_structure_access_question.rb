@@ -41,7 +41,8 @@ class DataStructureAccessQuestion < DataStructureQuestion
           puts "Remember, #{self.hint} Try again.".red
         end
       rescue NameError => e
-        print_colorized_name_error_prompt(e)
+        binding.pry
+        print_colorized_error_prompt(e)
       rescue TypeError => e
         puts "\nNope! You just triggered a common Ruby error that reads:\n".red
         puts "\tin '[]', #{e.message}".green

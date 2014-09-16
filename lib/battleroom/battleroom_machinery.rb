@@ -32,7 +32,7 @@ module BattleroomMachinery
     array << item
   end
 
-  def print_colorized_name_error_prompt(error)
+  def print_colorized_error_prompt(error)
     puts "You're referencing a variable that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n".red
     puts "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
     puts "Get used to it and try again.".red
