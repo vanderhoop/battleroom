@@ -26,7 +26,7 @@ class VariableQuestion < Question
             puts "You mis-assigned #{self.variable_name}. Try again!".red
           end
         rescue NameError => e
-          if user_input.include?(variable_name) && user_input.match(/[^=]=[^=]/i).nil?
+          if user_input.include?(variable_name) && !user_input.match(/[^=]=[^=]/i)
             puts "You're not using the assignment operator!".red
           elsif !user_input.match /("|')/
             puts "Rats! You've just made a common rookie mistake! Strings are always surrounded by quotes. Otherwise, Ruby will think you're referencing a variable or method name. Try again.".red

@@ -1,15 +1,29 @@
 require_relative './data_structure_question'
+require_relative '../question_data/data_structure_assignment_questions'
 
 class DataStructureAssignmentQuestion < DataStructureQuestion
-  @questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
-  attr_accessor :assignment_value, :assignment_key, :assignment_value_class, :assignment_value_string
+  @questions = DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.shuffle
+  attr_accessor :assignment_value, :assignment_key, :assignment_value_class,
+                :possible_assignments
 
   def initialize
     super
+    self.possible_assignments = []
     if data_structure.class == Array
-      self.assignment_value = format_value_for_stdout_and_eval(data[:possible_assignments].sample)
+      desired_array_size = rand(3..6)
+      while data_structure.size > desired_array_size
+        new_assignment_possibility = data_structure.delete(data_structure.sample)
+        possible_assignments.push(new_assignment_possibility)
+      end
+      self.assignment_value = format_value_for_stdout_and_eval(possible_assignments.sample)
     else
-      assignment = data[:possible_assignments].sample
+      while data_structure.size > 2
+        key_to_delete = data_structure.keys.sample
+        value_deleted = data_structure.delete(key_to_delete)
+        new_assignment_possibility = { key_to_delete => value_deleted }
+        possible_assignments.push(new_assignment_possibility)
+      end
+      assignment = possible_assignments.sample
       self.assignment_value = format_value_for_stdout_and_eval(assignment.values[0])
       self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
     end
@@ -18,22 +32,22 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
 
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
-      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{assignment_value}".yellow + " to the end of the Array below.\n".blue
+      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
     else
       puts "Given the Hash below, add a key of ".blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{assignment_value}".yellow + ".\n\n"
     end
-    print "#{self.variable_name} = ".green
+    print "#{variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
     puts ""
   end
 
   def print_resulting_data_structure(evaluation_scope)
-    puts "\nBrilliant. Here's the resulting data structure.\n".green
+    puts "\nBrilliant. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
     ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
     puts ""
-    sleep 4.0
+    sleep 3.2
   end
 
   def evaluate_data_structure_assignment_input(evaluation_scope)
@@ -62,12 +76,6 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         else
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
-            # # clear_display
-            # puts "\nBrilliant. Here's the resulting data structure.\n".green
-            # resulting_data_structure = evaluation_scope.eval(variable_name)
-            # ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
-            # puts ""
-            # sleep 4.0
             true
           end
         end
