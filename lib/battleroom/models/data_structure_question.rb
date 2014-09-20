@@ -1,8 +1,7 @@
 require_relative './question'
 
 class DataStructureQuestion < Question
-  attr_accessor :data_structure
-  @questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
+  attr_accessor :data_structure, :hint
 
   def initialize
     super

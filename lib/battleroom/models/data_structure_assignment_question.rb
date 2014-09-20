@@ -47,7 +47,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
           # checks if user reassigned the variable to a new array of identical values
           if user_input.match(cheater_regex)
             if $1
-              puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Save yourself the fingerwork and look up Ruby's Array#push method!".red
+              puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method!".red
             else
               puts "You reassigned the variable ".red + variable_name.green + " rather than working with it. Try again.".red
             end

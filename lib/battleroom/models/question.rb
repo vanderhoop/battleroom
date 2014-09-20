@@ -1,7 +1,7 @@
 class Question
     attr_reader :type, :data
     attr_accessor :variable_name, :variable_value, :data_structure,
-                  :hint, :data_structure_class, :answer_value, :explanation
+                  :data_structure_class, :answer_value, :explanation
 
     def initialize
       @data = self.class.generate_question
@@ -29,7 +29,6 @@ class Question
             answered_correctly = true
           end
         rescue SyntaxError => e
-          # binding.pry
           if e.message.match /unexpected end-of-input/
             puts "\nNope! You just triggered a common Ruby error that reads:\n".red
             puts "\tsyntax error, unexpected end-of-input\n".green

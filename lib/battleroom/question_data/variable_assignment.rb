@@ -47,7 +47,6 @@ VARIABLE_QUESTIONS = [
       "waiting_period",
       "sentence_length",
       "tenure",
-      "next_train_arrival",
       "life_span",
       "term_length",
       "time_in_office",
@@ -55,6 +54,15 @@ VARIABLE_QUESTIONS = [
       "stint_length",
     ].shuffle,
     possible_variable_values: [
+      "too short",
+      "much too long",
+      "None, thank god.",
+      "brief",
+      "fleeting",
+      "short-lived",
+      "everlasting",
+      "overlong",
+      "unending",
       "#{rand(2..11)} months",
       "#{rand(2..11)} months",
       "#{rand(2..11)} months",
@@ -79,6 +87,7 @@ VARIABLE_QUESTIONS = [
       "foe",
       "partner",
       "teammate",
+      "collaborator",
       "subordinate",
       "server",
       "trooper",
@@ -98,7 +107,7 @@ VARIABLE_QUESTIONS = [
       "guitarist",
       "bassist",
     ].shuffle,
-    possible_variable_values: $random_names_array
+    possible_variable_values: $random_names_array.shuffle
   },
   {
     possible_variable_names: [
@@ -117,6 +126,7 @@ VARIABLE_QUESTIONS = [
       "percentage_lost",
     ].shuffle,
     possible_variable_values: [
+      "n/a",
       rand(0.0..99.9).round([2, 3].sample),
       rand(0.0..99.9).round([2, 3].sample),
       rand(0.0..99.9).round([2, 3].sample),

@@ -6,71 +6,71 @@ $random_names_array = []
 $random_names_array.uniq
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
-  # {
-  #   data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
-  #   possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles", "books", "paperback_titles"],
-  #   possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
-  # },
+  {
+    data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
+    possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles", "books", "paperback_titles"].shuffle,
+    possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
+  },
   {
     data_structure: $random_names_array,
-    possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"],
+    possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"].shuffle,
     possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
   },
   {
     data_structure: (7..29).to_a.shuffle,
-    possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers"].shuffle,
+    possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers", "lucky_numbers", "unlucky_numbers"].shuffle,
     possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41].shuffle
   },
-  # {
-  #   data_structure: [
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #   ].uniq,
-  #   possible_variable_names: ["test_scores", "win_percentages", "yield_percentages", "dividends", "multiples", "sums", "products", "monthly_bill_totals"].shuffle,
-  #   possible_assignments: [
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #     rand(0.0..100.0).round(2),
-  #   ]
-  # },
+  {
+    data_structure: [
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+    ].uniq,
+    possible_variable_names: ["test_scores", "win_percentages", "yield_percentages", "dividends", "multiples", "sums", "products", "monthly_bill_totals"].shuffle,
+    possible_assignments: [
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+      rand(0.0..100.0).round(2),
+    ]
+  },
   # {
   #   data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
-  #   possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"],
+  #   possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"].shuffle,
   #   possible_assignments: ["Pinot", "Claude", "Jackson", "Bootsniffer", "Frank", "Dogboy", "Kittyhawk", "Kitty the Cat", "Tiny"]
   # },
   # {
   #   data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine"],
-  #   possible_variable_names: ["beatles_songs", "fav_beatles_tracks"],
+  #   possible_variable_names: ["beatles_songs", "fav_beatles_tracks"].shuffle,
   #   possible_assignments: ["Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"]
   # },
   # {
@@ -79,22 +79,22 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   # },
   # {
   #   data_structure: ["Tide", "Clorox", "Wisk", "Cheer"],
-  #   possible_variable_names: ["name_brand_detergents", "detergent_brands"]
+  #   possible_variable_names: ["name_brand_detergents", "detergent_brands"].shuffle
   # },
   # {
   #   data_structure: ["The Moon and Antartica", "Frank's Wild Years", "Perfect From Now On", "Nighthawks at the Diner", "Songs From a Room", "Transformer", "Songs of Love and Hate", "Stereopathetic Soul Manure"],
-  #   possible_variable_names: ["lyrically_brilliant_albums"]
+  #   possible_variable_names: ["lyrically_brilliant_albums"].shuffle
   # },
   # {
   #   data_structure: ["Sixteen Stone", "Nirvana MTV Unplugged 1994", "Jagged Little Pill", "Ten", "Nevermind", "Illmatic", "The Downward Spiral", "Odelay", "Mellowgold", "All Eyez On Me", "Ready 2 Die", "Blur", "Parklife", "What's the Story (Morning Glory)?", "Definitely Maybe", "Keep It Like a Secret", "...Come Down", "XO", "Exile in Guyville", "The Lonesome Crowded West", "Crooked Rain, Crooked Rain", "The Blue Album", "Pinkerton", "OK Computer", "The Bends", "Slanted & Enchanted"],
-  #   possible_variable_names: ["classics_from_the_nineties"]
+  #   possible_variable_names: ["classics_from_the_nineties"].shuffle
   # },
   # {
   #   data_structure: {
   #     num_wishes: 3,
   #     location: ["Madison, WI", "Vancover, BC", "Denver, CO"].sample,
   #   },
-  #   possible_variable_names: ["genie_encounter", "meeting_with_satan_at_crossroads", "wishing_well"],
+  #   possible_variable_names: ["genie_encounter", "meeting_with_satan_at_crossroads", "wishing_well"].shuffle,
   #   possible_assignments: [
   #     { anticipated: true },
   #   ]
@@ -215,7 +215,7 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       age: rand(21..33),
       fav_band: ["Weezer", "Nirvana", "Missy Elliott", "Elliott Smith", "Phish", "2pac", "Kanye West"],
     },
-    possible_variable_names: ["bus_driver", "larsony_suspect", "head_roady", "crew_chief", "adjunct_professor", "fav_dog_walker", "street_person"],
+    possible_variable_names: ["bus_driver", "larsony_suspect", "head_roady", "crew_chief", "adjunct_professor", "fav_dog_walker", "street_person"].shuffle,
     possible_assignments: [
       { single: [true, false].sample },
     ],
