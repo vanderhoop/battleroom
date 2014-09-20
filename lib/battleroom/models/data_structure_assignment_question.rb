@@ -13,10 +13,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
       self.assignment_value = format_value_for_stdout_and_eval(assignment.values[0])
       self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
     end
-    self.assignment_value_class = format_class_for_output(self.assignment_value.class)
-    # self.assignment_value_class = self.assignment_value.class.to_s
-    # self.assignment_value_class = "Boolean" if assignment_value_class.match /(TrueClass|FalseClass)/
-    # self.assignment_value_string = format_value_for_stdout_and_eval(assignment_value)
+    self.assignment_value_class = format_class_for_output(assignment_value.class)
   end
 
   def print_data_structure_assignment_prompt
@@ -34,7 +31,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     enter_evaluation_loop do |user_input|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
-        evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
+        evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         evaluation_scope.eval(user_input)
         if self.data_structure.class == Array
           cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
@@ -46,20 +43,18 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
               puts "You reassigned the variable ".red + variable_name.green + " rather than working with it. Try again.".red
             end
             false
-          elsif evaluation_scope.eval("#{self.variable_name}.last == #{self.assignment_value}") && user_input.include?(self.variable_name)
+          elsif evaluation_scope.eval("#{variable_name}.last == #{assignment_value}") && user_input.include?(variable_name)
             # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
             puts "Nope! Ruby's Array#push method will be your salvation. Look it up!"
           end
         else
-          if evaluation_scope.eval("#{self.variable_name}[#{self.assignment_key}] == #{self.assignment_value}") && user_input.include?(self.variable_name)
+          if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{assignment_value}") && user_input.include?(variable_name)
             true
           end
         end
-      rescue NoMethodError => e
-        print_colorized_error_prompt(e)
-      rescue NameError => e
+      rescue NoMethodError, NameError => e
         print_colorized_error_prompt(e)
       rescue TypeError => e
         puts "\nNope! You just triggered a common Ruby error that reads:\n".red
