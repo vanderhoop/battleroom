@@ -27,6 +27,15 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     puts ""
   end
 
+  def print_resulting_data_structure(evaluation_scope)
+    puts "\nBrilliant. Here's the resulting data structure.\n".green
+    sleep 1.0
+    resulting_data_structure = evaluation_scope.eval(variable_name)
+    ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
+    puts ""
+    sleep 4.0
+  end
+
   def evaluate_data_structure_assignment_input(evaluation_scope)
     enter_evaluation_loop do |user_input|
       begin
@@ -44,6 +53,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             end
             false
           elsif evaluation_scope.eval("#{variable_name}.last == #{assignment_value}") && user_input.include?(variable_name)
+            print_resulting_data_structure(evaluation_scope)
             # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
@@ -51,6 +61,13 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
           end
         else
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{assignment_value}") && user_input.include?(variable_name)
+            print_resulting_data_structure(evaluation_scope)
+            # # clear_display
+            # puts "\nBrilliant. Here's the resulting data structure.\n".green
+            # resulting_data_structure = evaluation_scope.eval(variable_name)
+            # ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
+            # puts ""
+            # sleep 4.0
             true
           end
         end
