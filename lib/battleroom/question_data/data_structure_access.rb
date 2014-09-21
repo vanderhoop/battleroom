@@ -1,5 +1,8 @@
-require 'Faker'
 require 'pry'
+require 'Faker'
+
+# eliminates deprecation warning
+I18n.config.enforce_available_locales = false
 
 $random_names_array = []
 200.times { $random_names_array << Faker::Name.first_name }

@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+
 require 'readline'
 
 require_relative 'battleroom/battleroom_machinery'

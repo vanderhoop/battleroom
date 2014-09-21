@@ -15,5 +15,5 @@ class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
       self.answer_value = data_structure[data_structure.keys.sample]
     end
   end
-
 end
+
