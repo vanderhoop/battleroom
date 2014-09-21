@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 def gen_phone_number
   "#{rand(1..9)}
    #{rand(0..9)}
@@ -80,6 +82,28 @@ DATA_STRUCTURE_ASSIGNMENT_QUESTIONS = [
     possible_variable_names: [
       "user_1",
       first_name.downcase
+    ]
+  }
+  DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(data)
+end
+
+10.times do
+  name = Faker::Company.name
+  business = {
+    name: name,
+    public_email: "#{["info", "hello", "greetings", "contact"].sample}@#{name.parameterize}.com",
+    website: Faker::Internet.url("#{name.parameterize}.com", ''),
+    phone_num: gen_phone_number,
+    street_address: Faker::Address.street_address,
+    city: Faker::Address.city,
+    state: Faker::Address.state_abbr,
+    llc: [true, false].sample,
+    established: rand(1901..2014),
+  }
+  data = {
+    data_structure: business,
+    possible_variable_names: [
+      name.downcase.gsub(",", "").gsub(" ", "_").underscore
     ]
   }
   DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(data)
