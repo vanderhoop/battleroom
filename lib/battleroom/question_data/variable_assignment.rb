@@ -19,6 +19,9 @@ VARIABLE_QUESTIONS = [
   },
   {
     possible_variable_names: [
+      "signed_in",
+      "authenticated",
+      "authorized",
       "heartbroken",
       "ecstatic",
       "admin_user",

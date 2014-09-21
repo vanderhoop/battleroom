@@ -63,7 +63,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             if $1
               puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method!".red
             else
-              puts "You reassigned the variable ".red + variable_name.green + " rather than working with it. Try again.".red
+              puts "You reassigned the variable ".red + variable_name.green + " rather than working with the array provided. Try again.".red
             end
             false
           elsif evaluation_scope.eval("#{variable_name}.last == #{assignment_value}") && user_input.include?(variable_name)

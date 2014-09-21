@@ -8,6 +8,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
   def initialize
     super
     if data_structure.class == Array
+      self.data_structure = data_structure[0, rand(4..6)]
       self.answer_value = data_structure.sample
       self.hint = "index values start at 0."
     else

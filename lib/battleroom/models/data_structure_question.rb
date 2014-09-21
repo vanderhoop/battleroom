@@ -5,7 +5,7 @@ class DataStructureQuestion < Question
 
   def initialize
     super
-    @data_structure = data[:data_structure]
+    @data_structure = data[:data_structure].clone
     if data_structure.class == Array
       # randomizes and shuffles the items in the arrays, so repeats remain interesting
       self.data_structure = data_structure.shuffle
