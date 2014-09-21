@@ -22,7 +22,7 @@ DATA_STRUCTURE_ASSIGNMENT_QUESTIONS = [
       price_of_beer: 5.5,
       namesake: "Curly Lambeau",
       address: "1265 Lombardi",
-      executive_suite_count: 168,
+      suite_count: 168,
       banners: true,
     },
     possible_variable_names: ["lambeau_field"],
