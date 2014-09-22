@@ -85,10 +85,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
       rescue NoMethodError, NameError => e
         print_colorized_error_prompt(e)
       rescue TypeError => e
-        puts "\nNope! You just triggered a common Ruby error that reads:\n".red
-        puts "\tin '[]', #{e.message}".green
-        e.message.match /conversion\sof\s(.+)\sinto\sInteger/i
-        puts "\nBasically, you put a #{$1} between square brackets, whereas Ruby was expecting an index value, i.e. an integer. This commonly arises when programmers think they're dealing with a hash, when in fact they're dealing with an array.\n".red
+        print_colorized_type_error_prompt(e)
       end
     end
   end

@@ -39,6 +39,16 @@ module BattleroomMachinery
     puts "Get used to it and try again.\n".red
   end
 
+  def print_colorized_type_error_prompt(error)
+    puts "\nNope! You just triggered a common Ruby error that reads:\n".red
+    puts "\tin '[]', #{error.message}".green
+    error.message.match /conversion\sof\s(.+)\sinto\sInteger/i
+    puts "\nBasically, you put a #{$1} between square brackets, whereas Ruby
+            was expecting an index value, i.e. an integer. This commonly arises
+            when programmers think they're dealing with a hash, when in fact
+             they're dealing with an array.\n".red
+  end
+
   def format_value_for_stdout_and_eval(object)
     case object.class.to_s
     when "String" then return "'#{object}'"
