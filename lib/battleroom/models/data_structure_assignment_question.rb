@@ -72,11 +72,14 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             true
           else
             puts "Nope! Ruby's Array#push method will be your salvation. Look it up!"
+            false
           end
         else
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
             true
+          else
+            false
           end
         end
       rescue NoMethodError, NameError => e

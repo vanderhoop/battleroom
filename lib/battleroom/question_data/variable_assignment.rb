@@ -45,8 +45,6 @@ VARIABLE_QUESTIONS = [
     possible_variable_names: [
       "time_abroad",
       "period_married",
-      "time_elapsed_since_breakup",
-      "time_elapsed_since_last_vacay",
       "waiting_period",
       "sentence_length",
       "tenure",
