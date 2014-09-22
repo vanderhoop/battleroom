@@ -26,13 +26,13 @@ class VariableQuestion < Question
 
   def reveal_name_error_follies_to_user(user_input)
     if user_input.include?(variable_name) && !user_input.match(/[^=]=[^=]/i)
-      puts "You're not using the assignment operator!".red
+      puts 'You\'re not using the assignment operator!'.red
     elsif !user_input.match(/("|')/) && variable_value.class == String
-      puts "Rats! You've just made a common rookie mistake! " +
-           "Strings are always surrounded by quotes. Otherwise, Ruby will " +
-           "think you're referencing a variable or method name. Try again.".red
+      puts 'Rats! You\'ve just made a common rookie mistake! ' +
+           'Strings are always surrounded by quotes. Otherwise, Ruby will ' +
+           'think you\'re referencing a variable or method name. Try again.'.red
     else
-      puts "Looks like you mistyped the variable name. Check for misspellings and try again.".red
+      puts 'Looks like you mistyped the variable name. Check for misspellings and try again.'.red
     end
   end
 
@@ -41,7 +41,8 @@ class VariableQuestion < Question
       begin
         evaluation_scope.eval(user_input)
         if evaluation_scope.eval("#{variable_name} == #{formatted_value}")
-          # this last returned value of 'true' within is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
+          # this last returned value of 'true' is vital;
+          # the return value of yield is used in a conditional
           true
         else
           puts "You mis-assigned #{variable_name}. Try again!".red
