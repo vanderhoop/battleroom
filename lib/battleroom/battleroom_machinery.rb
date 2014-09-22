@@ -54,7 +54,7 @@ module BattleroomMachinery
     when "String" then return "'#{object}'"
     when "Symbol" then return ":#{object}"
     else
-      object
+      object.to_s
     end
   end
 
