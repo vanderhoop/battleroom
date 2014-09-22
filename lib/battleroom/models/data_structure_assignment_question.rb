@@ -50,28 +50,33 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     sleep 3.2
   end
 
+  def handle_potential_workarounds(user_input)
+    cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
+    # checks if user reassigned the variable to a new array of identical values
+    if user_input.match(cheater_regex)
+      if $1
+        puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method and try again!".red
+      else
+        puts "You reassigned the variable ".red + variable_name.green + " rather than working with the array provided. Try again.".red
+      end
+      true
+    end
+  end
+
   def evaluate_data_structure_assignment_input(evaluation_scope)
     enter_evaluation_loop do |user_input|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         evaluation_scope.eval(user_input)
-        if self.data_structure.class == Array
-          cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
-          # checks if user reassigned the variable to a new array of identical values
-          if user_input.match(cheater_regex)
-            if $1
-              puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method!".red
-            else
-              puts "You reassigned the variable ".red + variable_name.green + " rather than working with the array provided. Try again.".red
-            end
+        if data_structure.class == Array
+          if handle_potential_workarounds(user_input)
             false
           elsif evaluation_scope.eval("#{variable_name}.last == #{assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
-            # this last returned value of 'true' within the block is vital, as within the enter_evaluation_loop method, the return value of yield is used as a conditional.
             true
           else
-            puts "Nope! Ruby's Array#push method will be your salvation. Look it up!"
+            puts "Nope! Ruby's Array#push method will be your salvation. Look it up!".red
             false
           end
         else
@@ -79,7 +84,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             print_resulting_data_structure(evaluation_scope)
             true
           else
-            false
+            puts "Nope! Try again!".red
           end
         end
       rescue NoMethodError, NameError => e
