@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "A Battleroom"
   s.authors     = ["Travis Vander Hoop"]
   s.email       = 'vanderhoop@me.com'
-  s.files       = ["lib/battleroom.rb", "lib/battleroom/battleroom_machinery.rb", "lib/battleroom/question_data/data_structure_access.rb", "lib/battleroom/question_data/variable_assignment.rb"]
+  s.files       = ["lib/battleroom.rb", "lib/battleroom/battleroom_machinery.rb", "lib/battleroom/data/data_structure_access.rb", "lib/battleroom/data/variable_assignment.rb"]
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'

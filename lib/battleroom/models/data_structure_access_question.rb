@@ -1,4 +1,4 @@
-require_relative '../question_data/data_structure_access'
+require_relative '../data/data_structure_access_questions'
 require_relative './data_structure_question'
 
 class DataStructureAccessQuestion < DataStructureQuestion

@@ -2,8 +2,14 @@
 
 require 'readline'
 
-path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
-Dir[path].each { |file| require file }
+# the below takes forever to load(?), so resorting to multiline requiring
+  # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
+  # Dir[path].each { |file| require file }
+
+require_relative './battleroom/models/nested_data_structure_access_question'
+require_relative './battleroom/models/data_structure_assignment_question'
+require_relative './battleroom/models/data_structure_access_question'
+require_relative './battleroom/models/variable_question'
 
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery

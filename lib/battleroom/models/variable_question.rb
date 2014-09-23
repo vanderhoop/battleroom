@@ -1,5 +1,5 @@
 require_relative 'question'
-require_relative '../question_data/variable_assignment'
+require_relative '../data/variable_assignment_questions'
 
 class VariableQuestion < Question
   attr_accessor :formatted_value
@@ -18,7 +18,9 @@ class VariableQuestion < Question
     substrings = [
       "Create a variable ".blue,
       variable_name.yellow,
-      " and assign it the #{formatted_class} value ".blue,
+      " and assign it the ".blue,
+      formatted_class.blue,
+      " value ".blue,
       formatted_value.yellow
     ]
     puts substrings.join

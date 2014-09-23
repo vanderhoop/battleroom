@@ -1,5 +1,5 @@
 require_relative 'data_structure_access_question'
-require_relative '../question_data/nested_data_structure_access'
+require_relative '../data/nested_data_structure_access_questions'
 
 class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
   attr_accessor :inner_hash, :inner_array

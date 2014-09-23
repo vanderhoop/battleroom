@@ -1,4 +1,18 @@
 VARIABLE_QUESTIONS = [
+  # {
+  #   possible_variable_names: [
+  #     "sampled_key"
+  #   ],
+  #   possible_variable_values: [
+  #     :username,
+  #     :age,
+  #     :first_name,
+  #     :last_name,
+  #     :email_address,
+  #     :album_count,
+  #     :year_of_birth
+  #   ]
+  # }
   {
     possible_variable_names: [
       "fish_count",
