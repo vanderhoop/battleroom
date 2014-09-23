@@ -2,7 +2,9 @@
 
 require 'readline'
 
-Dir["./battleroom/models/*.rb"].each { |file| require file }
+path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
+Dir[path].each { |file| require file }
+
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
 
@@ -25,6 +27,7 @@ loop do
     end
   when '2'
     5.times do
+      binding.pry
       q = DataStructureAccessQuestion.new
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
