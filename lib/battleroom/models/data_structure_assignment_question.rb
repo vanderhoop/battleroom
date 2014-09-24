@@ -4,7 +4,7 @@ require_relative '../data/data_structure_assignment_questions'
 class DataStructureAssignmentQuestion < DataStructureQuestion
   @questions = DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class,
-                :possible_assignments
+                :possible_assignments, :formatted_assignment_value
 
   def initialize
     super
@@ -15,7 +15,8 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         new_assignment_possibility = data_structure.delete(data_structure.sample)
         possible_assignments.push(new_assignment_possibility)
       end
-      self.assignment_value = format_value_for_stdout_and_eval(possible_assignments.sample)
+      self.assignment_value = possible_assignments.sample
+      self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
     else
       while data_structure.size > 2
         key_to_delete = data_structure.keys.sample
@@ -24,7 +25,8 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         possible_assignments.push(new_assignment_possibility)
       end
       assignment = possible_assignments.sample
-      self.assignment_value = format_value_for_stdout_and_eval(assignment.values[0])
+      self.assignment_value = assignment.values[0]
+      self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
       self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
     end
     self.assignment_value_class = format_class_for_output(assignment_value.class)
@@ -32,9 +34,9 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
 
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
-      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
+      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
     else
-      puts "Given the Hash below, add a key of ".blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{assignment_value}".yellow + ".\n\n"
+      puts "Given the Hash below, add a key of ".blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
     end
     print "#{variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
@@ -42,7 +44,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   end
 
   def print_resulting_data_structure(evaluation_scope)
-    puts "\nBrilliant. Here's the resulting data structure:\n".green
+    puts "\n#{['Brilliant', 'Wonderful', 'Jackpot', 'Impressive work', 'Bang-up job', 'Dynamite', 'Premier work', 'Quality work', 'Terrific', 'Topping work'].sample}. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
     ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
@@ -72,7 +74,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         if data_structure.class == Array
           if handle_potential_workarounds(user_input)
             false
-          elsif evaluation_scope.eval("#{variable_name}.last == #{assignment_value}") && user_input.include?(variable_name)
+          elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
             true
           else
@@ -80,7 +82,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             false
           end
         else
-          if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{assignment_value}") && user_input.include?(variable_name)
+          if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
             true
           else
