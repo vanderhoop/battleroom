@@ -44,7 +44,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   end
 
   def print_resulting_data_structure(evaluation_scope)
-    puts "\n#{['Brilliant', 'Wonderful', 'Jackpot', 'Impressive work', 'Bang-up job', 'Dynamite', 'Premier work', 'Quality work', 'Terrific', 'Topping work'].sample}. Here's the resulting data structure:\n".green
+    puts "\n#{['Brilliant', 'Wonderful', 'Jackpot', 'Impressive work', 'Bang-up job', 'Dynamite', 'Premier work', 'Quality work', 'Terrific'].sample}. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
     ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })

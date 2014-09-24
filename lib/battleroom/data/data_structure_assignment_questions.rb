@@ -71,7 +71,7 @@ DATA_STRUCTURE_ASSIGNMENT_QUESTIONS = [
   },
 ].shuffle
 
-10.times do
+6.times do
   first_name = Faker::Name::first_name
   last_name = Faker::Name::last_name
   num_string = "#{[rand(0..9), rand(0..9), rand(0..9)][0, rand(1..4)].join}"
@@ -96,7 +96,7 @@ DATA_STRUCTURE_ASSIGNMENT_QUESTIONS = [
   DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(data)
 end
 
-10.times do
+6.times do
   name = Faker::Company.name
   business = {
     name: name,
@@ -117,7 +117,7 @@ end
   }
   DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(data)
 end
-10.times do
+4.times do
   which_key_to_use = [:short, :long].sample
   latitude  = { :short => :lat, :long => :latitude }
   longitude = { :short => :long, :long => :longitude }
