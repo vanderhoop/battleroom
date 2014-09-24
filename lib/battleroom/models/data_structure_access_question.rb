@@ -3,7 +3,7 @@ require_relative './data_structure_question'
 
 class DataStructureAccessQuestion < DataStructureQuestion
   @questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
-  attr_accessor :assignment_value, :assignment_key, :assignment_value_class, :assignment_value_string
+  attr_accessor :assignment_value, :assignment_key, :assignment_value_class
 
   def initialize
     super
