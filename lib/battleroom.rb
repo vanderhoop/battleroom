@@ -33,7 +33,6 @@ loop do
     end
   when '2'
     5.times do
-      binding.pry
       q = DataStructureAccessQuestion.new
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)

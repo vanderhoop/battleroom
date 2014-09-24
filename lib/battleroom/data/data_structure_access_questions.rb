@@ -8,21 +8,36 @@ $random_names_array = []
 200.times { $random_names_array << Faker::Name.first_name }
 $random_names_array.uniq
 
+def gen_phone_number
+  "#{rand(1..9)}
+   #{rand(0..9)}
+   #{rand(0..9)}-
+   #{rand(0..9)}
+   #{rand(0..9)}
+   #{rand(0..9)}-
+   #{rand(0..9)}
+   #{rand(0..9)}
+   #{rand(0..9)}
+   #{rand(0..9)}".gsub(" ", "").gsub("\n", "")
+end
+
+def gen_password
+  possible_chars = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a.map(&:to_s)
+  possible_chars.shuffle[0, rand(6..8)].join
+end
+
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
   {
     data_structure: ["Ender's Game", "Foundation", "Dune", "Cat's Cradle", "The Left Hand of Darkness", "Hitchhiker's Guide to the Galaxy", "Stranger in a Strange Land", "Sirens of Titan", "Brave New World"],
     possible_variable_names: ["sci_fi_books", "sci_fi_novels", "canonical_sci_fi_titles", "science_fiction_titles", "books", "paperback_titles"].shuffle,
-    possible_assignments: ["Lord of the Rings", "1984", "Farhenheit 451", "Animal Farm", "Watchmen", "The Stand", "2001", "Starship Troopers", "The Time Machine"]
   },
   {
     data_structure: $random_names_array,
     possible_variable_names: ["friends", "enemies", "co_workers", "old_pals", "new_friends", "frenemies", "lovers", "admirers", "haters", "stalker_names"].shuffle,
-    possible_assignments: ["Hankdog", "Phillary", "Sammypants", "Davesy Wavesy", "She Who Takes What She Wants", "Tonybone"]
   },
   {
     data_structure: (7..29).to_a.shuffle,
     possible_variable_names: ["fav_nums", "lotto_nums", "ages_of_children", "favorite_years_of_life", "career_jersey_numbers", "lucky_numbers", "unlucky_numbers"].shuffle,
-    possible_assignments: [31, 1, 2, 3, 4, 5, 6, 7, 33, 34, 35, 36, 37, 38, 39, 41].shuffle
   },
   {
     data_structure: [
@@ -53,29 +68,15 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       rand(0.0..100.0).round(2),
     ].uniq,
     possible_variable_names: ["test_scores", "win_percentages", "yield_percentages", "dividends", "multiples", "sums", "products", "monthly_bill_totals"].shuffle,
-    possible_assignments: [
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-      rand(0.0..100.0).round(2),
-    ]
   },
-  # {
-  #   data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth"],
-  #   possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"].shuffle,
-  #   possible_assignments: ["Pinot", "Claude", "Jackson", "Bootsniffer", "Frank", "Dogboy", "Kittyhawk", "Kitty the Cat", "Tiny"]
-  # },
-  # {
-  #   data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine"],
-  #   possible_variable_names: ["beatles_songs", "fav_beatles_tracks"].shuffle,
-  #   possible_assignments: ["Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"]
-  # },
+  {
+    data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth", "Pinot", "Claude", "Jackson", "Bootsniffer", "Frank", "Dogboy", "Kittyhawk", "Kitty the Cat", "Tiny"],
+    possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"].shuffle,
+  },
+  {
+    data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine", "Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"],
+    possible_variable_names: ["beatles_songs", "fav_beatles_tracks", "fab_four_tunes"].shuffle,
+  },
   # {
   #   data_structure: ["When Harry Met Sally", "There's Something About Mary", "How to Lose a Guy in 10 Days", "Bridesmaids", "Knocked Up", "High Fidelity", "America's Sweethearts", "My Best Friend's Wedding", "Chasing Amy", "What Women Want", "Four Weddings and a Funeral", "About a Boy", "Notting Hill", "His Girl Friday"],
   #   possible_variable_names: ["rom_coms"]
@@ -163,18 +164,19 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #     { charlie_sheen_cameo: true },
   #   ]
   # },
-  # {
-  #   data_structure: {
-  #     stars: ["Nicholas Cage", "Meryl Streep"],
-  #     rt_rating: 98.0,
-  #   },
-  #   possible_variable_names: ["adaptation"],
-  #   possible_assignments: [
-  #     { releasted: 2002 },
-  #     { screenwriters: ["Charlie Kaufman", "Donald Kaufman"] },
-  #     { charlie_sheen_cameo: true },
-  #   ]
-  # },
+  {
+    data_structure: {
+      stars: ["Nicholas Cage", "Meryl Streep"],
+      rt_rating: 98.0,
+      released: 2002
+    },
+    possible_variable_names: ["adaptation"],
+    possible_assignments: [
+      { screenwriters: ["Charlie Kaufman", "Donald Kaufman"] },
+      { charlie_sheen_cameo: true },
+      { releasted: 2002 },
+    ]
+  },
   # {
   #   data_structure: {
   #     screenwriter: "Charlie Kaufman",
@@ -196,32 +198,35 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   },
   #   possible_variable_names: ["truman_show"]
   # },
-  {
+]
+
+4.times do
+  name = $random_names_array.sample
+  data = {
     data_structure: {
-      name: $random_names_array.sample,
+      name: name,
       occupation: ["doctor", "roofer", "mason", "booky", "cobbler"].sample,
-      fav_band: ["Pavement", "Suede", "Pixies", "Pearl Jam", "Ani Defranco"].sample,
+      # fav_band: ["Pavement", "Suede", "Pixies", "Pearl Jam", "Ani Defranco"].sample,
+      phone: gen_phone_number,
+      single: [true, false].sample,
+      # has_pets: [true, false].sample,
+      # has_drivers_license: [true, false].sample,
+      best_friend: $random_names_array.sample,
     },
-    possible_variable_names: ["first_user", "admin_user", "super_user"],
-    possible_assignments: [
-      { single: [true, false].sample },
-      { has_pets: [true, false].sample },
-      { has_drivers_license: [true, false].sample },
-      { chase_password: ["password123", "555555", "12345678", "neverguess"].sample },
-      { best_friend: $random_names_array.sample },
-      { phone: Faker::PhoneNumber.phone_number },
-    ],
-  },
-  {
+    possible_variable_names: [name.downcase.gsub(",", "").gsub(" ", "_")]
+  }
+  DATA_STRUCTURE_ACCESS_QUESTIONS.push(data)
+
+  data = {
     data_structure: {
       name: $random_names_array.sample,
       age: rand(21..33),
-      fav_band: ["Weezer", "Nirvana", "Missy Elliott", "Elliott Smith", "Phish", "2pac", "Kanye West"],
+      fav_band: ["Weezer", "Nirvana", "Missy Elliott", "Elliott Smith", "Phish", "2pac", "Kanye West"].sample,
+      parent: [true, false].sample
     },
-    possible_variable_names: ["bus_driver", "larsony_suspect", "head_roady", "crew_chief", "adjunct_professor", "fav_dog_walker", "street_person"].shuffle,
-    possible_assignments: [
-      { single: [true, false].sample },
-    ],
+    possible_variable_names: ["bus_driver", "larsony_suspect", "head_roady", "crew_chief", "adjunct_professor", "fav_dog_walker", "street_person", "instructor", "lover", "fighter", "destroyer", "troublemaker", "seeker"].shuffle,
   },
-].shuffle
+  DATA_STRUCTURE_ACCESS_QUESTIONS.push(data)
+end
 
+DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
