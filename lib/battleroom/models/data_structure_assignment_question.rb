@@ -9,27 +9,43 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   def initialize
     super
     self.possible_assignments = []
-    if data_structure.class == Array
-      desired_array_size = rand(3..6)
-      while data_structure.size > desired_array_size
-        new_assignment_possibility = data_structure.delete(data_structure.sample)
-        possible_assignments.push(new_assignment_possibility)
-      end
-      self.assignment_value = possible_assignments.sample
-      self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
-    else
-      while data_structure.size > 2
-        key_to_delete = data_structure.keys.sample
-        value_deleted = data_structure.delete(key_to_delete)
-        new_assignment_possibility = { key_to_delete => value_deleted }
-        possible_assignments.push(new_assignment_possibility)
-      end
-      assignment = possible_assignments.sample
-      self.assignment_value = assignment.values[0]
-      self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
-      self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
-    end
+    format_based_on_data_structure_class
     self.assignment_value_class = format_class_for_output(assignment_value.class)
+  end
+
+  def format_based_on_data_structure_class
+    if data_structure.class == Array
+      format_array
+    else
+      format_hash
+    end
+  end
+
+  def format_array
+    desired_array_size = rand(3..6)
+    cull_array_to_valid_size_for_output(desired_array_size)
+    self.assignment_value = possible_assignments.sample
+    self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
+  end
+
+  def cull_array_to_valid_size_for_output(desired_size)
+    while data_structure.size > desired_size
+      new_assignment_possibility = data_structure.delete(data_structure.sample)
+      possible_assignments.push(new_assignment_possibility)
+    end
+  end
+
+  def format_hash
+    while data_structure.size > 2
+      key_to_delete = data_structure.keys.sample
+      value_deleted = data_structure.delete(key_to_delete)
+      new_assignment_possibility = { key_to_delete => value_deleted }
+      possible_assignments.push(new_assignment_possibility)
+    end
+    assignment = possible_assignments.sample
+    self.assignment_value = assignment.values[0]
+    self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
+    self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
   def print_data_structure_assignment_prompt

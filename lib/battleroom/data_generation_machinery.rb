@@ -28,10 +28,6 @@ module DataGenerationMachinery
     possible_chars.shuffle[0, rand(6..8)].join
   end
 
-  def gen_common_man
-
-  end
-
   def gen_app
     name = Faker::App.name
     app = {

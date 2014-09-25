@@ -1,10 +1,11 @@
+require_relative '../data_generation_machinery'
+include DataGenerationMachinery
+
 require 'pry'
 require 'Faker'
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
 
-require_relative '../data_generation_machinery'
-include DataGenerationMachinery
 
 $random_names_array = gen_random_names_array
 
@@ -111,8 +112,35 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
     ].shuffle,
   },
   {
-    data_structure: ["Patches", "Falstaff", "Whiskers", "Trousers", "Sammycat", "Dunbar", "Digsy", "Bubs", "Davy", "Tomcat", "Mr. Bigglesworth", "Pinot", "Claude", "Jackson", "Bootsniffer", "Frank", "Dogboy", "Kittyhawk", "Kitty the Cat", "Tiny"],
-    possible_variable_names: ["cat_names", "cats", "kitties", "felines", "kittie_names"].shuffle,
+    data_structure: [
+      'Patches',
+      'Falstaff',
+      'Whiskers',
+      'Trousers',
+      'Sammycat',
+      'Dunbar',
+      'Digsy',
+      'Bubs',
+      'Davy',
+      'Tomcat',
+      'Mr. Bigglesworth',
+      'Pinot',
+      'Claude',
+      'Jackson',
+      'Bootsniffer',
+      'Frank',
+      'Dogboy',
+      'Kittyhawk',
+      'Kitty the Cat',
+      'Tiny',
+    ],
+    possible_variable_names: [
+      'cat_names',
+      'cats',
+      'kitties',
+      'felines',
+      'kittie_names'
+    ].shuffle,
   },
   {
     data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine", "Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"],
@@ -206,6 +234,9 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
 #======================================
 
 4.times do
+  user = gen_user
+  DATA_STRUCTURE_ACCESS_QUESTIONS.push(user)
+
   # name = $random_names_array.sample
   # data = {
   #   data_structure: {
@@ -249,8 +280,10 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
 end
 
 10.times do
-  app = gen_app
-  DATA_STRUCTURE_ACCESS_QUESTIONS.push(app)
+  user = gen_user
+  DATA_STRUCTURE_ACCESS_QUESTIONS.push(user)
+  # app = gen_app
+  # DATA_STRUCTURE_ACCESS_QUESTIONS.push(app)
 end
 
 DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle

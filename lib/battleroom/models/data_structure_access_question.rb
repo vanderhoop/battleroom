@@ -7,14 +7,25 @@ class DataStructureAccessQuestion < DataStructureQuestion
 
   def initialize
     super
+    format_based_on_data_structure_class
+  end
+
+  def format_based_on_data_structure_class
     if data_structure.class == Array
       self.data_structure = data_structure[0, rand(4..6)]
       self.answer_value = data_structure.sample
       self.hint = "index values start at 0."
     else
+      remove_multiple_booleans
       self.answer_value = data_structure[data_structure.keys.sample]
       self.hint = "you have to use the EXACT hash key to retrieve the associated value."
     end
+  end
+
+  def remove_multiple_booleans
+    # binding.pry
+    self.data_structure.keep_if {|k,v| v.class != TrueClass }
+    self.data_structure.keep_if {|k,v| v.class != FalseClass }
   end
 
   def print_data_structure_access_prompt

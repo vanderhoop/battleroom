@@ -56,17 +56,17 @@ DATA_STRUCTURE_ASSIGNMENT_QUESTIONS = [
 ]
 
 6.times do
-  user = gen_user
-  DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(user)
-  business = gen_business
-  DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(business)
+  # user = gen_user
+  # DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(user)
+  # business = gen_business
+  # DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(business)
 end
 
 4.times do
-  location = gen_location
-  DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(location)
-  app = gen_app
-  DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(app)
+  # location = gen_location
+  # DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(location)
+  # app = gen_app
+  # DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.push(app)
 end
 
 DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.shuffle!
