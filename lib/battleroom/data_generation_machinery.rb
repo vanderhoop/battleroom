@@ -1,7 +1,7 @@
 
 module DataGenerationMachinery
   def snake_case(string)
-    string.downcase.gsub(",", "").gsub(" ", "_")
+    string.downcase.gsub(',', '').gsub(' ', '_').gsub('-', '_')
   end
 
   def gen_random_names_array
@@ -26,6 +26,10 @@ module DataGenerationMachinery
   def gen_password
     possible_chars = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a.map(&:to_s)
     possible_chars.shuffle[0, rand(6..8)].join
+  end
+
+  def gen_common_man
+
   end
 
   def gen_app
@@ -64,7 +68,7 @@ module DataGenerationMachinery
     data = {
       data_structure: user,
       possible_variable_names: [
-        first_name.downcase
+        snake_case(first_name)
       ]
     }
   end

@@ -8,16 +8,32 @@ module BattleroomMachinery
   end
 
   def print_menu_options
-    puts " What would you like to work on?".blue
-    puts "1. Variable assignment"
-    puts "2. Accessing values in arrays and hashes"
-    puts "3. Adding values to arrays and hashes"
-    puts "4. Accessing values from within nested data structures"
+    puts ' What would you like to work on?'.blue
+    puts '1. Variable assignment'
+    puts '2. Accessing values in arrays and hashes'
+    puts '3. Adding values to arrays and hashes'
+    puts '4. Accessing values from within nested data structures'
     puts "Q. Quit\r\n\n"
   end
 
   def random_congratulation
-    ["Lovely work, my friend!", "Beautiful!", "Lovely!", "Splendid!", "Nice job! Keep it rolling!", "Capital work, battlestar!", "You're on your way!", "Exemplary work!", "Yeah!", "Roll on.", "You're making a prosperous go of this programming thing.", "Bullseye!", "Woo!", "Let it ride!", "Touchdown!"].sample
+    [
+      'Lovely work, my friend!',
+      'Beautiful!',
+      'Lovely!',
+      'Splendid!',
+      'Nice job! Keep it rolling!',
+      'Capital work, battlestar!',
+      'Exemplary work!',
+      'Yeah!',
+      'Roll on.',
+      'Bullseye!',
+      'Woo!',
+      'Let it ride!',
+      'Touchdown!',
+      "You're on your way!",
+      "You're making a prosperous go of this programming thing.",
+    ].sample
   end
 
   def print_congratulation
