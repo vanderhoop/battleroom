@@ -234,8 +234,6 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
 #======================================
 
 4.times do
-  user = gen_user
-  DATA_STRUCTURE_ACCESS_QUESTIONS.push(user)
 
   # name = $random_names_array.sample
   # data = {

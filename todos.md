@@ -1,8 +1,9 @@
-I have to tackle a bug that allows users to use their terminal using backticks
-
 I need to handle cases where users enter unterminated strings, ie home[:city] = 'South Eduardo
 
-...and nothing happens in the data structure assignment questions
+...and nothing happens... (this is in the data structure assignment questions)
+
+I have to tackle a bug that allows users to use their terminal using backticks
+
 
 I want to add assigning values to a particular index value within an array
 
