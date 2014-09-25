@@ -71,6 +71,15 @@ module BattleroomMachinery
     end
   end
 
+  def naughty_input?(user_input)
+    if user_input.match(/(require|`|binding)/)
+      puts "No way no how! Try again.".red
+      true
+    else
+      false
+    end
+  end
+
   def format_class_for_output(klass)
     return "Boolean" if klass.to_s.match /(TrueClass|FalseClass)/
     klass.to_s

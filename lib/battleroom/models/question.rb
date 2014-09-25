@@ -23,7 +23,7 @@ class Question
         begin
           user_input = Readline.readline("> ".blue, true)
           abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)/i)
-          if yield(user_input)
+          if (naughty_input?(user_input) == false) && yield(user_input)
             print_congratulation
             sleep 1.6
             clear_display
