@@ -19,6 +19,7 @@ print 'Welcome to the Battleroom.'.blue
 loop do
   print_menu_options
   choice = Readline.readline('> '.blue, true)
+  abort('Goodbye!'.green) if choice.match(/^(q|exit|!!!\s?)/i)
   clear_display
 
   # for eval
@@ -49,9 +50,8 @@ loop do
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
     end
-  when /^(q|exit|!!!\s?)/i
-    puts 'Goodbye!'.green
-    break
+  # when /^(q|exit|!!!\s?)/i
+  #   abort('Goodbye!'.green)
   else
     puts 'You entered a non-option. Try again.'.red
   end
