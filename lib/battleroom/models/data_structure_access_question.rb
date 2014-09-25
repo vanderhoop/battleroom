@@ -16,13 +16,13 @@ class DataStructureAccessQuestion < DataStructureQuestion
       self.answer_value = data_structure.sample
       self.hint = "index values start at 0."
     else
-      remove_multiple_booleans
+      remove_booleans
       self.answer_value = data_structure[data_structure.keys.sample]
       self.hint = "you have to use the EXACT hash key to retrieve the associated value."
     end
   end
 
-  def remove_multiple_booleans
+  def remove_booleans
     # binding.pry
     self.data_structure.keep_if {|k,v| v.class != TrueClass }
     self.data_structure.keep_if {|k,v| v.class != FalseClass }

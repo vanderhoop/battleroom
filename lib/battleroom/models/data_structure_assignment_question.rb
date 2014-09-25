@@ -36,16 +36,20 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   end
 
   def format_hash
+    cull_hash_to_valid_size_for_output
+    assignment = possible_assignments.sample
+    self.assignment_value = assignment.values[0]
+    self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
+    self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
+  end
+
+  def cull_hash_to_valid_size_for_output
     while data_structure.size > 2
       key_to_delete = data_structure.keys.sample
       value_deleted = data_structure.delete(key_to_delete)
       new_assignment_possibility = { key_to_delete => value_deleted }
       possible_assignments.push(new_assignment_possibility)
     end
-    assignment = possible_assignments.sample
-    self.assignment_value = assignment.values[0]
-    self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
-    self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
   def print_data_structure_assignment_prompt
