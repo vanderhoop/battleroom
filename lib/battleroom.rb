@@ -16,6 +16,7 @@ include BattleroomMachinery
 
 clear_display
 print 'Welcome to the Battleroom.'.blue
+
 loop do
   print_menu_options
   choice = Readline.readline('> '.blue, true)
@@ -50,8 +51,6 @@ loop do
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input(b)
     end
-  # when /^(q|exit|!!!\s?)/i
-  #   abort('Goodbye!'.green)
   else
     puts 'You entered a non-option. Try again.'.red
   end
