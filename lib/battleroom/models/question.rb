@@ -34,6 +34,8 @@ class Question
             puts "\nNope! You just triggered a common Ruby error that reads:\n".red
             puts "\tsyntax error, unexpected end-of-input\n".green
             puts "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.".red
+          elsif e.message.include?("unterminated string meets end of file")
+            puts 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
           end
         end
       end
