@@ -4,27 +4,10 @@ require 'Faker'
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
 
-$random_names_array = []
-200.times { $random_names_array << Faker::Name.first_name }
-$random_names_array.uniq
+require_relative '../data_generation_machinery'
+include DataGenerationMachinery
+$random_names_array = gen_random_names_array
 
-def gen_phone_number
-  "#{rand(1..9)}
-   #{rand(0..9)}
-   #{rand(0..9)}-
-   #{rand(0..9)}
-   #{rand(0..9)}
-   #{rand(0..9)}-
-   #{rand(0..9)}
-   #{rand(0..9)}
-   #{rand(0..9)}
-   #{rand(0..9)}".gsub(" ", "").gsub("\n", "")
-end
-
-def gen_password
-  possible_chars = ('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a.map(&:to_s)
-  possible_chars.shuffle[0, rand(6..8)].join
-end
 
 DATA_STRUCTURE_ACCESS_QUESTIONS = [
   {
@@ -224,7 +207,21 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       fav_band: ["Weezer", "Nirvana", "Missy Elliott", "Elliott Smith", "Phish", "2pac", "Kanye West"].sample,
       parent: [true, false].sample
     },
-    possible_variable_names: ["bus_driver", "larsony_suspect", "head_roady", "crew_chief", "adjunct_professor", "fav_dog_walker", "street_person", "instructor", "lover", "fighter", "destroyer", "troublemaker", "seeker"].shuffle,
+    possible_variable_names: [
+      "bus_driver",
+      "larsony_suspect",
+      "head_roady",
+      "crew_chief",
+      "adjunct_professor",
+      "fav_dog_walker",
+      "street_person",
+      "instructor",
+      "lover",
+      "fighter",
+      "destroyer",
+      "troublemaker",
+      "seeker"
+    ].shuffle,
   },
   DATA_STRUCTURE_ACCESS_QUESTIONS.push(data)
 end

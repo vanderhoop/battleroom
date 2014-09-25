@@ -1,5 +1,15 @@
 
 module DataGenerationMachinery
+  def snake_case(string)
+    string.downcase.gsub(",", "").gsub(" ", "_")
+  end
+
+  def gen_random_names_array
+    random_names_array = []
+    200.times { random_names_array << Faker::Name.first_name }
+    random_names_array.uniq
+  end
+
   def gen_phone_number
     "#{rand(1..9)}
      #{rand(0..9)}
@@ -18,12 +28,28 @@ module DataGenerationMachinery
     possible_chars.shuffle[0, rand(6..8)].join
   end
 
+  def gen_app
+    name = Faker::App.name
+    app = {
+      version: Faker::App.version,
+      author: Faker::App.author,
+      name: name,
+      released: rand(2004..2014),
+    }
+    data = {
+      data_structure: app,
+      possible_variable_names: [
+        snake_case(name)
+      ]
+    }
+  end
+
   def gen_user
     first_name = Faker::Name::first_name
     last_name = Faker::Name::last_name
     num_string = "#{[rand(0..9), rand(0..9), rand(0..9)][0, rand(1..4)].join}"
     user = {
-      name: first_name + " " + last_name,
+      name: first_name + ' ' + last_name,
       username: Faker::Internet::user_name(first_name) + num_string,
       password: gen_password,
       email: Faker::Internet.free_email(first_name),
@@ -59,7 +85,7 @@ module DataGenerationMachinery
     data = {
       data_structure: business,
       possible_variable_names: [
-        name.downcase.gsub(",", "").gsub(" ", "_").underscore
+        snake_case(name)
       ]
     }
   end
@@ -82,7 +108,7 @@ module DataGenerationMachinery
     data = {
       data_structure: location,
       possible_variable_names: [
-        city.downcase.gsub(",", "").gsub(" ", "_").underscore,
+        snake_case(city),
         "home",
         "target",
         "destination",
