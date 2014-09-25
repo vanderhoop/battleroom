@@ -1,9 +1,4 @@
-I need to handle cases where users enter unterminated strings, ie home[:city] = 'South Eduardo
-
-...and nothing happens... (this is in the data structure assignment questions, but ONLY WITH HASHES)
-
-I have to tackle a bug that allows users to use their terminal using backticks
-
+I have to tackle a bug that allows users to use their terminal using backticks, or 'require', or 'binding.pry'
 
 I want to add assigning values to a particular index value within an array
 
