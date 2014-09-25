@@ -7,10 +7,6 @@ module BattleroomMachinery
     `reset`
   end
 
-  def check_for_exit
-
-  end
-
   def print_menu_options
     puts ' What would you like to work on?'.blue
     puts '1. Variable assignment'

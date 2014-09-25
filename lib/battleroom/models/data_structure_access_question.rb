@@ -23,16 +23,15 @@ class DataStructureAccessQuestion < DataStructureQuestion
   end
 
   def remove_booleans
-    # binding.pry
-    self.data_structure.keep_if {|k,v| v.class != TrueClass }
-    self.data_structure.keep_if {|k,v| v.class != FalseClass }
+    self.data_structure.keep_if { |k, v| v.class != TrueClass }
+    self.data_structure.keep_if { |k, v| v.class != FalseClass }
   end
 
   def print_data_structure_access_prompt
     answer_value_class = format_class_for_output(answer_value.class)
     answer_value_string = format_value_for_stdout_and_eval(answer_value)
     puts "Given the data structure below, access the #{answer_value_class} value ".blue + "#{answer_value_string}".yellow + ".\n".blue
-    print "#{self.variable_name} = ".green
+    print "#{variable_name} = ".green
     if data_structure.to_s.length < 40
       puts data_structure.to_s
     else
@@ -45,13 +44,13 @@ class DataStructureAccessQuestion < DataStructureQuestion
     enter_evaluation_loop do |user_input|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
-        evaluation_scope.eval("#{self.variable_name} = #{self.data_structure.to_s}")
-        if evaluation_scope.eval(user_input) == self.answer_value && user_input.include?(self.variable_name)
+        evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
+        if evaluation_scope.eval(user_input) == answer_value && user_input.include?(variable_name)
           # this last returned value of 'true' within the block is vital;
           # within the enter_evaluation_loop method, the return value of yield is used
           true
         else
-          puts "Remember, #{self.hint} Try again.".red
+          puts "Remember, #{hint} Try again.".red
         end
       rescue NameError => e
         print_colorized_error_prompt(e)
