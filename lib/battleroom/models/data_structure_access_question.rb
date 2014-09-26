@@ -48,7 +48,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
     puts "Given the data structure below, access the #{answer_value_class} value ".blue + "#{answer_value_string}".yellow + ".\n".blue
     print "#{variable_name} = ".green
     if data_structure.to_s.length < 40
-      puts data_structure.to_s
+      puts data_structure.to_s.gsub('{', '{ ').gsub('=>', ' => ').gsub('}', ' }')
     else
       ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
     end
