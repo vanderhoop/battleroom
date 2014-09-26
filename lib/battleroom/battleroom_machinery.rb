@@ -55,6 +55,12 @@ module BattleroomMachinery
     puts "Get used to it and try again.\n".red
   end
 
+  def print_unexpected_end_of_input_explanation
+    puts "\nNope! You just triggered a common Ruby error that reads:\n".red
+    puts "\tsyntax error, unexpected end-of-input\n".green
+    puts 'Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.'.red
+  end
+
   def print_colorized_type_error_prompt(error)
     puts "\nNope! You just triggered a common Ruby error that reads:\n".red
     puts "\tin '[]', #{error.message}".green
