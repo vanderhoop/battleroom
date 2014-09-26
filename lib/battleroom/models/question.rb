@@ -22,7 +22,7 @@ class Question
       until answered_correctly
         begin
           user_input = Readline.readline('> '.blue, true)
-          abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)/i)
+          abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
           if (naughty_input?(user_input) == false) && yield(user_input)
             print_congratulation
             sleep 1.6
