@@ -6,14 +6,24 @@ class DataStructureQuestion < Question
   def initialize
     super
     @data_structure = data[:data_structure].clone
-    self.possible_assignments = []
     if data_structure.class == Array
       # randomizes and shuffles the items in the arrays, so repeats remain interesting
       self.data_structure = data_structure.shuffle
       self.hint = 'index values start at 0.'
     else
+      convert_keys_to_strings if [0,1,2,3,4].sample.odd?
       self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
     end
+    self.possible_assignments = []
+  end
+
+  def convert_keys_to_strings
+    altered_ds = data_structure.each_with_object({}) do |key_value_array, new_hash|
+      old_key = key_value_array[0]
+      value = key_value_array[1]
+      new_hash[old_key.to_s] = value
+    end
+    self.data_structure = altered_ds
   end
 
   def cull_hash_to_valid_size_for_output
