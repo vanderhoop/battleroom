@@ -35,11 +35,14 @@ module DataGenerationMachinery
       author: Faker::App.author,
       name: name,
       released: rand(2004..2014),
+      open_source: [true, false].sample
     }
     data = {
       data_structure: app,
       possible_variable_names: [
-        snake_case(name)
+        snake_case(name),
+        'app',
+        'application'
       ]
     }
   end

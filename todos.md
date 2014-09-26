@@ -1,7 +1,12 @@
+## Todos
+
+- I want to go through each of the key_value pairs in the hash
+
 - I want to consolidate some of the data, because there are repeats in the data structure access and assignment data files.
 
 - I want to consolidate the logic from DSAccess and DSAssignment Questions into their shared superclass, DSQ.
 
+- I want to see if awesome print has a single line print option, because the single line data structures have no spaces.
 
 - I want to cull down some of the user hashes in data structure access. Right now they're as big as they can be, which makes them identical in size. I at least need some variance between the size of the user hashes so that they don't seem repetitive and cheap.
 

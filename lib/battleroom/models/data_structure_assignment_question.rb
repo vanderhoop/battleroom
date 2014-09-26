@@ -4,11 +4,10 @@ require_relative '../data/data_structure_questions'
 class DataStructureAssignmentQuestion < DataStructureQuestion
   @questions = DATA_STRUCTURE_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class,
-                :possible_assignments, :formatted_assignment_value
+                :formatted_assignment_value
 
   def initialize
     super
-    self.possible_assignments = []
     format_based_on_data_structure_class
     self.assignment_value_class = format_class_for_output(assignment_value.class)
   end
@@ -43,14 +42,14 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
-  def cull_hash_to_valid_size_for_output
-    while data_structure.size > 2
-      key_to_delete = data_structure.keys.sample
-      value_deleted = data_structure.delete(key_to_delete)
-      new_assignment_possibility = { key_to_delete => value_deleted }
-      possible_assignments.push(new_assignment_possibility)
-    end
-  end
+  # def cull_hash_to_valid_size_for_output
+  #   while data_structure.size > 2
+  #     key_to_delete = data_structure.keys.sample
+  #     value_deleted = data_structure.delete(key_to_delete)
+  #     new_assignment_possibility = { key_to_delete => value_deleted }
+  #     possible_assignments.push(new_assignment_possibility)
+  #   end
+  # end
 
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
@@ -111,7 +110,6 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             true
           else
             puts 'Nope! Ruby\'s Array#push method will be your salvation. Look it up!'.red
-            false
           end
         else
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)

@@ -16,15 +16,22 @@ class DataStructureAccessQuestion < DataStructureQuestion
       self.answer_value = data_structure.sample
       self.hint = 'index values start at 0.'
     else
-      remove_booleans
+      cull_hash_to_valid_size_for_output
+      remove_multiple_booleans
       self.answer_value = data_structure[data_structure.keys.sample]
       self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
     end
   end
 
-  def remove_booleans
-    self.data_structure.keep_if { |k, v| v.class != TrueClass }
-    self.data_structure.keep_if { |k, v| v.class != FalseClass }
+  def remove_multiple_booleans
+    boolean_count = find_number_of_boolean_values_in_hash
+    while boolean_count > 1
+      grouped_by_value = data_structure.group_by { |k, v| v }
+      boolean_to_delete = [true, false].sample
+      key_to_delete = grouped_by_value[boolean_to_delete].sample[0] if grouped_by_value[boolean_to_delete]
+      data_structure.delete(key_to_delete)
+      boolean_count = find_number_of_boolean_values_in_hash
+    end
   end
 
   def print_data_structure_access_prompt
