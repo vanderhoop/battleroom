@@ -1,8 +1,8 @@
 ## Todos
 
-- I want to go through each of the key_value pairs in the hash
-
 - I want to consolidate some of the data, because there are repeats in the data structure access and assignment data files.
+
+- I want to make the keys in the dynamically generated app/user/business hashes dynamic as well, to avoid repetition/boredom in the user.
 
 - I want to consolidate the logic from DSAccess and DSAssignment Questions into their shared superclass, DSQ.
 

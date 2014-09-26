@@ -42,15 +42,6 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
-  # def cull_hash_to_valid_size_for_output
-  #   while data_structure.size > 2
-  #     key_to_delete = data_structure.keys.sample
-  #     value_deleted = data_structure.delete(key_to_delete)
-  #     new_assignment_possibility = { key_to_delete => value_deleted }
-  #     possible_assignments.push(new_assignment_possibility)
-  #   end
-  # end
-
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
       puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue

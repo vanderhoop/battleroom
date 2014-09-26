@@ -12,15 +12,23 @@ class DataStructureAccessQuestion < DataStructureQuestion
 
   def format_based_on_data_structure_class
     if data_structure.class == Array
-      self.data_structure = data_structure[0, rand(4..6)]
-      self.answer_value = data_structure.sample
-      self.hint = 'index values start at 0.'
+      format_array
     else
-      cull_hash_to_valid_size_for_output
-      remove_multiple_booleans
-      self.answer_value = data_structure[data_structure.keys.sample]
-      self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
+      format_hash
     end
+  end
+
+  def format_array
+    self.data_structure = data_structure[0, rand(4..6)]
+    self.answer_value = data_structure.sample
+    self.hint = 'index values start at 0.'
+  end
+
+  def format_hash
+    cull_hash_to_valid_size_for_output
+    remove_multiple_booleans
+    self.answer_value = data_structure[data_structure.keys.sample]
+    self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
   end
 
   def remove_multiple_booleans
