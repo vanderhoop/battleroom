@@ -9,9 +9,9 @@ class DataStructureQuestion < Question
     if data_structure.class == Array
       # randomizes and shuffles the items in the arrays, so repeats remain interesting
       self.data_structure = data_structure.shuffle
-      self.hint = "index values start at 0."
+      self.hint = 'index values start at 0.'
     else
-      self.hint = "you have to use the EXACT hash key to retrieve the associated value."
+      self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
     end
   end
 

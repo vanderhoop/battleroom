@@ -48,28 +48,28 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   {
     data_structure: $random_names_array,
     possible_variable_names: [
-      "friends",
-      "enemies",
-      "co_workers",
-      "old_pals",
-      "new_friends",
-      "frenemies",
-      "lovers",
-      "admirers",
-      "haters",
-      "stalker_names"
+      'friends',
+      'enemies',
+      'co_workers',
+      'old_pals',
+      'new_friends',
+      'frenemies',
+      'lovers',
+      'admirers',
+      'haters',
+      'stalker_names'
     ].shuffle,
   },
   {
     data_structure: (7..29).to_a.shuffle,
     possible_variable_names: [
-      "fav_nums",
-      "lotto_nums",
-      "ages_of_children",
-      "favorite_years_of_life",
-      "career_jersey_numbers",
-      "lucky_numbers",
-      "unlucky_numbers"
+      'fav_nums',
+      'lotto_nums',
+      'ages_of_children',
+      'favorite_years_of_life',
+      'career_jersey_numbers',
+      'lucky_numbers',
+      'unlucky_numbers'
     ].shuffle,
   },
   {
@@ -101,14 +101,14 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
       rand(0.0..100.0).round(2),
     ].uniq,
     possible_variable_names: [
-      "test_scores",
-      "win_percentages",
-      "yield_percentages",
-      "dividends",
-      "multiples",
-      "sums",
-      "products",
-      "monthly_bill_totals"
+      'test_scores',
+      'win_percentages',
+      'yield_percentages',
+      'dividends',
+      'multiples',
+      'sums',
+      'products',
+      'monthly_bill_totals'
     ].shuffle,
   },
   {
@@ -143,8 +143,50 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
     ].shuffle,
   },
   {
-    data_structure: ["Fixing a Hole", "Michelle", "I'll Follow the Sun", "Hey Jude", "In My Life", "A Day in the Life", "If I Needed Someone", "I'm Looking Through You", "Nowhere Man", "Dear Prudence", "Julia", "Good Night", "Something", "Sun King", "Carry That Weight", "Girl", "What Goes On", "The Word", "I'm So Tired", "Blackbird", "Piggies", "Rocky Racoon", "Cry Baby Cry", "Taxman", "Eleanor Rigby", "I'm Only Sleeping", "Yellow Submarine", "Only a Northern Song", "Mean Mr. Mustard", "All My Loving", "Norwegian Wood", "Yesterday", "Blue Jay Way", "Hello, Goodbye", "Penny Lane", "All You Need is Love", "The Fool on the Hill"],
-    possible_variable_names: ["beatles_songs", "fav_beatles_tracks", "fab_four_tunes"].shuffle,
+    data_structure: [
+      'Fixing a Hole',
+      'Michelle',
+      'Hey Jude',
+      'In My Life',
+      'A Day in the Life',
+      'If I Needed Someone',
+      'Nowhere Man',
+      'Dear Prudence',
+      'Julia',
+      'Good Night',
+      'Something',
+      'Sun King',
+      'Carry That Weight',
+      'Girl',
+      'What Goes On',
+      'The Word',
+      'Blackbird',
+      'Piggies',
+      'Rocky Racoon',
+      'Cry Baby Cry',
+      'Taxman',
+      'Eleanor Rigby',
+      'Yellow Submarine',
+      'Only a Northern Song',
+      'Mean Mr. Mustard',
+      'All My Loving',
+      'Norwegian Wood',
+      'Yesterday',
+      'Blue Jay Way',
+      'Hello, Goodbye',
+      'Penny Lane',
+      'All You Need is Love',
+      'The Fool on the Hill',
+      "I'm So Tired",
+      "I'm Only Sleeping",
+      "I'll Follow the Sun",
+      "I'm Looking Through You",
+    ],
+    possible_variable_names: [
+      'beatles_songs',
+      'fav_beatles_tracks',
+      'fab_four_tunes'
+    ].shuffle,
   },
   # {
   #   data_structure: ["When Harry Met Sally", "There's Something About Mary", "How to Lose a Guy in 10 Days", "Bridesmaids", "Knocked Up", "High Fidelity", "America's Sweethearts", "My Best Friend's Wedding", "Chasing Amy", "What Women Want", "Four Weddings and a Funeral", "About a Boy", "Notting Hill", "His Girl Friday"],
@@ -189,13 +231,13 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   },
   {
     data_structure: {
-      stars: ["Ryan Gosling", "Rachel McAdams"],
+      stars: ['Ryan Gosling', 'Rachel McAdams'],
       released: 2004,
     },
-    possible_variable_names: ["the_notebook"],
+    possible_variable_names: ['the_notebook'],
     possible_assignments: [
       { tearjerker: true },
-      { director: "Nick Cassavetes" },
+      { director: 'Nick Cassavetes' },
       { mtv_movie_award_count: 1 },
       { box_office_millions: 81.5 },
       { macho: false },
@@ -216,16 +258,14 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   # },
   {
     data_structure: {
-      stars: ["Nicholas Cage", "Meryl Streep"],
+      stars: ['Nicholas Cage', 'Meryl Streep'],
       rt_rating: 98.0,
-      released: 2002
+      released: 2002,
+      charlie_sheen_cameo: true,
+      screenwriters: ['Charlie Kaufman', 'Donald Kaufman'],
+
     },
-    possible_variable_names: ["adaptation"],
-    possible_assignments: [
-      { screenwriters: ["Charlie Kaufman", "Donald Kaufman"] },
-      { charlie_sheen_cameo: true },
-      { releasted: 2002 },
-    ]
+    possible_variable_names: ['adaptation'],
   },
 ]
 
@@ -255,23 +295,31 @@ DATA_STRUCTURE_ACCESS_QUESTIONS = [
   #   data_structure: {
   #     name: $random_names_array.sample,
   #     age: rand(21..33),
-  #     fav_band: ["Weezer", "Nirvana", "Missy Elliott", "Elliott Smith", "Phish", "2pac", "Kanye West"].sample,
+  #     fav_band: [
+  #        'Weezer',
+  #        'Nirvana',
+  #        'Missy Elliott',
+  #        'Elliott Smith',
+  #        'Phish',
+  #        '2pac',
+  #        'Kanye West'
+  #      ].sample,
   #     parent: [true, false].sample
   #   },
   #   possible_variable_names: [
-  #     "bus_driver",
-  #     "larsony_suspect",
-  #     "head_roady",
-  #     "crew_chief",
-  #     "adjunct_professor",
-  #     "fav_dog_walker",
-  #     "street_person",
-  #     "instructor",
-  #     "lover",
-  #     "fighter",
-  #     "destroyer",
-  #     "troublemaker",
-  #     "seeker"
+  #     'bus_driver',
+  #     'larsony_suspect',
+  #     'head_roady',
+  #     'crew_chief',
+  #     'adjunct_professor',
+  #     'fav_dog_walker',
+  #     'street_person',
+  #     'instructor',
+  #     'lover',
+  #     'fighter',
+  #     'destroyer',
+  #     'troublemaker',
+  #     'seeker',
   #   ].shuffle,
   # },
   # DATA_STRUCTURE_ACCESS_QUESTIONS.push(data)

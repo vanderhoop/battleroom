@@ -21,7 +21,7 @@ class Question
       answered_correctly = false
       until answered_correctly
         begin
-          user_input = Readline.readline("> ".blue, true)
+          user_input = Readline.readline('> '.blue, true)
           abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)/i)
           if (naughty_input?(user_input) == false) && yield(user_input)
             print_congratulation
@@ -33,8 +33,8 @@ class Question
           if e.message.match /unexpected end-of-input/
             puts "\nNope! You just triggered a common Ruby error that reads:\n".red
             puts "\tsyntax error, unexpected end-of-input\n".green
-            puts "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.".red
-          elsif e.message.include?("unterminated string meets end of file")
+            puts 'Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.'.red
+          elsif e.message.include?('unterminated string meets end of file')
             puts 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
           end
         end

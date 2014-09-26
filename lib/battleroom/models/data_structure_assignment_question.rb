@@ -1,8 +1,8 @@
 require_relative './data_structure_question'
-require_relative '../data/data_structure_assignment_questions'
+require_relative '../data/data_structure_questions'
 
 class DataStructureAssignmentQuestion < DataStructureQuestion
-  @questions = DATA_STRUCTURE_ASSIGNMENT_QUESTIONS.shuffle
+  @questions = DATA_STRUCTURE_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class,
                 :possible_assignments, :formatted_assignment_value
 
@@ -56,19 +56,31 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     if data_structure.class == Array
       puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
     else
-      puts "Given the Hash below, add a key of ".blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
+      puts 'Given the Hash below, add a key of '.blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
     end
     print "#{variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ""
+    puts ''
   end
 
   def print_resulting_data_structure(evaluation_scope)
-    puts "\n#{['Brilliant', 'Wonderful', 'Jackpot', 'Impressive work', 'Bang-up job', 'Dynamite', 'Premier work', 'Quality work', 'Terrific'].sample}. Here's the resulting data structure:\n".green
+    possible_intro_congratulations = [
+      'Brilliant',
+      'Wonderful',
+      'Jackpot',
+      'Impressive work',
+      'Bang-up job',
+      'Dynamite',
+      'Premier work',
+      'Quality work',
+      'Terrific'
+    ]
+    intro_congrat = possible_intro_congratulations.sample
+    puts "\n#{intro_congrat}. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
     ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ""
+    puts ''
     sleep 3.2
   end
 
@@ -77,9 +89,9 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     # checks if user reassigned the variable to a new array of identical values
     if user_input.match(cheater_regex)
       if $1
-        puts "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method and try again!".red
+        puts 'You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby\'s Array#push method and try again!'.red
       else
-        puts "You reassigned the variable ".red + variable_name.green + " rather than working with the array provided. Try again.".red
+        puts 'You reassigned the variable '.red + variable_name.green + ' rather than working with the array provided. Try again.'.red
       end
       true
     end
@@ -98,7 +110,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             print_resulting_data_structure(evaluation_scope)
             true
           else
-            puts "Nope! Ruby's Array#push method will be your salvation. Look it up!".red
+            puts 'Nope! Ruby\'s Array#push method will be your salvation. Look it up!'.red
             false
           end
         else
@@ -106,7 +118,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             print_resulting_data_structure(evaluation_scope)
             true
           else
-            puts "Nope! Try again!".red
+            puts 'Nope! Try again!'.red
           end
         end
       rescue NoMethodError, NameError => e

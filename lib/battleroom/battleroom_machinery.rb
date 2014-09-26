@@ -3,6 +3,25 @@ require 'pry'
 require 'colorize'
 
 module BattleroomMachinery
+
+  CONGRATULATIONS = [
+    'Lovely work, my friend!',
+    'Beautiful!',
+    'Lovely!',
+    'Splendid!',
+    'Nice job! Keep it rolling!',
+    'Capital work, battlestar!',
+    'Exemplary work!',
+    'Yeah!',
+    'Roll on.',
+    'Bullseye!',
+    'Woo!',
+    'Let it ride!',
+    'Touchdown!',
+    "You're on your way!",
+    "You're making a prosperous go of this programming thing.",
+  ]
+
   def clear_display
     `reset`
   end
@@ -17,23 +36,7 @@ module BattleroomMachinery
   end
 
   def random_congratulation
-    [
-      'Lovely work, my friend!',
-      'Beautiful!',
-      'Lovely!',
-      'Splendid!',
-      'Nice job! Keep it rolling!',
-      'Capital work, battlestar!',
-      'Exemplary work!',
-      'Yeah!',
-      'Roll on.',
-      'Bullseye!',
-      'Woo!',
-      'Let it ride!',
-      'Touchdown!',
-      "You're on your way!",
-      "You're making a prosperous go of this programming thing.",
-    ].sample
+    CONGRATULATIONS.sample
   end
 
   def print_congratulation
@@ -64,8 +67,8 @@ module BattleroomMachinery
 
   def format_value_for_stdout_and_eval(object)
     case object.class.to_s
-    when "String" then return "'#{object}'"
-    when "Symbol" then return ":#{object}"
+    when 'String' then return "'#{object}'"
+    when 'Symbol' then return ":#{object}"
     else
       object.to_s
     end
@@ -73,7 +76,7 @@ module BattleroomMachinery
 
   def naughty_input?(user_input)
     if user_input.match(/(require|`|binding)/)
-      puts "No way no how! Try again.".red
+      puts 'No way no how! Try again.'.red
       true
     else
       false
@@ -81,7 +84,7 @@ module BattleroomMachinery
   end
 
   def format_class_for_output(klass)
-    return "Boolean" if klass.to_s.match /(TrueClass|FalseClass)/
+    return 'Boolean' if klass.to_s.match /(TrueClass|FalseClass)/
     klass.to_s
   end
 end

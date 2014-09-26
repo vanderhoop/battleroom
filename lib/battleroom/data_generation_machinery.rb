@@ -1,7 +1,7 @@
-
 module DataGenerationMachinery
+
   def snake_case(string)
-    string.downcase.gsub(',', '').gsub(' ', '_').gsub('-', '_')
+    string.downcase.gsub(',', '').gsub(' ', '_').gsub('-', '_').gsub("'", '')
   end
 
   def gen_random_names_array
@@ -69,17 +69,23 @@ module DataGenerationMachinery
     }
   end
 
+  def gen_business_email_address(business_name)
+    possible_intro_words = ['info', 'hello', 'greetings', 'contact', 'team']
+    intro_word = possible_intro_words.sample
+    biz_email_address = "#{intro_word}@#{business_name.parameterize}.com"
+  end
+
   def gen_business
     name = Faker::Company.name
+    email_address = gen_business_email_address(name)
     business = {
       name: name,
-      public_email: "#{["info", "hello", "greetings", "contact"].sample}@#{name.parameterize}.com",
+      public_email: email_address,
       website: Faker::Internet.url("#{name.parameterize}.com", ''),
       phone_num: gen_phone_number,
       street_address: Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,
-      llc: [true, false].sample,
       established: rand(1901..2014),
     }
     data = {
@@ -109,13 +115,13 @@ module DataGenerationMachinery
       data_structure: location,
       possible_variable_names: [
         snake_case(city),
-        "home",
-        "target",
-        "destination",
-        "origin",
-        "locale",
-        "precinct",
-        "site",
+        'home',
+        'target',
+        'destination',
+        'origin',
+        'locale',
+        'precinct',
+        'site',
       ].shuffle
     }
   end

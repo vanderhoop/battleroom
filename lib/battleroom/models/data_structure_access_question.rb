@@ -1,8 +1,8 @@
-require_relative '../data/data_structure_access_questions'
+require_relative '../data/data_structure_questions'
 require_relative './data_structure_question'
 
 class DataStructureAccessQuestion < DataStructureQuestion
-  @questions = DATA_STRUCTURE_ACCESS_QUESTIONS.shuffle
+  @questions = DATA_STRUCTURE_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class
 
   def initialize
@@ -14,11 +14,11 @@ class DataStructureAccessQuestion < DataStructureQuestion
     if data_structure.class == Array
       self.data_structure = data_structure[0, rand(4..6)]
       self.answer_value = data_structure.sample
-      self.hint = "index values start at 0."
+      self.hint = 'index values start at 0.'
     else
       remove_booleans
       self.answer_value = data_structure[data_structure.keys.sample]
-      self.hint = "you have to use the EXACT hash key to retrieve the associated value."
+      self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
     end
   end
 
@@ -37,7 +37,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
     else
       ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
     end
-    puts ""
+    puts ''
   end
 
   def evaluate_data_structure_access_input(evaluation_scope)

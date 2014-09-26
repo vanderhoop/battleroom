@@ -16,11 +16,11 @@ class VariableQuestion < Question
   def print_variable_assignment_prompt
     formatted_class = format_class_for_output(variable_value.class)
     substrings = [
-      "Create a variable ".blue,
+      'Create a variable '.blue,
       variable_name.yellow,
-      " and assign it the ".blue,
+      ' and assign it the '.blue,
       formatted_class.blue,
-      " value ".blue,
+      ' value '.blue,
       formatted_value.yellow
     ]
     puts substrings.join
