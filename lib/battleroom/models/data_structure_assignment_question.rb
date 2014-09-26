@@ -74,7 +74,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     sleep 3.2
   end
 
-  def handle_potential_workarounds(user_input)
+  def handles_user_workarounds(user_input)
     cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
     # checks if user reassigned the variable to a new array of identical values
     if user_input.match(cheater_regex)
@@ -94,7 +94,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         evaluation_scope.eval(user_input)
         if data_structure.class == Array
-          if handle_potential_workarounds(user_input)
+          if handles_user_workarounds(user_input)
             false
           elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
