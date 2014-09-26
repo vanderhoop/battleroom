@@ -3,7 +3,6 @@
 - I need need NEED to change the formatting_for_eval to be surrounded by double quotes if a string contains an apostrophe
 
 - I want to make the keys in the dynamically generated app/user/business hashes dynamic as well, to avoid repetition/boredom in the user.
-  - I also want to mix it up, so that 1 third of the time, they're strings rather than symbols.
 
 - I want to add follow up questions to variable assignment
 
