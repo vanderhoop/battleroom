@@ -29,12 +29,16 @@ module DataGenerationMachinery
   end
 
   def gen_app
+
+    author_or_creator = [:author, :creator].sample
+    release_or_stable_release = [:release, :stable_release].sample
+    name_or_title = [:name, :title, :app_name].sample
     name = Faker::App.name
     app = {
       version: Faker::App.version,
-      author: Faker::App.author,
-      name: name,
-      released: rand(2004..2014),
+      author_or_creator => Faker::App.author,
+      name_or_title => name,
+      release_or_stable_release => rand(2004..2014),
       open_source: [true, false].sample
     }
     data = {
@@ -48,26 +52,35 @@ module DataGenerationMachinery
   end
 
   def gen_user
+    password_or_pw = [:password, :pw].sample
+    admin_or_is_admin = [:admin, :is_admin].sample
+    phone_of_phone_num = [:phone, :phone_num, :phone_number].sample
+    occupation_or_job_title = [:occupation, :job_title].sample
+    zip_or_zip_code = [:zip, :zip_code].sample
     first_name = Faker::Name::first_name
     last_name = Faker::Name::last_name
     num_string = "#{[rand(0..9), rand(0..9), rand(0..9)][0, rand(1..4)].join}"
     user = {
       name: first_name + ' ' + last_name,
       username: Faker::Internet::user_name(first_name) + num_string,
-      password: gen_password,
+      password_or_pw => gen_password,
       email: Faker::Internet.free_email(first_name),
-      is_admin: [true, false].sample,
-      phone: gen_phone_number,
+      admin_or_is_admin => [true, false].sample,
+      phone_of_phone_num => gen_phone_number,
       accepts_marketing_emails: [true, false].sample,
       accepts_promotional_emails: [true, false].sample,
-      occupation: Faker::Name.title,
-      zip: Faker::Address.zip
+      occupation_or_job_title => Faker::Name.title,
+      zip_or_zip_code => Faker::Address.zip
     }
 
     data = {
       data_structure: user,
       possible_variable_names: [
-        snake_case(first_name)
+        snake_case(first_name),
+        snake_case(first_name),
+        snake_case(first_name),
+        snake_case(first_name),
+        'current_user'
       ]
     }
   end
@@ -79,22 +92,30 @@ module DataGenerationMachinery
   end
 
   def gen_business
+    name_or_business_name = [:name, :business_name].sample
+    email_key = [:email, :public_email, :info_email, :contact_email].sample
+    web_key = [:url, :website, :homepage_url].sample
+    address_key = [:street_address, :address].sample
+    established_key = [:established, :inception_year]
     name = Faker::Company.name
     email_address = gen_business_email_address(name)
     business = {
-      name: name,
+      name_or_business_name => name,
       public_email: email_address,
-      website: Faker::Internet.url("#{name.parameterize}.com", ''),
+      web_key => Faker::Internet.url("#{name.parameterize}.com", ''),
       phone_num: gen_phone_number,
-      street_address: Faker::Address.street_address,
+      address_key => Faker::Address.street_address,
       city: Faker::Address.city,
       state: Faker::Address.state_abbr,
-      established: rand(1901..2014),
+      established_key => rand(1901..2014),
     }
     data = {
       data_structure: business,
       possible_variable_names: [
-        snake_case(name)
+        snake_case(name),
+        snake_case(name),
+        snake_case(name),
+        'client',
       ]
     }
   end
