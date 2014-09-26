@@ -4,7 +4,9 @@ require_relative '../data/data_structure_questions'
 class DataStructureAssignmentQuestion < DataStructureQuestion
   @questions = DATA_STRUCTURE_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class,
-                :formatted_assignment_value
+                :formatted_assignment_value, :value_to_replace,
+                :value_to_replace_formatted, :replacement_index,
+                :replacement_value_class_formatted
 
   def initialize
     super
@@ -23,6 +25,10 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   def format_array
     desired_array_size = rand(3..6)
     cull_array_to_valid_size_for_output(desired_array_size)
+    if [1, 2].sample == 1
+      self.value_to_replace = data_structure.sample
+      self.value_to_replace_formatted = format_value_for_stdout_and_eval(value_to_replace)
+    end
     self.assignment_value = possible_assignments.sample
     self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
   end
@@ -42,9 +48,21 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
+  def print_replace_array_value_prompt
+    puts "Given the data structure below, replace the #{replacement_value_class_formatted} value ".blue +
+         value_to_replace_formatted.yellow + " with the #{assignment_value_class} value ".blue +
+         formatted_assignment_value.yellow + ".\n\n"
+  end
+
   def print_data_structure_assignment_prompt
     if data_structure.class == Array
-      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
+      if value_to_replace
+        self.replacement_index = data_structure.index(value_to_replace)
+        self.replacement_value_class_formatted = format_class_for_output(value_to_replace.class)
+        print_replace_array_value_prompt
+      else
+        puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
+      end
     else
       puts 'Given the Hash below, add a key of '.blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
     end
@@ -96,11 +114,17 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         if data_structure.class == Array
           if handles_user_workarounds(user_input)
             false
+          end
+          if value_to_replace
+            if evaluation_scope.eval("#{variable_name}[#{replacement_index}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
+              print_resulting_data_structure(evaluation_scope)
+              true
+            end
           elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
             true
           else
-            puts 'Nope! Ruby\'s Array#push method will be your salvation. Look it up!'.red
+            puts 'Nope! Try again.'.red
           end
         else
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)

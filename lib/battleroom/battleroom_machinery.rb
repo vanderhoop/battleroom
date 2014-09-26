@@ -73,7 +73,12 @@ module BattleroomMachinery
 
   def format_value_for_stdout_and_eval(object)
     case object.class.to_s
-    when 'String' then return '"' + object + '"'
+    when 'String'
+      if object.include?("'")
+        '"' + object + '"'
+      else
+        "'#{object}'"
+      end
     when 'Symbol' then return ":#{object}"
     else
       object.to_s

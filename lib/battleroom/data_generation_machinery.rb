@@ -67,7 +67,7 @@ module DataGenerationMachinery
       email: Faker::Internet.free_email(first_name),
       admin_or_is_admin => [true, false].sample,
       phone_of_phone_num => gen_phone_number,
-      accepts_marketing_emails: [true, false].sample,
+      accepts_marketing: [true, false].sample,
       accepts_promotional_emails: [true, false].sample,
       occupation_or_job_title => Faker::Name.title,
       zip_or_zip_code => Faker::Address.zip
@@ -96,7 +96,7 @@ module DataGenerationMachinery
     email_key = [:email, :public_email, :info_email, :contact_email].sample
     web_key = [:url, :website, :homepage_url].sample
     address_key = [:street_address, :address].sample
-    established_key = [:established, :inception_year]
+    established_key = [:established, :inception_year].sample
     name = Faker::Company.name
     email_address = gen_business_email_address(name)
     business = {

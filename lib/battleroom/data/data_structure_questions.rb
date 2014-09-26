@@ -220,7 +220,6 @@ DATA_STRUCTURE_QUESTIONS = [
       stars: ['Nicholas Cage', 'Meryl Streep'],
       rt_rating: 98.0,
       released: 2002,
-      charlie_sheen_cameo: true,
       screenwriters: ['Charlie Kaufman', 'Donald Kaufman'],
     },
     possible_variable_names: ['adaptation'],
