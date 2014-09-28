@@ -25,7 +25,9 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   def format_array
     desired_array_size = rand(3..6)
     cull_array_to_valid_size_for_output(desired_array_size)
-    if [1, 2].sample == 1
+    # always sets value to replace, for dev/debugging purposes
+    if [1].sample == 1
+    # if [1, 2].sample == 1
       self.value_to_replace = data_structure.sample
       self.value_to_replace_formatted = format_value_for_stdout_and_eval(value_to_replace)
     end
@@ -105,6 +107,10 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     end
   end
 
+  def handle_replacement_of_array_value_input
+
+  end
+
   def evaluate_data_structure_assignment_input(evaluation_scope)
     enter_evaluation_loop do |user_input|
       begin
@@ -119,6 +125,12 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
             if evaluation_scope.eval("#{variable_name}[#{replacement_index}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
               print_resulting_data_structure(evaluation_scope)
               true
+            else
+              puts "\nNope! Here's what the data stucture would look like given your code:\n".red
+              resulting_data_structure = evaluation_scope.eval(variable_name)
+              ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
+              puts ''
+              puts 'Check your index and assignment values and try again.'.red
             end
           elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
@@ -126,7 +138,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
           else
             puts 'Nope! Try again.'.red
           end
-        else
+        else  # HASH EVALUATION!
           if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
             print_resulting_data_structure(evaluation_scope)
             true

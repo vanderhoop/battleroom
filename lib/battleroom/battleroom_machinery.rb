@@ -68,7 +68,7 @@ module BattleroomMachinery
     puts "\nBasically, you put a #{$1} between square brackets, whereas Ruby ".red +
          "was expecting an index value, i.e. an integer. This commonly arises ".red +
          "when programmers think they're dealing with a hash, when in fact ".red +
-         "they're dealing with an array.\n".red
+         "they're dealing with an array. Try again.\n".red
   end
 
   def format_value_for_stdout_and_eval(object)
