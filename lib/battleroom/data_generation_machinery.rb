@@ -47,7 +47,7 @@ module DataGenerationMachinery
         snake_case(name),
         'app',
         'application'
-      ]
+      ].shuffle
     }
   end
 
@@ -81,7 +81,7 @@ module DataGenerationMachinery
         snake_case(first_name),
         snake_case(first_name),
         'current_user'
-      ]
+      ].shuffle
     }
   end
 
@@ -116,7 +116,7 @@ module DataGenerationMachinery
         snake_case(name),
         snake_case(name),
         'client',
-      ]
+      ].shuffle
     }
   end
 
