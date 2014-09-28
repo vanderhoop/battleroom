@@ -203,27 +203,27 @@ DATA_STRUCTURE_QUESTIONS = [
       'fab_four_tunes',
     ].shuffle,
   },
-  # {
-  #   data_structure: {
-  #     stars: ['Ryan Gosling', 'Rachel McAdams'],
-  #     released: 2004,
-  #     tearjerker: true,
-  #     director: 'Nick Cassavetes',
-  #     mtv_movie_award_count: 1,
-  #     box_office_millions: 81.5,
-  #     macho: false,
-  #   },
-  #   possible_variable_names: ['the_notebook'],
-  # },
-  # {
-  #   data_structure: {
-  #     stars: ['Nicholas Cage', 'Meryl Streep'],
-  #     rt_rating: 98.0,
-  #     released: 2002,
-  #     screenwriters: ['Charlie Kaufman', 'Donald Kaufman'],
-  #   },
-  #   possible_variable_names: ['adaptation'],
-  # },
+  {
+    data_structure: {
+      stars: ['Ryan Gosling', 'Rachel McAdams'],
+      released: 2004,
+      tearjerker: true,
+      director: 'Nick Cassavetes',
+      mtv_movie_award_count: 1,
+      box_office_millions: 81.5,
+      macho: false,
+    },
+    possible_variable_names: ['the_notebook'],
+  },
+  {
+    data_structure: {
+      stars: ['Nicholas Cage', 'Meryl Streep'],
+      rt_rating: 98.0,
+      released: 2002,
+      screenwriters: ['Charlie Kaufman', 'Donald Kaufman'],
+    },
+    possible_variable_names: ['adaptation'],
+  },
   {
     data_structure: [
       'When Harry Met Sally',
@@ -295,21 +295,21 @@ DATA_STRUCTURE_QUESTIONS = [
   },
 ]
 
-# 5.times do
-#   user = gen_user
-#   DATA_STRUCTURE_QUESTIONS.push(user)
-#   business = gen_business
-#   DATA_STRUCTURE_QUESTIONS.push(business)
-# end
+5.times do
+  user = gen_user
+  DATA_STRUCTURE_QUESTIONS.push(user)
+  business = gen_business
+  DATA_STRUCTURE_QUESTIONS.push(business)
+end
 
-# 4.times do
-#   location = gen_location
-#   DATA_STRUCTURE_QUESTIONS.push(location)
-# end
+4.times do
+  location = gen_location
+  DATA_STRUCTURE_QUESTIONS.push(location)
+end
 
-# 2.times do
-#   app = gen_app
-#   DATA_STRUCTURE_QUESTIONS.push(app)
-# end
+2.times do
+  app = gen_app
+  DATA_STRUCTURE_QUESTIONS.push(app)
+end
 
 DATA_STRUCTURE_QUESTIONS.shuffle!

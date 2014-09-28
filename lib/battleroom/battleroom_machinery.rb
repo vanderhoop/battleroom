@@ -58,7 +58,7 @@ module BattleroomMachinery
   def print_unexpected_end_of_input_explanation
     puts "\nNope! You just triggered a common Ruby error that reads:\n".red
     puts "\tsyntax error, unexpected end-of-input\n".green
-    puts 'Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.'.red
+    puts "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.\n".red
   end
 
   def print_colorized_type_error_prompt(error)
@@ -87,7 +87,7 @@ module BattleroomMachinery
 
   def naughty_input?(user_input)
     if user_input.match(/(require|`|binding)/)
-      puts 'No way no how! Try again.'.red
+      puts "No way no how! Try again.\n".red
       true
     else
       false

@@ -65,7 +65,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
           # within the enter_evaluation_loop method, the return value of yield is used
           true
         else
-          puts "Remember, #{hint} Try again.".red
+          puts "Remember, #{hint} Try again.\n".red
         end
       rescue NameError => e
         print_colorized_error_prompt(e)
