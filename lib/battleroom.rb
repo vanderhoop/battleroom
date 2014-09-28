@@ -29,27 +29,27 @@ loop do
   case choice
   when '1'
     10.times do
-      q = VariableQuestion.new
+      q = VariableQuestion.new(b)
       q.print_variable_assignment_prompt
-      q.evaluate_variable_assignment_input(b)
+      q.evaluate_variable_assignment_input
     end
   when '2'
     5.times do
-      q = DataStructureAccessQuestion.new
+      q = DataStructureAccessQuestion.new(b)
       q.print_data_structure_access_prompt
-      q.evaluate_data_structure_access_input(b)
+      q.evaluate_data_structure_access_input
     end
   when '3'
     5.times do
-      q = DataStructureAssignmentQuestion.new
+      q = DataStructureAssignmentQuestion.new(b)
       q.print_data_structure_assignment_prompt
-      q.evaluate_data_structure_assignment_input(b)
+      q.evaluate_data_structure_assignment_input
     end
   when '4'
     5.times do
-      q = NestedDataStructureAccessQuestion.new
+      q = NestedDataStructureAccessQuestion.new(b)
       q.print_data_structure_access_prompt
-      q.evaluate_data_structure_access_input(b)
+      q.evaluate_data_structure_access_input
     end
   else
     puts 'You entered a non-option. Try again.'.red

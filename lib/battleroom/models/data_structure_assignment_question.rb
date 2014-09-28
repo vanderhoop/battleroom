@@ -8,8 +8,8 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
                 :value_to_replace_formatted, :replacement_index,
                 :replacement_value_class_formatted
 
-  def initialize
-    super
+  def initialize(eval_scope)
+    super(eval_scope)
     format_based_on_data_structure_class
     self.assignment_value_class = format_class_for_output(assignment_value.class)
   end
@@ -73,7 +73,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     puts ''
   end
 
-  def print_resulting_data_structure(evaluation_scope)
+  def print_resulting_data_structure
     possible_intro_congratulations = [
       'Brilliant',
       'Wonderful',
@@ -108,9 +108,9 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     end
   end
 
-  def handle_replacement_of_array_value_input(evaluation_scope, user_input)
+  def handle_replacement_of_array_value_input(user_input)
     if evaluation_scope.eval("#{variable_name}[#{replacement_index}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
-      print_resulting_data_structure(evaluation_scope)
+      print_resulting_data_structure
       true
     else
       puts "\nNope! Here's what the data stucture would look like given your code:\n".red
@@ -120,39 +120,39 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     end
   end
 
-  def evaluate_user_input_for_array_questions(evaluation_scope, user_input)
+  def evaluate_user_input_for_array_questions(user_input)
     if handles_user_workarounds(user_input)
       false
     end
     if value_to_replace
-      handle_replacement_of_array_value_input(evaluation_scope, user_input)
+      handle_replacement_of_array_value_input(user_input)
     elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
-      print_resulting_data_structure(evaluation_scope)
+      print_resulting_data_structure
       true
     else
       puts 'Nope! Try again.'.red
     end
   end
 
-  def evaluate_user_input_for_hash_questions(evaluation_scope, user_input)
+  def evaluate_user_input_for_hash_questions(user_input)
     if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
-      print_resulting_data_structure(evaluation_scope)
+      print_resulting_data_structure
       true
     else
       puts 'Nope! Try again!'.red
     end
   end
 
-  def evaluate_data_structure_assignment_input(evaluation_scope)
+  def evaluate_data_structure_assignment_input
     enter_evaluation_loop do |user_input|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         evaluation_scope.eval(user_input)
         if data_structure.class == Array
-          evaluate_user_input_for_array_questions(evaluation_scope, user_input)
+          evaluate_user_input_for_array_questions(user_input)
         else
-          evaluate_user_input_for_hash_questions(evaluation_scope, user_input)
+          evaluate_user_input_for_hash_questions(user_input)
         end
       rescue NoMethodError, NameError => e
         print_colorized_error_prompt(e)

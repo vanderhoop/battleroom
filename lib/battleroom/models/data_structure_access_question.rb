@@ -5,8 +5,8 @@ class DataStructureAccessQuestion < DataStructureQuestion
   @questions = DATA_STRUCTURE_QUESTIONS.shuffle
   attr_accessor :assignment_value, :assignment_key, :assignment_value_class
 
-  def initialize
-    super
+  def initialize(eval_scope)
+    super(eval_scope)
     format_based_on_data_structure_class
   end
 
@@ -55,7 +55,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
     puts ''
   end
 
-  def evaluate_data_structure_access_input(evaluation_scope)
+  def evaluate_data_structure_access_input
     enter_evaluation_loop do |user_input|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval

@@ -7,8 +7,8 @@ class VariableQuestion < Question
   # in the parent class is troublesome
   @questions = VARIABLE_QUESTIONS.shuffle
 
-  def initialize
-    super
+  def initialize(eval_scope)
+    super(eval_scope)
     @variable_value = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
   end
@@ -38,7 +38,7 @@ class VariableQuestion < Question
     end
   end
 
-  def evaluate_variable_assignment_input(evaluation_scope)
+  def evaluate_variable_assignment_input
     enter_evaluation_loop do |user_input|
       begin
         evaluation_scope.eval(user_input)

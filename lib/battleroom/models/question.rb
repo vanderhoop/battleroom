@@ -1,9 +1,11 @@
 class Question
     attr_reader :type, :data
     attr_accessor :variable_name, :variable_value, :data_structure,
-                  :data_structure_class, :answer_value, :explanation
+                  :data_structure_class, :answer_value, :explanation,
+                  :evaluation_scope
 
-    def initialize
+    def initialize(evaluation_scope)
+      @evaluation_scope = evaluation_scope
       @data = self.class.generate_question
       @variable_name = rotate_array(data[:possible_variable_names]).first
     end
