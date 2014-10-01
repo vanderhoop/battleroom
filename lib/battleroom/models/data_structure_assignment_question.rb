@@ -26,8 +26,8 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     desired_array_size = rand(3..6)
     cull_array_to_valid_size_for_output(desired_array_size)
     # always sets value to replace, for dev/debugging purposes
-    if [1].sample == 1
-    # if [1, 2].sample == 1
+    # if [1].sample == 1
+    if [1, 2, 3, 4, 5].sample.odd?
       self.value_to_replace = data_structure.sample
       self.value_to_replace_formatted = format_value_for_stdout_and_eval(value_to_replace)
     end
