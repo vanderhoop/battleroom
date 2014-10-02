@@ -1,7 +1,6 @@
 require_relative '../data/hash_questions'
 require_relative './data_structure_access_question'
 
-
 class HashAccessQuestion < DataStructureAccessQuestion
 
   @questions = HASH_QUESTIONS.shuffle

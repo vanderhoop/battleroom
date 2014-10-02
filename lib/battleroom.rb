@@ -10,7 +10,9 @@ require 'Faker'
 require_relative './battleroom/models/nested_data_structure_access_question'
 require_relative './battleroom/models/data_structure_assignment_question'
 require_relative './battleroom/models/hash_access_question'
+require_relative './battleroom/models/hash_assignment_question'
 require_relative './battleroom/models/array_access_question'
+require_relative './battleroom/models/array_assignment_question'
 require_relative './battleroom/models/variable_question'
 
 require_relative 'battleroom/battleroom_machinery'
@@ -38,14 +40,14 @@ loop do
   when '2'
     5.times do
       # q = DataStructureAccessQuestion.new(b)
-      # q = ArrayAccessQuestion.new(b)
-      q = HashAccessQuestion.new(b)
+      q = [ArrayAccessQuestion.new(b), HashAccessQuestion.new(b)].sample
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input
     end
   when '3'
     5.times do
-      q = DataStructureAssignmentQuestion.new(b)
+      # q = DataStructureAssignmentQuestion.new(b)
+      q = ArrayAssignmentQuestion.new(b)
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input
     end

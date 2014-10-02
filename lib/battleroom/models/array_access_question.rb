@@ -7,10 +7,10 @@ class ArrayAccessQuestion < DataStructureAccessQuestion
 
   def initialize(scope)
     super(scope)
-    format_array
+    format_array_for_access
   end
 
-  def format_array
+  def format_array_for_access
     self.data_structure = data_structure[0, rand(4..6)]
     self.answer_value = data_structure.sample
     self.hint = 'index values start at 0.'

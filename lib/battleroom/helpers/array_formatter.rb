@@ -1,0 +1,3 @@
+module ArrayFormatter
+
+end
