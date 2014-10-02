@@ -47,7 +47,7 @@ loop do
   when '3'
     5.times do
       # q = DataStructureAssignmentQuestion.new(b)
-      q = ArrayAssignmentQuestion.new(b)
+      q = [ArrayAssignmentQuestion.new(b), HashAssignmentQuestion.new(b)].sample
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input
     end

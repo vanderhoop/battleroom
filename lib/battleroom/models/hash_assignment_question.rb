@@ -3,12 +3,14 @@ require_relative './data_structure_access_question'
 
 class HashAssignmentQuestion < DataStructureAssignmentQuestion
 
+  @questions = HASH_QUESTIONS
+
   def initialize(scope)
     super(scope)
-    format_hash
+    format_hash_for_assignment
   end
 
-  def format_hash
+  def format_hash_for_assignment
     cull_hash_to_valid_size_for_output
     assignment = possible_assignments.sample
     self.assignment_value = assignment.values[0]

@@ -39,11 +39,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
         # provides the evaluation scope with variable assignment necessary for answer eval
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         evaluation_scope.eval(user_input)
-        # if data_structure.class == Array
-          evaluate_user_input(user_input)
-        # else
-          # evaluate_user_input(user_input)
-        # end
+        evaluate_user_input(user_input)
       rescue NoMethodError, NameError => e
         print_colorized_error_prompt(e)
       rescue TypeError => e
