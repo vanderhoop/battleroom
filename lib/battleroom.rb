@@ -38,7 +38,8 @@ loop do
   when '2'
     5.times do
       # q = DataStructureAccessQuestion.new(b)
-      q = ArrayAccessQuestion.new(b)
+      # q = ArrayAccessQuestion.new(b)
+      q = HashAccessQuestion.new(b)
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input
     end
