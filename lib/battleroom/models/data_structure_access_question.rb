@@ -1,45 +1,9 @@
-require_relative '../data/data_structure_questions'
 require_relative './data_structure_question'
 
 class DataStructureAccessQuestion < DataStructureQuestion
-  @questions = DATA_STRUCTURE_QUESTIONS.shuffle
-  attr_accessor :assignment_value, :assignment_key, :assignment_value_class
 
   def initialize(eval_scope)
     super(eval_scope)
-    format_based_on_data_structure_class
-  end
-
-  def format_based_on_data_structure_class
-    if data_structure.class == Array
-      format_array
-    else
-      format_hash
-    end
-  end
-
-  def format_array
-    self.data_structure = data_structure[0, rand(4..6)]
-    self.answer_value = data_structure.sample
-    self.hint = 'index values start at 0.'
-  end
-
-  def format_hash
-    cull_hash_to_valid_size_for_output
-    remove_multiple_booleans
-    self.answer_value = data_structure[data_structure.keys.sample]
-    self.hint = 'you have to use the EXACT hash key to retrieve the associated value.'
-  end
-
-  def remove_multiple_booleans
-    boolean_count = find_number_of_boolean_values_in_hash
-    while boolean_count > 1
-      grouped_by_value = data_structure.group_by { |k, v| v }
-      boolean_to_delete = [true, false].sample
-      key_to_delete = grouped_by_value[boolean_to_delete].sample[0] if grouped_by_value[boolean_to_delete]
-      data_structure.delete(key_to_delete)
-      boolean_count = find_number_of_boolean_values_in_hash
-    end
   end
 
   def print_data_structure_access_prompt
