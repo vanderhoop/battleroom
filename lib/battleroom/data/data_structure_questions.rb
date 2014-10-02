@@ -1,5 +1,4 @@
 require 'pry'
-require 'Faker'
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
 

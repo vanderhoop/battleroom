@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'readline'
+require 'Faker'
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
