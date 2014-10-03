@@ -1,7 +1,3 @@
-require 'pry'
-# eliminates deprecation warning
-I18n.config.enforce_available_locales = false
-
 $random_names_array = gen_random_names_array
 
 ARRAY_QUESTIONS = [

@@ -1,7 +1,12 @@
 #!/usr/bin/env ruby
 
 require 'readline'
-require 'Faker'
+require 'faker'
+require 'awesome_print'
+require 'pry'
+require 'colorize'
+# eliminates deprecation warning
+I18n.config.enforce_available_locales = false
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))

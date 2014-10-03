@@ -1,7 +1,3 @@
-require 'awesome_print'
-require 'pry'
-require 'colorize'
-
 module BattleroomMachinery
 
   CONGRATULATIONS = [
