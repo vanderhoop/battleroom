@@ -3,7 +3,7 @@ require_relative './data_structure_access_question'
 
 class HashAssignmentQuestion < DataStructureAssignmentQuestion
 
-  @questions = HASH_QUESTIONS
+  @questions = HASH_QUESTIONS.shuffle
 
   def initialize(scope)
     super(scope)

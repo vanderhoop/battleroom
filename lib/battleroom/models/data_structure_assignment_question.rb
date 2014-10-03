@@ -1,5 +1,4 @@
 require_relative './data_structure_question'
-# require_relative '../data/data_structure_questions'
 
 class DataStructureAssignmentQuestion < DataStructureQuestion
 

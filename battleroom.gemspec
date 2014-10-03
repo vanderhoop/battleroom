@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2010-04-28'
   s.summary     = "A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures."
   s.description = "A Battleroom"
@@ -12,7 +12,14 @@ Gem::Specification.new do |s|
     "lib/battleroom/data/array_questions.rb",
     "lib/battleroom/data/hash_questions.rb",
     "lib/battleroom/data/nested_data_structure_access_questions.rb",
-    "lib/battleroom/data/variable_assignment_questions.rb"
+    "lib/battleroom/data/variable_assignment_questions.rb",
+    "lib/battleroom/models/nested_data_structure_access_question.rb",
+    "lib/battleroom/models/data_structure_assignment_question.rb",
+    "lib/battleroom/models/hash_access_question.rb",
+    "lib/battleroom/models/hash_assignment_question.rb",
+    "lib/battleroom/models/array_access_question.rb",
+    "lib/battleroom/models/array_assignment_question.rb",
+    "lib/battleroom/models/variable_question.rb",
   ]
   s.required_ruby_version = '>= 1.9.3'
   s.add_runtime_dependency 'colorize', '~> 0.7', '>= 0.7.3'

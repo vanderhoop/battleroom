@@ -39,14 +39,12 @@ loop do
     end
   when '2'
     5.times do
-      # q = DataStructureAccessQuestion.new(b)
       q = [ArrayAccessQuestion.new(b), HashAccessQuestion.new(b)].sample
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input
     end
   when '3'
     5.times do
-      # q = DataStructureAssignmentQuestion.new(b)
       q = [ArrayAssignmentQuestion.new(b), HashAssignmentQuestion.new(b)].sample
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input

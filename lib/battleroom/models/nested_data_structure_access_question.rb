@@ -1,4 +1,4 @@
-require_relative 'data_structure_access_question'
+require_relative './data_structure_access_question'
 require_relative '../data/nested_data_structure_access_questions'
 
 class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
