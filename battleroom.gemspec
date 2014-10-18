@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.74'
+  s.version     = '0.0.76'
   s.date        = '2014-10-01'
   s.description = "A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures."
   s.summary     = "A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures."
@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'faker',    '1.4.3'
   s.add_runtime_dependency 'colorize', '0.7.3'
   s.add_runtime_dependency 'awesome_print', '1.2.0'
+  s.add_runtime_dependency 'activesupport', '4.1.6'
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'
