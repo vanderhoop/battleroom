@@ -1,6 +1,7 @@
 ## Todos
 
 - I want to add follow up questions to variable assignment
+- I want to take apps out of the equation.
 
 - I want to add a DefiningMethodQuestion model
 
