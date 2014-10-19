@@ -25,16 +25,11 @@ class Question
         begin
           if (self.class == MethodDefinitionQuestion)
             begin
-              Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
-                $input = last_input
-                # Pry.config.hooks.delete_hook(:before_eval, :self_terminate)
-                puts ''
-                pry_instance.run_command('exit')
-              end
+              Pry.start_without_pry_debugger(evaluation_scope)
+              user_input = $input
             rescue ArgumentError => e
+              puts e
             end
-            Pry.start_without_pry_debugger(evaluation_scope)
-            user_input = $input
           else
             user_input = Readline.readline('> '.blue, true)
           end

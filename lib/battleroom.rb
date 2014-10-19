@@ -15,6 +15,12 @@ Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
 Pry.config.memory_size = 10
 Pry.config.coolline_matched_paren    = "\e[m"
 Pry.config.coolline_mismatched_paren    = "\e[m"
+Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+  $input = last_input
+  # Pry.config.hooks.delete_hook(:before_eval, :self_terminate)
+  puts ''
+  pry_instance.run_command('exit')
+end
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
