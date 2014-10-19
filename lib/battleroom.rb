@@ -11,8 +11,10 @@ I18n.config.enforce_available_locales = false
 Pry.config.default_window_size = 0
 Pry.config.quiet = true
 Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
-Pry.config.coolline_paren_matching = false
+# Pry.config.coolline_paren_matching = true
 Pry.config.memory_size = 10
+Pry.config.coolline_matched_paren    = "\e[m"
+Pry.config.coolline_mismatched_paren    = "\e[m"
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))

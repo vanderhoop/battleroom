@@ -22,14 +22,14 @@ class MethodDefinitionQuestion < Question
       arg_count.to_s.green,
       " argument(s) and ".blue,
       spec.blue,
-    ].join
+    ].join + "\n\n"
   end
 
   def uses_def_keyword?(user_input)
     if user_input.match(/\Adef\s+/)
       true
     else
-      puts "You didn't use the ".red + "def".green + " keyword, which signals to Ruby that you're defining a method.".red
+      puts "Method definitions start with the ".red + "def".green + " keyword, which signals to Ruby that you're defining a method.".red
       false
     end
   end
@@ -37,13 +37,17 @@ class MethodDefinitionQuestion < Question
   def evaluate_method_definition_input(user_input)
     enter_evaluation_loop do |user_input|
       uses_def_keyword?(user_input)
-      evaluation_scope.eval(user_input)
-      return_value = evaluation_scope.eval("#{method_name}(4,7)")
-      if (return_value == 28)
-        true
-      else
-        puts "When multiplying 4 and 7, your method returned #{return_value}. It should have returned 28. Try again.".red
-        false
+      begin
+        evaluation_scope.eval(user_input)
+        # return_value = evaluation_scope.eval("#{method_name}(4,7)")
+        # if (return_value == 28)
+        #   true
+        # else
+        #   puts "When multiplying 4 and 7, your method returned #{return_value}. It should have returned 28. Try again.".red
+        #   false
+        # end
+      rescue NameError => e
+        puts e
       end
     end
   end

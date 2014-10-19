@@ -28,6 +28,7 @@ class Question
               Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
                 $input = last_input
                 # Pry.config.hooks.delete_hook(:before_eval, :self_terminate)
+                puts ''
                 pry_instance.run_command('exit')
               end
             rescue ArgumentError => e
