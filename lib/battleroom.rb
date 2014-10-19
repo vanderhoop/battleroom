@@ -11,15 +11,35 @@ I18n.config.enforce_available_locales = false
 Pry.config.default_window_size = 0
 Pry.config.quiet = true
 Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
-# Pry.config.coolline_paren_matching = true
 Pry.config.memory_size = 10
 Pry.config.coolline_matched_paren    = "\e[m"
 Pry.config.coolline_mismatched_paren    = "\e[m"
+
+
+
+Pry::Commands.delete("exit")
+
+# Pry::Commands.before_command("exit") do
+#   puts "Before 'exit' command hook firing"
+#   _pry_.eval_string = "continue"
+# end
+
+Pry::Hooks.new.clear_all
+Pry.config.hooks.add_hook :before_read, :exit do |last_input, pry_instance|
+  puts "last_input: #{last_input}"
+  puts "pry_instance.eval_string: #{pry_instance.eval_string}"
+end
+
 Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+  puts "last_input: #{last_input}"
+  puts "pry_instance.eval_string: #{pry_instance.eval_string || nil.to_s}"
+  if pry_instance.eval_string == "exit"
+    puts "pry_instance.eval_string == 'exit'"
+  end
   $input = last_input
-  # Pry.config.hooks.delete_hook(:before_eval, :self_terminate)
   puts ''
-  pry_instance.run_command('exit')
+  pry_instance.reset_eval_string
+  pry_instance.run_command("quit")
 end
 
 # the below takes forever to load(?), so resorting to multiline requiring
@@ -76,9 +96,11 @@ loop do
       q.evaluate_data_structure_access_input
     end
   when '5'
-    q = MethodDefinitionQuestion.new(b)
-    q.print_prompt
-    q.evaluate_method_definition_input(b)
+    5.times do
+      q = MethodDefinitionQuestion.new(b)
+      q.print_prompt
+      q.evaluate_method_definition_input()
+    end
   else
     puts 'You entered a non-option. Try again.'.red
   end

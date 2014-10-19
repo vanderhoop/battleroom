@@ -28,6 +28,7 @@ module BattleroomMachinery
     puts '2. Accessing values in arrays and hashes'
     puts '3. Adding values to arrays and hashes'
     puts '4. Accessing values from within nested data structures'
+    puts '5. Defining methods'
     puts "Q. Quit\r\n\n"
   end
 

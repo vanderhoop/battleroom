@@ -19,25 +19,20 @@ class Question
       question
     end
 
+    def congratulation_sequence
+      print_congratulation
+      sleep 1.6
+      clear_display
+    end
+
     def enter_evaluation_loop(&block)
       answered_correctly = false
       until answered_correctly
         begin
-          if (self.class == MethodDefinitionQuestion)
-            begin
-              Pry.start_without_pry_debugger(evaluation_scope)
-              user_input = $input
-            rescue ArgumentError => e
-              puts e
-            end
-          else
-            user_input = Readline.readline('> '.blue, true)
-          end
+          user_input = Readline.readline('> '.blue, true)
           abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
           if !naughty_input?(user_input) && yield(user_input)
-            print_congratulation
-            sleep 1.6
-            clear_display
+            congratulation_sequence
             answered_correctly = true
           end
         rescue SyntaxError => e
