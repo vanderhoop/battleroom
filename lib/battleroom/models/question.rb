@@ -7,7 +7,7 @@ class Question
     def initialize(evaluation_scope)
       @evaluation_scope = evaluation_scope
       @data = self.class.generate_question
-      @variable_name = rotate_array(data[:possible_variable_names]).first
+      @variable_name = rotate_array(data[:possible_variable_names] || []).first
     end
 
     # retrieves question from front of the array and rotates it to the back
@@ -25,7 +25,7 @@ class Question
         begin
           user_input = Readline.readline('> '.blue, true)
           abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
-          if (naughty_input?(user_input) == false) && yield(user_input)
+          if !naughty_input?(user_input) && yield(user_input)
             print_congratulation
             sleep 1.6
             clear_display

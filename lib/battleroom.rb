@@ -3,10 +3,15 @@
 require 'readline'
 require 'faker'
 require 'awesome_print'
-# require 'pry'
+require 'pry'
 require 'colorize'
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
+
+Pry.config.default_window_size = 0
+Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
+Pry.config.prompt_name = "> ".blue
+Pry.start_without_pry_debugger
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
@@ -19,6 +24,7 @@ require_relative './battleroom/models/hash_assignment_question'
 require_relative './battleroom/models/array_access_question'
 require_relative './battleroom/models/array_assignment_question'
 require_relative './battleroom/models/variable_question'
+require_relative './battleroom/models/method_definition_question'
 
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
@@ -60,6 +66,10 @@ loop do
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input
     end
+  when '5'
+    q = MethodDefinitionQuestion.new(b)
+    q.print_prompt
+    q.evaluate_method_definition_input(b)
   else
     puts 'You entered a non-option. Try again.'.red
   end

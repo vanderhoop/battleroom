@@ -30,6 +30,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'colorize', '0.7.3'
   s.add_runtime_dependency 'awesome_print', '1.2.0'
   s.add_runtime_dependency 'activesupport', '4.1.6'
+  s.add_runtime_dependency 'pry'
+  s.add_runtime_dependency 'pry-coolline'
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'
