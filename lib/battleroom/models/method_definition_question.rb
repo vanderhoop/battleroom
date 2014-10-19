@@ -30,13 +30,9 @@ class MethodDefinitionQuestion < Question
   def evaluate_method_definition_input
     user_input = ""
     while user_input != "exit"
-
       Pry.start_without_pry_debugger(evaluation_scope)
       user_input = $input
       begin
-        if user_input == "exit"
-          abort("Goodbye!".green)
-        end
         evaluation_scope.eval(user_input)
         return_value = evaluation_scope.eval(eval_string)
         Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)

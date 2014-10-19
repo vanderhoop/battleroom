@@ -15,8 +15,6 @@ Pry.config.memory_size = 10
 Pry.config.coolline_matched_paren    = "\e[m"
 Pry.config.coolline_mismatched_paren    = "\e[m"
 
-
-
 Pry::Commands.delete("exit")
 
 # Pry::Commands.before_command("exit") do
@@ -27,19 +25,15 @@ Pry::Commands.delete("exit")
 Pry::Hooks.new.clear_all
 Pry.config.hooks.add_hook :before_read, :exit do |last_input, pry_instance|
   puts "last_input: #{last_input}"
-  puts "pry_instance.eval_string: #{pry_instance.eval_string}"
+  puts "pry_instance: #{pry_instance.eval_string || nil.to_s}"
 end
 
 Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
   puts "last_input: #{last_input}"
-  puts "pry_instance.eval_string: #{pry_instance.eval_string || nil.to_s}"
-  if pry_instance.eval_string == "exit"
-    puts "pry_instance.eval_string == 'exit'"
-  end
+  puts "pry_instance: #{pry_instance.eval_string || nil.to_s}"
   $input = last_input
   puts ''
-  pry_instance.reset_eval_string
-  pry_instance.run_command("quit")
+  pry_instance.run_command("continue")
 end
 
 # the below takes forever to load(?), so resorting to multiline requiring
