@@ -9,9 +9,10 @@ require 'colorize'
 I18n.config.enforce_available_locales = false
 
 Pry.config.default_window_size = 0
+Pry.config.quiet = true
 Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
-Pry.config.prompt_name = "> ".blue
-Pry.start_without_pry_debugger
+Pry.config.coolline_paren_matching = false
+Pry.config.memory_size = 10
 
 # the below takes forever to load(?), so resorting to multiline requiring
   # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))

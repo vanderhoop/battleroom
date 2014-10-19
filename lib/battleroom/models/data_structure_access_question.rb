@@ -26,7 +26,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
         if evaluation_scope.eval(user_input) == answer_value && user_input.include?(variable_name)
           # this last returned value of 'true' within the block is vital;
-          # within the enter_evaluation_loop method, the return value of yield is used
+          # within the evaluation_loop method, the return value of yield is used
           true
         else
           puts "Remember, #{hint} Try again.\n".red

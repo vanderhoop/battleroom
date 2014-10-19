@@ -25,29 +25,26 @@ class MethodDefinitionQuestion < Question
     ].join
   end
 
+  def uses_def_keyword?(user_input)
+    if user_input.match(/\Adef\s+/)
+      true
+    else
+      puts "You didn't use the ".red + "def".green + " keyword, which signals to Ruby that you're defining a method.".red
+      false
+    end
+  end
+
   def evaluate_method_definition_input(user_input)
     enter_evaluation_loop do |user_input|
-      answer = ""
-      if user_input.match(/\Adef\s/)
-        binding.pry
-        # this means that the user entered one line correctly.
-        # I want to let them keep entering code until they enter "end",
-        # so more readline with an * character prepended?
-        answer += user_input + "\n"
-        while user_input != "end"
-          user_input = Readline.readline("* ".blue)
-          answer += user_input + "\n"
-        end
-        evaluation_scope.eval(answer)
+      uses_def_keyword?(user_input)
+      evaluation_scope.eval(user_input)
+      return_value = evaluation_scope.eval("#{method_name}(4,7)")
+      if (return_value == 28)
+        true
+      else
+        puts "When multiplying 4 and 7, your method returned #{return_value}. It should have returned 28. Try again.".red
+        false
       end
-
-
-      # begin
-      # rescue SyntaxError => e
-        # if e.message.match(/unexpected end-of-input, expecting ';' or '\\n'/)
-
-        # end
-      # end
     end
   end
 

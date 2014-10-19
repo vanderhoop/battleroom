@@ -1,7 +1,9 @@
 VARIABLE_QUESTIONS = [
   # {
   #   possible_variable_names: [
-  #     "sampled_key"
+  #     "method_to_remove",
+  #     "callback_method",
+  #     "format_callback",
   #   ],
   #   possible_variable_values: [
   #     :username,

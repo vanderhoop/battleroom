@@ -23,7 +23,20 @@ class Question
       answered_correctly = false
       until answered_correctly
         begin
-          user_input = Readline.readline('> '.blue, true)
+          if (self.class == MethodDefinitionQuestion)
+            begin
+              Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+                $input = last_input
+                # Pry.config.hooks.delete_hook(:before_eval, :self_terminate)
+                pry_instance.run_command('exit')
+              end
+            rescue ArgumentError => e
+            end
+            Pry.start_without_pry_debugger(evaluation_scope)
+            user_input = $input
+          else
+            user_input = Readline.readline('> '.blue, true)
+          end
           abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
           if !naughty_input?(user_input) && yield(user_input)
             print_congratulation
