@@ -27,7 +27,22 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
+  def no_method_error_prompt
+    puts "\nYou're trying to invoke a method that doesn't exist, i.e. you haven't defined it yet. This results in a common Ruby error that reads: \n".red
+    puts "\tundefined local variable or method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
+    puts "Remember, method definitions begin with the 'def' keyword, and end with the 'end' keyword.\n".red
+  end
+
+  def tailor_name_error_based_on_variable_or_method(e)
+    if (e.class == NoMethodError)
+      no_method_error_prompt
+    else
+      print_colorized_error_prompt(e)
+    end
+  end
+
   def evaluate_method_definition_input
+    method_count = Object.new.methods.length
     user_input = ""
     while user_input != "exit"
       Pry.start_without_pry_debugger(evaluation_scope)
@@ -48,19 +63,11 @@ class MethodDefinitionQuestion < Question
         expected_arg_count = $2.to_i
         puts "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.".red
       rescue NameError => e
-        if (e.class == NoMethodError)
-          method_or_variable = "method"
-          assigned_or_defined = "defined"
-          referencing_or_trying_to_invoke = "trying to invoke"
+        if (e.message.include?(" "))
+          puts e.message
         else
-          method_or_variable = "variable"
-          assigned_or_defined = "assigned"
-          referencing_or_trying_to_invoke = "referencing"
+          tailor_name_error_based_on_variable_or_method(e)
         end
-
-        puts "\nYou're #{referencing_or_trying_to_invoke} a #{method_or_variable} that doesn't exist, i.e. you haven't #{assigned_or_defined} it. This results in a common Ruby error that reads: \n".red
-        puts "\tundefined local variable or method \'WHATEVER_#{method_or_variable.upcase}_YOU_TRIED_TO_INVOKE\'\n".green
-        puts "Remember, method definitions begin with the 'def' keyword, and end with the 'end' keyword.\n".red
       end
     end
   end

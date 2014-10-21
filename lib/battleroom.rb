@@ -8,6 +8,10 @@ require 'colorize'
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
 
+require_relative './battleroom/models/blank_slate'
+
+binding.pry
+
 Pry.config.default_window_size = 0
 Pry.config.quiet = true
 Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
@@ -29,6 +33,7 @@ Pry.config.hooks.add_hook :before_read, :exit do |last_input, pry_instance|
 end
 
 Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+
   puts "last_input: #{last_input}"
   puts "pry_instance: #{pry_instance.eval_string || nil.to_s}"
   $input = last_input
