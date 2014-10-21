@@ -10,7 +10,6 @@ I18n.config.enforce_available_locales = false
 
 require_relative './battleroom/models/blank_slate'
 
-binding.pry
 
 Pry.config.default_window_size = 0
 Pry.config.quiet = true

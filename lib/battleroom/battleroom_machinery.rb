@@ -23,6 +23,8 @@ module BattleroomMachinery
   end
 
   def safe_eval(command)
+    clean_room = BlankSlate.new
+
     command.untaint
     result = proc do
       $SAFE = 4
