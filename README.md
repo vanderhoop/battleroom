@@ -2,7 +2,7 @@
 
 # Battleroom
 
-A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like assigning variables and accessing and assigning values within nested data structures.
+A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and definiting and invoking methods.
 
 #### Config
 
