@@ -30,8 +30,7 @@ ARRAY_QUESTIONS = [
     possible_variable_names: [
       'sci_fi_books',
       'sci_fi_novels',
-      'canonical_sci_fi_titles',
-      'science_fiction_titles',
+      'sci_fi_titles',
       'books',
       'paperback_titles',
     ].shuffle,
@@ -57,8 +56,8 @@ ARRAY_QUESTIONS = [
       'fav_nums',
       'lotto_nums',
       'ages_of_children',
-      'favorite_years_of_life',
-      'career_jersey_numbers',
+      'fav_ages',
+      'jersey_numbers',
       'lucky_numbers',
       'unlucky_numbers'
     ].shuffle,
