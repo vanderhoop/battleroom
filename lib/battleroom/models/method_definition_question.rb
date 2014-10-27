@@ -27,6 +27,10 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
+  def print_puts_explanation
+    puts "Your method returned nil because the last expression used the 'puts' method. The puts method prints strings to the console, but ".red + returns.red.underline + " nil.".red
+  end
+
   def print_no_method_error_prompt
     puts "\nYou're trying to invoke a method that doesn't exist, i.e. you haven't defined it yet. This results in a common Ruby error that reads: \n".red
     puts "\tundefined local variable or method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
@@ -62,7 +66,11 @@ class MethodDefinitionQuestion < Question
           congratulation_sequence
           break
         else
-          puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{eval_answer}. Try again.".red
+          if user_input.include?("puts")
+            print_puts_explanation
+          else
+            puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{eval_answer}. Try again.".red
+          end
         end
       rescue ArgumentError => e
         print_argument_error_prompt
