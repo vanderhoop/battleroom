@@ -1,3 +1,6 @@
+require_relative '../data_generation_machinery'
+include DataGenerationMachinery
+
 $random_names_array = gen_random_names_array
 
 ARRAY_QUESTIONS = [

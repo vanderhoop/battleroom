@@ -5,25 +5,15 @@ require 'faker'
 require 'awesome_print'
 require 'pry'
 require 'colorize'
+
 # eliminates deprecation warning
 I18n.config.enforce_available_locales = false
 
 require_relative './battleroom/models/blank_slate'
 require_relative './battleroom/config/pry_config'
 
-
-# the below takes forever to load(?), so resorting to multiline requiring
-  # path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
-  # Dir[path].each { |file| require file }
-
-require_relative './battleroom/models/nested_data_structure_access_question'
-require_relative './battleroom/models/data_structure_assignment_question'
-require_relative './battleroom/models/hash_access_question'
-require_relative './battleroom/models/hash_assignment_question'
-require_relative './battleroom/models/array_access_question'
-require_relative './battleroom/models/array_assignment_question'
-require_relative './battleroom/models/variable_question'
-require_relative './battleroom/models/method_definition_question'
+path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
+Dir[path].each { |file| require file }
 
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
@@ -69,7 +59,7 @@ loop do
     5.times do
       q = MethodDefinitionQuestion.new(b)
       q.print_prompt
-      q.evaluate_method_definition_input()
+      q.evaluate_method_definition_input
     end
   else
     puts 'You entered a non-option. Try again.'.red

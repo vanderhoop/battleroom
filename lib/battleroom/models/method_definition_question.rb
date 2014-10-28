@@ -33,7 +33,7 @@ class MethodDefinitionQuestion < Question
 
   def print_no_method_error_prompt
     puts "\nYou're trying to invoke a method that doesn't exist, i.e. you haven't defined it yet. This results in a common Ruby error that reads: \n".red
-    puts "\tundefined local variable or method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
+    puts "\tundefined local variable or method \'WHATEVER_YOU_TRIED_TO_INVOKE\'\n".green
     puts "Remember, method definitions begin with the 'def' keyword, and end with the 'end' keyword.\n".red
   end
 
@@ -54,12 +54,12 @@ class MethodDefinitionQuestion < Question
 
   def evaluate_method_definition_input
     method_count = Object.new.methods.length
+    puts method_count
     user_input = ""
     while user_input != "exit"
       Pry.start_without_pry_debugger(evaluation_scope)
-      user_input = $input
       begin
-        fresh_binding.eval(user_input)
+        fresh_binding.eval($input)
         return_value = fresh_binding.eval(eval_string)
         Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
         if (return_value == eval_answer)
@@ -77,7 +77,11 @@ class MethodDefinitionQuestion < Question
       rescue NoMethodError => e
         print_wrong_method_error
       rescue NameError => e
-        print_colorized_error_prompt(e)
+        if !user_input.include?("def")
+          print_no_method_error_prompt
+        else
+          print_colorized_error_prompt(e)
+        end
       end
     end
   end
