@@ -3,7 +3,8 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
+                :user_input
 
   @questions = METHOD_QUESTONS.shuffle
 
@@ -58,8 +59,9 @@ class MethodDefinitionQuestion < Question
     user_input = ""
     while user_input != "exit"
       Pry.start_without_pry_debugger(evaluation_scope)
+      user_input = $input
       begin
-        fresh_binding.eval($input)
+        fresh_binding.eval(user_input)
         return_value = fresh_binding.eval(eval_string)
         Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
         if (return_value == eval_answer)
