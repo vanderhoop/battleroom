@@ -6,6 +6,18 @@ A simple command-line REPL designed to give Ruby newbies countless reps doing si
 
 #### Config
 
+__For the production version:__
+
+```bash
+# installs the battleroom executable
+gem install battleroom
+
+# launches battleroom
+battleroom
+```
+
+__For the development version:__
+
 1. Clone the repo down
 1. cd into the `battleroom` directory
 1. run `bundle install`
