@@ -28,6 +28,22 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
+  def handle_name_error_exceptions
+    if !user_input.include?("def")
+      print_no_method_error_prompt
+    else
+      print_colorized_error_prompt(e)
+    end
+  end
+
+  def handle_incorrect_method_definition
+    if user_input.include?("puts")
+      print_puts_explanation
+    else
+      puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{eval_answer}. Try again.".red
+    end
+  end
+
   def print_puts_explanation
     puts "Your method returned nil because the last expression used the 'puts' method. The puts method prints strings to the console, but ".red + returns.red.underline + " nil.".red
   end
@@ -54,8 +70,8 @@ class MethodDefinitionQuestion < Question
   end
 
   def evaluate_method_definition_input
-    method_count = Object.new.methods.length
-    puts method_count
+    # method_count = Object.new.methods.length
+    # puts method_count
     user_input = ""
     while user_input != "exit"
       Pry.start_without_pry_debugger(evaluation_scope)
@@ -63,27 +79,19 @@ class MethodDefinitionQuestion < Question
       begin
         fresh_binding.eval(user_input)
         return_value = fresh_binding.eval(eval_string)
-        Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
+        # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
         if (return_value == eval_answer)
-          congratulation_sequence
+          congratulation_sequence(2.5)
           break
         else
-          if user_input.include?("puts")
-            print_puts_explanation
-          else
-            puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{eval_answer}. Try again.".red
-          end
+          handle_incorrect_method_definition
         end
       rescue ArgumentError => e
         print_argument_error_prompt
       rescue NoMethodError => e
         print_wrong_method_error
       rescue NameError => e
-        if !user_input.include?("def")
-          print_no_method_error_prompt
-        else
-          print_colorized_error_prompt(e)
-        end
+        handle_name_error_exceptions(user_input)
       end
     end
   end

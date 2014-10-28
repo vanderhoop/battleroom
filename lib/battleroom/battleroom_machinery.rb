@@ -22,18 +22,6 @@ module BattleroomMachinery
     `reset`
   end
 
-  def safe_eval(command)
-    clean_room = BlankSlate.new
-
-    command.untaint
-    result = proc do
-      $SAFE = 4
-      clean_room.instance_eval do
-        binding
-      end.eval(command)
-    end.call
-  end
-
   def print_menu_options
     puts ' What would you like to work on?'.blue
     puts '1. Variable assignment'
