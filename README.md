@@ -9,7 +9,6 @@ A simple command-line REPL designed to give Ruby newbies countless reps doing si
 __For the production version:__
 
 ```bash
-# installs the battleroom executable
 gem install battleroom
 
 # launches battleroom
