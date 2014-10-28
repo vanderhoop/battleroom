@@ -2,9 +2,9 @@
 
 # Battleroom
 
-A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and definiting and invoking methods.
+A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods.
 
-#### Config
+### Config
 
 __For the production version:__
 
@@ -23,7 +23,7 @@ __For the development version:__
 1. run `bundle install`
 1. run `ruby lib/battleroom.rb`
 
-#### Contribute!
+### Contribute!
 
 1. Fork this project
 2. Create a feature branch (`git checkout -b my-new-feature`)
