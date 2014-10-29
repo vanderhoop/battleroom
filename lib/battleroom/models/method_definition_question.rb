@@ -3,7 +3,7 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :correct_answer,
                 :user_input
 
   @questions = METHOD_QUESTONS.shuffle
@@ -14,7 +14,7 @@ class MethodDefinitionQuestion < Question
     @arg_count = data[:arg_count]
     @spec = data[:spec]
     @eval_string = data[:eval_string]
-    @eval_answer = data[:eval_answer]
+    @correct_answer = data[:correct_answer]
   end
 
   def print_prompt
@@ -40,7 +40,7 @@ class MethodDefinitionQuestion < Question
     if user_input.include?("puts")
       print_puts_explanation
     else
-      puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{eval_answer}. Try again.".red
+      puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{correct_answer}. Try again.".red
     end
   end
 
@@ -62,7 +62,7 @@ class MethodDefinitionQuestion < Question
     puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
   end
 
-  def print_argument_error_prompt
+  def print_argument_error_prompt(e)
     e.message.match(/wrong number of arguments \((\d) for (\d)\)/)
     passed_arg_count = $1.to_i
     expected_arg_count = $2.to_i
@@ -80,14 +80,14 @@ class MethodDefinitionQuestion < Question
         fresh_binding.eval(user_input)
         return_value = fresh_binding.eval(eval_string)
         # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
-        if (return_value == eval_answer)
+        if (return_value == correct_answer)
           congratulation_sequence(2.5)
           break
         else
           handle_incorrect_method_definition
         end
       rescue ArgumentError => e
-        print_argument_error_prompt
+        print_argument_error_prompt(e)
       rescue NoMethodError => e
         print_wrong_method_error
       rescue NameError => e
