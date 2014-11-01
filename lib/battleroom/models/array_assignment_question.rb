@@ -43,9 +43,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     else
       puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
     end
-    print "#{variable_name} = ".green
-    ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ''
+    print_data_structure
   end
 
   def handle_replacement_of_array_value_input(user_input)

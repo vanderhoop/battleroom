@@ -21,9 +21,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
 
   def print_data_structure_assignment_prompt
     puts 'Given the Hash below, add a key of '.blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
-    print "#{variable_name} = ".green
-    ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ''
+    print_data_structure
   end
 
   def evaluate_user_input(user_input)
