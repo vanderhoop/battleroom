@@ -28,29 +28,6 @@ module DataGenerationMachinery
     possible_chars.shuffle[0, rand(6..8)].join
   end
 
-  def gen_app
-
-    author_or_creator = [:author, :creator].sample
-    release_or_stable_release = [:release, :stable_release].sample
-    name_or_title = [:name, :title, :app_name].sample
-    name = Faker::App.name
-    app = {
-      version: Faker::App.version,
-      author_or_creator => Faker::App.author,
-      name_or_title => name,
-      release_or_stable_release => rand(2004..2014),
-      open_source: [true, false].sample
-    }
-    data = {
-      data_structure: app,
-      possible_variable_names: [
-        snake_case(name),
-        'app',
-        'application'
-      ].shuffle
-    }
-  end
-
   def gen_user
     password_or_pw = [:password, :pw].sample
     admin_or_is_admin = [:admin, :is_admin].sample

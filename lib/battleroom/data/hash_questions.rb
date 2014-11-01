@@ -55,9 +55,4 @@ end
   HASH_QUESTIONS.push(location)
 end
 
-2.times do
-  app = gen_app
-  HASH_QUESTIONS.push(app)
-end
-
 HASH_QUESTIONS.shuffle!
