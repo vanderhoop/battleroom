@@ -68,8 +68,9 @@ loop do
       q = MethodDefinitionQuestion.new(b)
       q.print_prompt
       q.evaluate_method_definition_input
-      follow_up_questions = MethodDefinitionFollowUpQuestion.new(b, q)
-      follow_up_questions.print_method_invocation_prompt
+      follow_up_question = MethodDefinitionFollowUpQuestion.new(b, q)
+      follow_up_question.print_method_invocation_prompt
+      follow_up_question.evaluate_user_input
     end
 
   else

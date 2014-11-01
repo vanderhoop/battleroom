@@ -4,7 +4,7 @@ class Question
                 :data_structure_class, :answer_value, :explanation,
                 :evaluation_scope
 
-  # right
+  # right now, because the MethodFollowUpQuestion inherits from Question, it's trying to
 
   def initialize(evaluation_scope)
     @evaluation_scope = evaluation_scope

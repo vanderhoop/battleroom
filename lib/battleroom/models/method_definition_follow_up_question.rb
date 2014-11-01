@@ -5,17 +5,19 @@ class MethodDefinitionFollowUpQuestion < Question
   attr_accessor :original_question
 
   def initialize(evaluation_scope, question_to_follow_up_on)
-    super(evaluation_scope)
+    @evaluation_scope = evaluation_scope
     @original_question = question_to_follow_up_on
   end
 
   def print_method_invocation_prompt
-    puts "You now have a method, " + original_question.method_name
-    puts $user_input
-    binding.pry
+    evaluation_scope.eval("show-method(#{original_question.method_name})")
+    ap($input, { multiline: true })
+    puts "You now have the above method at your disposal. Next, call the method such that it returns the value ".blue + original_question.correct_answer.yellow
+    puts ''
   end
 
   def evaluate_user_input
+    binding.pry
   end
 
 end

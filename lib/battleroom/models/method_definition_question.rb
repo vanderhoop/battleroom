@@ -3,7 +3,7 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :correct_answer,
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
                 :user_input
 
   @questions = METHOD_QUESTONS.shuffle
@@ -14,7 +14,7 @@ class MethodDefinitionQuestion < Question
     @arg_count = data[:arg_count]
     @spec = data[:spec]
     @eval_string = data[:eval_string]
-    @correct_answer = data[:correct_answer]
+    @eval_answer = data[:eval_answer]
   end
 
   def print_prompt
@@ -40,7 +40,7 @@ class MethodDefinitionQuestion < Question
     if user_input.include?('puts')
       print_puts_explanation
     else
-      puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{correct_answer}. Try again.".red
+      puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.".red
     end
   end
 
@@ -80,7 +80,7 @@ class MethodDefinitionQuestion < Question
         fresh_binding.eval(user_input)
         return_value = fresh_binding.eval(eval_string)
         # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
-        if (return_value == correct_answer)
+        if (return_value == eval_answer)
           congratulation_sequence(2.5)
           break
         else
