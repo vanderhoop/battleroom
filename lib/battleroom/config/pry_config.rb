@@ -2,8 +2,6 @@ Pry.config.default_window_size = 0
 Pry.config.quiet = true
 Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
 Pry.config.memory_size = 10
-# Pry.config.coolline_matched_paren    = "\e[m"
-# Pry.config.coolline_mismatched_paren    = "\e[m"
 
 Pry::Commands.delete("exit")
 
