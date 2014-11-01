@@ -19,17 +19,17 @@ class MethodDefinitionQuestion < Question
 
   def print_prompt
     puts [
-      "Define a method, ".blue,
+      'Define a method, '.blue,
       method_name.green,
-      ", that takes ".blue,
+      ', that takes '.blue,
       arg_count.to_s.green,
-      " argument(s) and ".blue,
+      ' argument(s) and '.blue,
       spec.blue,
     ].join + "\n\n"
   end
 
   def handle_name_error_exceptions
-    if !user_input.include?("def")
+    if !user_input.include?('def')
       print_no_method_error_prompt
     else
       print_colorized_error_prompt(e)
@@ -37,21 +37,21 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_incorrect_method_definition
-    if user_input.include?("puts")
+    if user_input.include?('puts')
       print_puts_explanation
     else
-      puts "When calling ".red + eval_string + ",  your method returned #{return_value || "nil"}. It should have returned #{correct_answer}. Try again.".red
+      puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{correct_answer}. Try again.".red
     end
   end
 
   def print_puts_explanation
-    puts "Your method returned nil because the last expression used the 'puts' method. The puts method prints strings to the console, but ".red + returns.red.underline + " nil.".red
+    puts 'Your method returned nil because the last expression used the "puts" method. The puts method prints strings to the console, but '.red + returns.red.underline + ' nil.'.red
   end
 
   def print_no_method_error_prompt
     puts "\nYou're trying to invoke a method that doesn't exist, i.e. you haven't defined it yet. This results in a common Ruby error that reads: \n".red
     puts "\tundefined local variable or method \'WHATEVER_YOU_TRIED_TO_INVOKE\'\n".green
-    puts "Remember, method definitions begin with the 'def' keyword, and end with the 'end' keyword.\n".red
+    puts "Remember, method definitions begin with the \"def\" keyword, and end with the \"end\" keyword.\n".red
   end
 
   def fresh_binding
@@ -72,8 +72,8 @@ class MethodDefinitionQuestion < Question
   def evaluate_method_definition_input
     # method_count = Object.new.methods.length
     # puts method_count
-    user_input = ""
-    while user_input != "exit"
+    user_input = ''
+    while user_input != 'exit'
       Pry.start_without_pry_debugger(evaluation_scope)
       user_input = $input
       begin

@@ -21,3 +21,16 @@ Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_inst
   puts ''
   pry_instance.run_command("continue")
 end
+
+
+#======================================
+# Development Helper
+#======================================
+
+# Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+#   # puts "last_input: #{last_input}"
+#   # puts "pry_instance: #{pry_instance.eval_string || nil.to_s}"
+#   $input = last_input
+#   puts ''
+#   pry_instance.run_command("continue")
+# end

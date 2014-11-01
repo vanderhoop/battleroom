@@ -1,4 +1,5 @@
 ![build_badge](https://travis-ci.org/vanderhoop/battleroom.svg?branch=master)
+[![Code Climate](https://codeclimate.com/github/vanderhoop/battleroom/badges/gpa.svg)](https://codeclimate.com/github/vanderhoop/battleroom)
 
 # Battleroom
 

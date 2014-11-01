@@ -55,11 +55,23 @@ loop do
       q.evaluate_data_structure_access_input
     end
   when '5'
-    5.times do
+    # 5.times do
+    #   q = MethodDefinitionQuestion.new(b)
+    #   q.print_prompt
+    #   q.evaluate_method_definition_input
+    # end
+
+    #========================================
+    # Method Defintiion Follow Up Development
+    #========================================
+    2.times do
       q = MethodDefinitionQuestion.new(b)
       q.print_prompt
       q.evaluate_method_definition_input
+      follow_up_questions = MethodDefinitionFollowUpQuestion.new(b, q)
+      follow_up_questions.print_method_invocation_prompt
     end
+
   else
     puts 'You entered a non-option. Try again.'.red
   end
