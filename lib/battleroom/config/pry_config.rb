@@ -9,7 +9,7 @@ def configure_pry
 
   Pry::Commands.delete("exit")
 
-  Pry::Hooks.new.clear_all
+  # Pry::Hooks.new.clear_all
 
   Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
     $input = last_input
@@ -19,12 +19,6 @@ def configure_pry
     end
   end
 
-  # can I write a Pry hook for after read that can will allow me to run the pry-command "show-method"?
 end
 
 configure_pry
-
-def revert_pry_to_defaults
-  Pry.prompt = Pry::DEFAULT_PROMPT
-  Pry.config.quiet = false
-end

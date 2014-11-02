@@ -5,6 +5,7 @@ require 'faker'
 require 'awesome_print'
 require 'pry'
 require 'colorize'
+require 'coderay'
 
 require_relative './battleroom/config/pry_config'
 
