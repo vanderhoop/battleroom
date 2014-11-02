@@ -77,8 +77,8 @@ class MethodDefinitionQuestion < Question
       Pry.start_without_pry_debugger(evaluation_scope)
       user_input = $input
       begin
-        fresh_binding.eval(user_input)
-        return_value = fresh_binding.eval(eval_string)
+        evaluation_scope.eval(user_input)
+        return_value = evaluation_scope.eval(eval_string)
         # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
         if (return_value == eval_answer)
           congratulation_sequence(2.5)

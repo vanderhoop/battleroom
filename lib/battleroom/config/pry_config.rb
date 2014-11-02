@@ -1,14 +1,30 @@
-Pry.config.default_window_size = 0
-Pry.config.quiet = true
-Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
-Pry.config.memory_size = 10
+# eliminates deprecation warning
+I18n.config.enforce_available_locales = false
 
-Pry::Commands.delete("exit")
+def configure_pry
+  Pry.config.default_window_size = 0
+  Pry.config.quiet = true
+  Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
+  Pry.config.memory_size = 10
 
-Pry::Hooks.new.clear_all
+  Pry::Commands.delete("exit")
 
-Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
-  $input = last_input
-  puts ''
-  pry_instance.run_command("continue")
+  Pry::Hooks.new.clear_all
+
+  Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
+    $input = last_input
+    puts ''
+    unless last_input.include?("revert_pry_to_defaults")
+      pry_instance.run_command("continue")
+    end
+  end
+
+  # can I write a Pry hook for after read that can will allow me to run the pry-command "show-method"?
+end
+
+configure_pry
+
+def revert_pry_to_defaults
+  Pry.prompt = Pry::DEFAULT_PROMPT
+  Pry.config.quiet = false
 end

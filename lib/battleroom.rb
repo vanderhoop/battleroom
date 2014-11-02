@@ -6,9 +6,6 @@ require 'awesome_print'
 require 'pry'
 require 'colorize'
 
-# eliminates deprecation warning
-I18n.config.enforce_available_locales = false
-
 require_relative './battleroom/config/pry_config'
 
 path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))

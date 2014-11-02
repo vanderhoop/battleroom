@@ -23,7 +23,7 @@ class Question
 
   def congratulation_sequence(duration)
     print_congratulation
-    sleep duration
+    sleep(duration)
     clear_display
   end
 
