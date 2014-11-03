@@ -20,9 +20,7 @@ class MethodDefinitionFollowUpQuestion < Question
 
   def print_method_invocation_prompt
     puts "You now have the method defined below at your disposal.\n".blue
-
     puts format_method_definition_for_stdout
-
     puts "\nCall ".blue + original_question.method_name.yellow + " such that it returns the ".blue + desired_answer_class_formatted.blue + " value ".blue + desired_answer_formatted.yellow + "\n\n"
   end
 

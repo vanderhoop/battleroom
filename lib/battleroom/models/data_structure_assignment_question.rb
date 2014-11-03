@@ -7,6 +7,18 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
                 :value_to_replace_formatted, :replacement_index,
                 :replacement_value_class_formatted
 
+  POSSIBLE_INTRO_CONGRATULATIONS = [
+    'Brilliant',
+    'Wonderful',
+    'Jackpot',
+    'Impressive work',
+    'Bang-up job',
+    'Dynamite',
+    'Premier work',
+    'Quality work',
+    'Terrific'
+  ]
+
   def initialize(eval_scope)
     super(eval_scope)
   end
@@ -18,18 +30,7 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   end
 
   def print_resulting_data_structure
-    possible_intro_congratulations = [
-      'Brilliant',
-      'Wonderful',
-      'Jackpot',
-      'Impressive work',
-      'Bang-up job',
-      'Dynamite',
-      'Premier work',
-      'Quality work',
-      'Terrific'
-    ]
-    intro_congrat = possible_intro_congratulations.sample
+    intro_congrat = POSSIBLE_INTRO_CONGRATULATIONS.sample
     puts "\n#{intro_congrat}. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
