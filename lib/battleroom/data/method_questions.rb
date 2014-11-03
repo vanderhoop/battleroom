@@ -19,4 +19,11 @@ METHOD_QUESTONS = [
     eval_string: "calc_volume(#{volume_arg_one}, #{volume_arg_two}, #{volume_arg_three})",
     eval_answer: volume_arg_one * volume_arg_two * volume_arg_three
   },
+  {
+    method_name: "sum",
+    arg_count: 2,
+    spec: "returns the sum of its two arguments",
+    eval_string: "sum(#{area_arg_one}, #{area_arg_two})",
+    eval_answer: area_arg_one + area_arg_two
+  },
 ]
