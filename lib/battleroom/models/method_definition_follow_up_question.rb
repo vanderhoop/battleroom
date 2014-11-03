@@ -3,20 +3,22 @@ require_relative './question'
 class MethodDefinitionFollowUpQuestion < Question
 
   attr_accessor :original_question
+  attr_reader   :desired_answer_formatted, :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
     @evaluation_scope = evaluation_scope
     @original_question = question_to_follow_up_on
+    @desired_answer_formatted = format_value_for_stdout_and_eval(original_question.eval_answer)
+    @desired_answer_class_formatted = format_class_for_output(original_question.eval_answer.class)
   end
 
   def format_method_definition_for_stdout
     code = CodeRay.scan($input, :ruby)
-    code.term.gsub(/^.*/) {|match| "\t" + match }
+    # adds indentation to all lines of method definition
+    code.term.gsub(/^.*/) { |match| "\t" + match }
   end
 
   def print_method_invocation_prompt
-    desired_answer_formatted = format_value_for_stdout_and_eval(original_question.eval_answer)
-    desired_answer_class_formatted = format_class_for_output(original_question.eval_answer.class)
     puts "You now have the method defined below at your disposal.\n".blue
 
     puts format_method_definition_for_stdout
