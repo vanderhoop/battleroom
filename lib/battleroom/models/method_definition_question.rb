@@ -3,8 +3,7 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
-                :user_input
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer
 
   @questions = METHOD_QUESTONS.shuffle
 
@@ -19,10 +18,10 @@ class MethodDefinitionQuestion < Question
 
   def print_prompt
     puts [
-      'Define a method, '.blue,
-      method_name.green,
-      ', that takes '.blue,
-      arg_count.to_s.green,
+      'Define a method called '.blue,
+      method_name.yellow,
+      ' that takes '.blue,
+      arg_count.to_s.yellow,
       ' argument(s) and '.blue,
       spec.blue,
     ].join + "\n\n"
@@ -69,6 +68,12 @@ class MethodDefinitionQuestion < Question
     puts "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.".red
   end
 
+  def clean_eval_scope_of_method_definition
+    if evaluation_scope.eval "respond_to?(:#{original_question.method_name}, true)"
+      evaluation_scope.eval 'Object.class_eval("remove_method :#{original_question.method_name}")'
+    end
+  end
+
   def evaluate_method_definition_input
     # method_count = Object.new.methods.length
     # puts method_count
@@ -79,7 +84,7 @@ class MethodDefinitionQuestion < Question
       begin
         evaluation_scope.eval(user_input)
         return_value = evaluation_scope.eval(eval_string)
-        # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
+        clean_eval_scope_of_method_definition
         if (return_value == eval_answer)
           congratulation_sequence(2.5)
           break
@@ -91,7 +96,7 @@ class MethodDefinitionQuestion < Question
       rescue NoMethodError => e
         print_wrong_method_error
       rescue NameError => e
-        handle_name_error_exceptions(user_input)
+        handle_name_error_exceptions
       end
     end
   end

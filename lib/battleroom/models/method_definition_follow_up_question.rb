@@ -2,8 +2,7 @@ require_relative './question'
 
 class MethodDefinitionFollowUpQuestion < Question
 
-  attr_accessor :original_question
-  attr_reader   :desired_answer_formatted, :desired_answer_class_formatted
+  attr_reader   :original_question, :desired_answer_formatted, :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
     @evaluation_scope = evaluation_scope

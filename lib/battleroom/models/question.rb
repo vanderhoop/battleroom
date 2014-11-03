@@ -35,6 +35,13 @@ class Question
     end
   end
 
+  def get_input_via(repl)
+    case repl
+    when 'readline' then Readline.readline('> '.blue, true)
+    when 'pry' then Pry.start_without_pry_debugger(evaluation_scope)
+    end
+  end
+
   def enter_evaluation_loop(&block)
     answered_correctly = false
     until answered_correctly
