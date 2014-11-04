@@ -38,12 +38,8 @@ class MethodDefinitionQuestion < Question
     end
   end
 
-  def handle_incorrect_method_definition(user_submission, return_value)
-    # if user_submission.include?('puts')
-    #   print_puts_explanation
-    # else
-      puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
-    # end
+  def handle_incorrect_method_definition(return_value)
+    puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
   def print_puts_explanation
@@ -95,7 +91,7 @@ class MethodDefinitionQuestion < Question
           if (return_value == eval_answer)
             true
           else
-            handle_incorrect_method_definition(user_submission, return_value)
+            handle_incorrect_method_definition(return_value)
           end
         end
       rescue ArgumentError => e

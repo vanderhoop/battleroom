@@ -20,17 +20,39 @@ class MethodDefinitionFollowUpQuestion < Question
   def print_method_invocation_prompt
     puts "You now have the method defined below at your disposal.\n".blue
     puts format_method_definition_for_stdout
-    puts "\nCall ".blue + original_question.method_name.yellow + " such that it returns the ".blue + desired_answer_class_formatted.blue + " value ".blue + desired_answer_formatted.yellow + "\n\n"
+    puts "\nCall it such that it returns the ".blue + desired_answer_class_formatted.blue + " value ".blue + desired_answer_formatted.yellow + "\n\n"
+  end
+
+  def print_no_method_error_prompt
+    puts "\nYou just trigged a common Ruby error that reads: \n".red
+    puts "\tundefined local variable or method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
+    puts "Basically, you tried to invoke a method that doesn't exist. Try again.\n".red
+  end
+
+  def print_argument_error_prompt(e)
+    e.message.match(/wrong number of arguments \((\d) for (\d)\)/)
+    passed_arg_count = $1.to_i
+    expected_arg_count = $2.to_i
+    puts "You just triggered a common Ruby error that reads:\n".red
+    puts "\tArgumentError: #{e.message}\n".green
+    puts "Basically, you defined the #{original_question.method_name} method to expect #{expected_arg_count} argument(s), and you're only passing #{passed_arg_count}. Try again.\n".red
   end
 
   def evaluate_user_input
     enter_evaluation_loop do |user_submission|
-      return_from_eval = original_question.evaluation_scope.eval(user_submission)
-      if return_from_eval == original_question.eval_answer
-        puts ''
-        true
-      else
-        puts "Remember, to call a method, you simply enter its name followed by any arguments it might need. Try again.".red
+      begin
+        return_from_eval = original_question.evaluation_scope.eval(user_submission)
+        if return_from_eval == original_question.eval_answer
+          puts ''
+          true
+        else
+          puts "Remember, to call a method, you simply enter its name followed by any arguments it might need. Try again.".red
+        end
+      rescue NoMethodError => e
+        print_no_method_error_prompt
+      rescue NameError => e
+      rescue ArgumentError => e
+        print_argument_error_prompt(e)
       end
     end
   end
