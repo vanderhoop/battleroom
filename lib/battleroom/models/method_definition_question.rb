@@ -39,11 +39,11 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_incorrect_method_definition(user_submission, return_value)
-    if user_submission.include?('puts')
-      print_puts_explanation
-    else
+    # if user_submission.include?('puts')
+    #   print_puts_explanation
+    # else
       puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
-    end
+    # end
   end
 
   def print_puts_explanation
@@ -86,12 +86,17 @@ class MethodDefinitionQuestion < Question
     enter_evaluation_loop do |user_submission|
       begin
         clean_eval_scope_of_method_definition
-        evaluation_scope.eval(user_submission)
-        return_value = evaluation_scope.eval(eval_string)
-        if (return_value == eval_answer)
-          true
+        # I want to make sure that the user's method isn't invoked if it uses the puts method
+        if user_submission.include?('puts')
+          print_puts_explanation
         else
-          handle_incorrect_method_definition(user_submission, return_value)
+          evaluation_scope.eval(user_submission)
+          return_value = evaluation_scope.eval(eval_string)
+          if (return_value == eval_answer)
+            true
+          else
+            handle_incorrect_method_definition(user_submission, return_value)
+          end
         end
       rescue ArgumentError => e
         print_argument_error_prompt(e)
