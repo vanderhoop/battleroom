@@ -2,9 +2,7 @@ class Question
   attr_reader   :data
   attr_accessor :variable_name, :variable_value, :data_structure,
                 :data_structure_class, :answer_value, :explanation,
-                :evaluation_scope, :input_mechanism, :user_input
-
-  # right now, because the MethodFollowUpQuestion inherits from Question, it's trying to
+                :evaluation_scope, :input_mechanism
 
   def initialize(evaluation_scope)
     @evaluation_scope = evaluation_scope

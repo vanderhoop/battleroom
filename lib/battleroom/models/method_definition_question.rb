@@ -3,7 +3,8 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
+                :return_value
 
   @questions = METHOD_QUESTONS.shuffle
 
@@ -28,16 +29,17 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
-  def handle_name_error_exceptions(error)
-    if user_input.include?('def') == false
+  def handle_name_error_exceptions(error, user_submission)
+    puts error
+    if user_submission.include?('def') == false
       print_no_method_error_prompt
     else
       print_colorized_error_prompt(error)
     end
   end
 
-  def handle_incorrect_method_definition
-    if user_input.include?('puts')
+  def handle_incorrect_method_definition(user_submission)
+    if user_submission.include?('puts')
       print_puts_explanation
     else
       puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.".red
@@ -50,7 +52,7 @@ class MethodDefinitionQuestion < Question
 
   def print_no_method_error_prompt
     puts "\nYou're trying to invoke a method that doesn't exist, i.e. you haven't defined it yet. This results in a common Ruby error that reads: \n".red
-    puts "\tundefined local variable or method \'WHATEVER_YOU_TRIED_TO_INVOKE\'\n".green
+    puts "\tundefined local variable or method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
     puts "Remember, method definitions begin with the \"def\" keyword, and end with the \"end\" keyword.\n".red
   end
 
@@ -58,8 +60,13 @@ class MethodDefinitionQuestion < Question
     binding
   end
 
-  def print_wrong_method_error(error)
-    puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
+  def print_wrong_method_error(error, user_submission)
+    definition_pattern = Regexp.new("def\s*#{method_name}")
+    if user_submission.match(definition_pattern)
+      handle_incorrect_method_definition(user_submission)
+    else
+      puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
+    end
   end
 
   def print_argument_error_prompt(e)
@@ -76,28 +83,23 @@ class MethodDefinitionQuestion < Question
   end
 
   def evaluate_method_definition_input
-    while user_input != 'exit'
-      user_input = get_input
+    enter_evaluation_loop do |user_submission|
       begin
         clean_eval_scope_of_method_definition
-        evaluation_scope.eval(user_input)
+        evaluation_scope.eval(user_submission)
         return_value = evaluation_scope.eval(eval_string)
         if (return_value == eval_answer)
-          congratulation_sequence(2.5)
-          break
+          true
         else
-          handle_incorrect_method_definition
+          handle_incorrect_method_definition(user_submission)
+          false
         end
       rescue ArgumentError => e
         print_argument_error_prompt(e)
       rescue NoMethodError => e
-        print_wrong_method_error(e)
+        print_wrong_method_error(e, user_submission)
       rescue NameError => e
-        if user_input.include?('def') == false
-          print_no_method_error_prompt
-        else
-          print_colorized_error_prompt(error)
-        end
+        handle_name_error_exceptions(e, user_submission)
       end
     end
   end
