@@ -3,8 +3,7 @@ require_relative './question'
 
 class MethodDefinitionQuestion < Question
 
-  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
-                :user_input
+  attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer
 
   @questions = METHOD_QUESTONS.shuffle
 
@@ -15,24 +14,25 @@ class MethodDefinitionQuestion < Question
     @spec = data[:spec]
     @eval_string = data[:eval_string]
     @eval_answer = data[:eval_answer]
+    @input_mechanism = 'pry'
   end
 
   def print_prompt
     puts [
-      'Define a method, '.blue,
-      method_name.green,
-      ', that takes '.blue,
-      arg_count.to_s.green,
+      'Define a method called '.blue,
+      method_name.yellow,
+      ' that takes '.blue,
+      arg_count.to_s.yellow,
       ' argument(s) and '.blue,
       spec.blue,
     ].join + "\n\n"
   end
 
-  def handle_name_error_exceptions
-    if !user_input.include?('def')
+  def handle_name_error_exceptions(error)
+    if user_input.include?('def') == false
       print_no_method_error_prompt
     else
-      print_colorized_error_prompt(e)
+      print_colorized_error_prompt(error)
     end
   end
 
@@ -58,7 +58,8 @@ class MethodDefinitionQuestion < Question
     binding
   end
 
-  def print_wrong_method_error
+  def print_wrong_method_error(error)
+    puts error
     puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
   end
 
@@ -69,17 +70,19 @@ class MethodDefinitionQuestion < Question
     puts "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.".red
   end
 
+  def clean_eval_scope_of_method_definition
+    if evaluation_scope.eval "respond_to?(:#{method_name}, true)"
+      evaluation_scope.eval 'Object.class_eval("remove_method :' + method_name + '")'
+    end
+  end
+
   def evaluate_method_definition_input
-    # method_count = Object.new.methods.length
-    # puts method_count
-    user_input = ''
     while user_input != 'exit'
-      Pry.start_without_pry_debugger(evaluation_scope)
-      user_input = $input
+      user_input = get_input
       begin
+        clean_eval_scope_of_method_definition
         evaluation_scope.eval(user_input)
         return_value = evaluation_scope.eval(eval_string)
-        # Object.class_eval("remove_method :#{method_name}") if Object.new.methods.include?(method_name.to_sym)
         if (return_value == eval_answer)
           congratulation_sequence(2.5)
           break
@@ -89,9 +92,13 @@ class MethodDefinitionQuestion < Question
       rescue ArgumentError => e
         print_argument_error_prompt(e)
       rescue NoMethodError => e
-        print_wrong_method_error
+        print_wrong_method_error(e)
       rescue NameError => e
-        handle_name_error_exceptions(user_input)
+        if user_input.include?('def') == false
+          print_no_method_error_prompt
+        else
+          print_colorized_error_prompt(error)
+        end
       end
     end
   end

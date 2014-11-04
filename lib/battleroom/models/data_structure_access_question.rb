@@ -20,11 +20,11 @@ class DataStructureAccessQuestion < DataStructureQuestion
   end
 
   def evaluate_data_structure_access_input
-    enter_evaluation_loop do |user_input|
+    enter_evaluation_loop do |user_submission|
       begin
         # provides the evaluation scope with variable assignment necessary for answer eval
         evaluation_scope.eval("#{variable_name} = #{data_structure.to_s}")
-        if evaluation_scope.eval(user_input) == answer_value && user_input.include?(variable_name)
+        if evaluation_scope.eval(user_submission) == answer_value && user_submission.include?(variable_name)
           # this last returned value of 'true' within the block is vital;
           # within the evaluation_loop method, the return value of yield is used
           true

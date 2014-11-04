@@ -2,7 +2,7 @@ class Question
   attr_reader   :data
   attr_accessor :variable_name, :variable_value, :data_structure,
                 :data_structure_class, :answer_value, :explanation,
-                :evaluation_scope
+                :evaluation_scope, :input_mechanism, :user_input
 
   # right now, because the MethodFollowUpQuestion inherits from Question, it's trying to
 
@@ -10,6 +10,7 @@ class Question
     @evaluation_scope = evaluation_scope
     @data = self.class.generate_question
     @variable_name = rotate_array(data[:possible_variable_names] || []).first
+    @input_mechanism = 'readline'
   end
 
   # retrieves question from front of the array and rotates it to the back
@@ -35,11 +36,20 @@ class Question
     end
   end
 
+  def get_input
+    if input_mechanism == 'readline'
+      Readline.readline('> '.blue, true)
+    else
+      Pry.start_without_pry_debugger(evaluation_scope)
+      $input
+    end
+  end
+
   def enter_evaluation_loop(&block)
     answered_correctly = false
     until answered_correctly
       begin
-        user_input = Readline.readline('> '.blue, true)
+        user_input = get_input
         abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
         if !naughty_input?(user_input) && yield(user_input)
           congratulation_sequence(1.6)
