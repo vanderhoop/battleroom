@@ -59,7 +59,6 @@ class MethodDefinitionQuestion < Question
   end
 
   def print_wrong_method_error(error)
-    puts error
     puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
   end
 
