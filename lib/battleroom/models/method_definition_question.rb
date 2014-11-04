@@ -28,8 +28,8 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
-  def handle_name_error_exceptions(user_submission, error)
-    if !(user_submission.include?('def'))
+  def handle_name_error_exceptions(error)
+    if user_input.include?('def') == false
       print_no_method_error_prompt
     else
       print_colorized_error_prompt(error)
@@ -58,7 +58,8 @@ class MethodDefinitionQuestion < Question
     binding
   end
 
-  def print_wrong_method_error
+  def print_wrong_method_error(error)
+    puts error
     puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
   end
 
@@ -91,9 +92,13 @@ class MethodDefinitionQuestion < Question
       rescue ArgumentError => e
         print_argument_error_prompt(e)
       rescue NoMethodError => e
-        print_wrong_method_error
-      # rescue NameError => e
-        # handle_name_error_exceptions(user_input, e)
+        print_wrong_method_error(e)
+      rescue NameError => e
+        if user_input.include?('def') == false
+          print_no_method_error_prompt
+        else
+          print_colorized_error_prompt(error)
+        end
       end
     end
   end

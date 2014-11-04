@@ -24,8 +24,8 @@ class MethodDefinitionFollowUpQuestion < Question
   end
 
   def evaluate_user_input
-    enter_evaluation_loop do |user_input|
-      return_from_eval = original_question.evaluation_scope.eval(user_input)
+    enter_evaluation_loop do |user_submission|
+      return_from_eval = original_question.evaluation_scope.eval(user_submission)
       if return_from_eval == original_question.eval_answer
         puts ''
         true

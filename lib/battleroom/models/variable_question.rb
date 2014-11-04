@@ -39,9 +39,9 @@ class VariableQuestion < Question
   end
 
   def evaluate_variable_assignment_input
-    enter_evaluation_loop do |user_input|
+    enter_evaluation_loop do |user_submission|
       begin
-        evaluation_scope.eval(user_input)
+        evaluation_scope.eval(user_submission)
         if evaluation_scope.eval("#{variable_name} == #{formatted_value}")
           # this last returned value of 'true' is vital;
           # the return value of yield is used in a conditional
@@ -50,7 +50,7 @@ class VariableQuestion < Question
           puts "You mis-assigned #{variable_name}. Try again!".red
         end
       rescue NameError => e
-        reveal_name_error_follies_to_user(user_input)
+        reveal_name_error_follies_to_user(user_submission)
       rescue Exception => e
         if e.message.match(/unterminated string/)
           puts 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
