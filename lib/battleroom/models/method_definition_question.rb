@@ -14,6 +14,7 @@ class MethodDefinitionQuestion < Question
     @spec = data[:spec]
     @eval_string = data[:eval_string]
     @eval_answer = data[:eval_answer]
+    @input_mechanism = 'pry'
   end
 
   def print_prompt
@@ -27,11 +28,11 @@ class MethodDefinitionQuestion < Question
     ].join + "\n\n"
   end
 
-  def handle_name_error_exceptions
-    if !user_input.include?('def')
+  def handle_name_error_exceptions(user_submission, error)
+    if !(user_submission.include?('def'))
       print_no_method_error_prompt
     else
-      print_colorized_error_prompt(e)
+      print_colorized_error_prompt(error)
     end
   end
 
@@ -69,22 +70,18 @@ class MethodDefinitionQuestion < Question
   end
 
   def clean_eval_scope_of_method_definition
-    if evaluation_scope.eval "respond_to?(:#{original_question.method_name}, true)"
-      evaluation_scope.eval 'Object.class_eval("remove_method :#{original_question.method_name}")'
+    if evaluation_scope.eval "respond_to?(:#{method_name}, true)"
+      evaluation_scope.eval 'Object.class_eval("remove_method :' + method_name + '")'
     end
   end
 
   def evaluate_method_definition_input
-    # method_count = Object.new.methods.length
-    # puts method_count
-    user_input = ''
     while user_input != 'exit'
-      Pry.start_without_pry_debugger(evaluation_scope)
-      user_input = $input
+      user_input = get_input
       begin
+        clean_eval_scope_of_method_definition
         evaluation_scope.eval(user_input)
         return_value = evaluation_scope.eval(eval_string)
-        clean_eval_scope_of_method_definition
         if (return_value == eval_answer)
           congratulation_sequence(2.5)
           break
@@ -95,8 +92,8 @@ class MethodDefinitionQuestion < Question
         print_argument_error_prompt(e)
       rescue NoMethodError => e
         print_wrong_method_error
-      rescue NameError => e
-        handle_name_error_exceptions
+      # rescue NameError => e
+        # handle_name_error_exceptions(user_input, e)
       end
     end
   end
