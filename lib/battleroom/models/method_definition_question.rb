@@ -47,7 +47,7 @@ class MethodDefinitionQuestion < Question
   end
 
   def print_puts_explanation
-    puts 'Your method returned nil because the last expression used the "puts" method. The puts method prints strings to the console, but '.red + returns.red.underline + ' nil.'.red
+    puts 'The last line of your method definition uses Ruby\'s "puts" method. The "puts" method is helpful for logging errors and statuses to the console, but its actual '.red + "return".red.underline + " value is always nil, and thus your method returns nil. Try again, this time without using \"puts\".\n".red
   end
 
   def print_no_method_error_prompt
