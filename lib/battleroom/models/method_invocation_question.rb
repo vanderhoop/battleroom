@@ -13,8 +13,8 @@ class MethodInvocationQuestion < Question
 
   def format_method_definition_for_stdout
     code = CodeRay.scan($input, :ruby)
-    # adds indentation to all lines of method definition
-    code.term.gsub(/^.*/) { |match| "\t" + match }
+    ansi_prepped_string = code.term
+    indent_all_lines_for_stdout(ansi_prepped_string)
   end
 
   def print_method_invocation_prompt

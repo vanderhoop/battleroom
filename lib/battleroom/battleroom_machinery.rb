@@ -52,6 +52,10 @@ module BattleroomMachinery
     puts "Get used to it and try again.\n".red
   end
 
+  def indent_all_lines_for_stdout(string_to_indent)
+    string_to_indent.gsub(/^.*/) { |match| "\t" + match }
+  end
+
   def print_unexpected_end_of_input_explanation
     puts "\nNope! You just triggered a common Ruby error that reads:\n".red
     puts "\tsyntax error, unexpected end-of-input\n".green
