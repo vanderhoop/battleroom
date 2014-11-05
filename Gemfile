@@ -6,5 +6,4 @@ gem 'awesome_print', '1.2.0'
 gem 'colorize', '0.7.3'
 gem 'rspec',    '3.0.0'
 gem 'faker',    '1.4.3'
-# gem 'pry-coolline', '0.2.5'
-
+gem 'coderay',  '1.1.0'

@@ -1,6 +1,6 @@
 require_relative './question'
 
-class MethodDefinitionFollowUpQuestion < Question
+class MethodInvocationQuestion < Question
 
   attr_reader   :original_question, :desired_answer_formatted, :desired_answer_class_formatted
 
