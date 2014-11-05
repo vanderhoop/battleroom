@@ -30,7 +30,6 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_name_error_exceptions(error, user_submission)
-    puts error
     if user_submission.include?('def') == false
       print_no_method_error_prompt
     else
