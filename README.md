@@ -6,8 +6,9 @@
 A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods.
 
 This project takes its name from the battleroom in Ender's Game, to which students of Battleschool go to train.
-
+_____________
 ### Config
+
 
 __For the production version:__
 
@@ -24,7 +25,7 @@ __For the development version:__
 1. cd into the `battleroom` directory
 1. run `bundle install`
 1. run `ruby lib/battleroom.rb`
-
+_________
 ### Contribute!
 
 1. Fork this project
