@@ -20,7 +20,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
   end
 
   def print_data_structure_assignment_prompt
-    puts 'Given the Hash below, add a key of '.blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
+    battleprint 'Given the Hash below, add a key of '.blue + assignment_key.yellow + " that points to the #{assignment_value_class} value of ".blue + "#{formatted_assignment_value}".yellow + ".\n\n"
     print_data_structure
   end
 
@@ -29,7 +29,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      puts 'Nope! Try again!'.red
+      battleprint 'Nope! Try again!'.red
     end
   end
 

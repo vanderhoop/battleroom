@@ -13,7 +13,7 @@ def configure_pry
 
   Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
     $input = last_input
-    puts ''
+    battleprint ''
     unless last_input.include?("revert_pry_to_defaults")
       pry_instance.run_command("continue")
     end

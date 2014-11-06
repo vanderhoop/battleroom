@@ -31,17 +31,17 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_incorrect_method_definition(return_value)
-    puts 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
+    battleprint 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
-  def print_puts_explanation
-    puts 'The last line of your method definition uses Ruby\'s "puts" method. The "puts" method is helpful for logging errors and statuses to the console, but its actual '.red + "return".red.underline + " value is always nil, and thus your method returns nil. Try again, this time without using \"puts\".\n".red
+  def print_battleprint_explanation
+    battleprint 'The last line of your method definition uses Ruby\'s "battleprint" method. The "battleprint" method is helpful for logging errors and statuses to the console, but its actual '.red + "return".red.underline + " value is always nil, and thus your method returns nil. Try again, this time without using \"battleprint\".\n".red
   end
 
   def print_no_method_error_prompt
-    puts "\nYou just trigged a common Ruby error that reads: \n".red
-    puts "\tundefined method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
-    puts "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword, and end your method definition with the \"end\" keyword.\n".red
+    battleprint "\nYou just trigged a common Ruby error that reads: \n".red
+    battleprint "\tundefined method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
+    battleprint "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword, and end your method definition with the \"end\" keyword.\n".red
   end
 
   def fresh_binding
@@ -53,7 +53,7 @@ class MethodDefinitionQuestion < Question
     if user_submission.match(definition_pattern)
       handle_incorrect_method_definition(user_submission)
     else
-      puts "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
+      battleprint "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
     end
   end
 
@@ -61,7 +61,7 @@ class MethodDefinitionQuestion < Question
     e.message.match(/wrong number of arguments \((\d) for (\d)\)/)
     passed_arg_count = $1.to_i
     expected_arg_count = $2.to_i
-    puts "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.\n".red
+    battleprint "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.\n".red
   end
 
   def clean_eval_scope_of_method_definition
@@ -74,9 +74,9 @@ class MethodDefinitionQuestion < Question
     enter_evaluation_loop do |user_submission|
       begin
         clean_eval_scope_of_method_definition
-        # I want to make sure that the user's method isn't invoked if it uses the puts method
-        if user_submission.include?('puts')
-          print_puts_explanation
+        # I want to make sure that the user's method isn't invoked if it uses the battleprint method
+        if user_submission.include?('battleprint')
+          print_battleprint_explanation
         else
           evaluation_scope.eval(user_submission)
           return_value = evaluation_scope.eval(eval_string)

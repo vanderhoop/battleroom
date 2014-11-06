@@ -30,7 +30,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
   end
 
   def print_replace_array_value_prompt
-    puts "Given the data structure below, replace the #{replacement_value_class_formatted} value ".blue +
+    battleprint "Given the data structure below, replace the #{replacement_value_class_formatted} value ".blue +
          value_to_replace_formatted.yellow + " with the #{assignment_value_class} value ".blue +
          formatted_assignment_value.yellow + ".\n\n"
   end
@@ -41,7 +41,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
       self.replacement_value_class_formatted = format_class_for_output(value_to_replace.class)
       print_replace_array_value_prompt
     else
-      puts "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
+      battleprint "Use an array method to add the #{assignment_value_class} value ".blue + "#{formatted_assignment_value}".yellow + " to the ".blue + "end".blue.underline + " of the Array below.\n".blue
     end
     print_data_structure
   end
@@ -51,10 +51,10 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      puts "\nNope! Here's what the data stucture would look like given your code:\n".red
+      battleprint "\nNope! Here's what the data stucture would look like given your code:\n".red
       resulting_data_structure = evaluation_scope.eval(variable_name)
       ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
-      puts "\nCheck your index and assignment values and try again.\n".red
+      battleprint "\nCheck your index and assignment values and try again.\n".red
     end
   end
 
@@ -63,11 +63,11 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     # checks if user reassigned the variable to a new array of identical values
     if user_input.match(cheater_regex)
       if $1
-        puts 'You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby\'s Array#push method and try again!'.red
+        battleprint 'You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby\'s Array#push method and try again!'.red
       else
-        puts 'You reassigned the variable '.red + variable_name.green + ' rather than working with the array provided. Try again.'.red
+        battleprint 'You reassigned the variable '.red + variable_name.green + ' rather than working with the array provided. Try again.'.red
       end
-      puts ''
+      battleprint ''
       true
     end
   end
@@ -82,7 +82,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      puts 'Nope! Try again.'.red
+      battleprint 'Nope! Try again.'.red
     end
   end
 

@@ -26,16 +26,16 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
   def print_data_structure
     print "#{variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ''
+    battleprint ''
   end
 
   def print_resulting_data_structure
     intro_congrat = POSSIBLE_INTRO_CONGRATULATIONS.sample
-    puts "\n#{intro_congrat}. Here's the resulting data structure:\n".green
+    battleprint "\n#{intro_congrat}. Here's the resulting data structure:\n".green
     sleep 1.0
     resulting_data_structure = evaluation_scope.eval(variable_name)
     ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
-    puts ''
+    battleprint ''
     sleep 3.2
   end
 

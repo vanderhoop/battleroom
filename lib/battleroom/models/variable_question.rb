@@ -23,18 +23,18 @@ class VariableQuestion < Question
       ' value '.blue,
       formatted_value.yellow
     ]
-    puts substrings.join
+    battleprint substrings.join
   end
 
   def reveal_name_error_follies_to_user(user_input)
     if user_input.include?(variable_name) && !user_input.match(/[^=]=[^=]/i)
-      puts 'You\'re not using the assignment operator!'.red
+      battleprint 'You\'re not using the assignment operator!'.red
     elsif !user_input.match(/("|')/) && variable_value.class == String
-      puts 'Rats! You\'ve just made a common rookie mistake! ' +
+      battleprint 'Rats! You\'ve just made a common rookie mistake! ' +
            'Strings are always surrounded by quotes. Otherwise, Ruby will ' +
            'think you\'re referencing a variable or method name. Try again.'.red
     else
-      puts 'Looks like you mistyped the variable name. Check for misspellings and try again.'.red
+      battleprint 'Looks like you mistyped the variable name. Check for misspellings and try again.'.red
     end
   end
 
@@ -47,15 +47,15 @@ class VariableQuestion < Question
           # the return value of yield is used in a conditional
           true
         else
-          puts "You mis-assigned #{variable_name}. Try again!".red
+          battleprint "You mis-assigned #{variable_name}. Try again!".red
         end
       rescue NameError => e
         reveal_name_error_follies_to_user(user_submission)
       rescue Exception => e
         if e.message.match(/unterminated string/)
-          puts 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
+          battleprint 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
         else
-          puts e.message
+          battleprint e.message
         end
       end
     end

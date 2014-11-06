@@ -73,7 +73,7 @@ loop do
     end
 
   else
-    puts 'You entered a non-option. Try again.'.red
+    battleprint 'You entered a non-option. Try again.'.red
   end
 end
 
