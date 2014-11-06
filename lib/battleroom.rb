@@ -6,6 +6,7 @@ require 'awesome_print'
 require 'pry'
 require 'colorize'
 require 'coderay'
+require 'word_wrap'
 
 require_relative './battleroom/config/pry_config'
 

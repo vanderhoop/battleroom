@@ -27,7 +27,7 @@ module BattleroomMachinery
     puts '1. Variable assignment'
     puts '2. Accessing values in arrays and hashes'
     puts '3. Adding values to arrays and hashes'
-    puts '4. Accessing values from within nested data structures'
+    battleprint '4. Accessing values from within nested data structures'
     puts '5. Defining methods'
     puts "Q. Quit\r\n\n"
   end
@@ -35,6 +35,7 @@ module BattleroomMachinery
   def random_congratulation
     CONGRATULATIONS.sample
   end
+
 
   def print_congratulation
     puts "#{random_congratulation}\n".green
@@ -54,6 +55,23 @@ module BattleroomMachinery
 
   def indent_all_lines_for_stdout(string_to_indent)
     string_to_indent.gsub(/^.*/) { |match| "\t" + match }
+  end
+
+  def dynamic_word_wrap(string)
+    string.wrap(150)
+  end
+
+  def battleprint(string)
+    puts dynamic_word_wrap(string)
+  end
+
+  def window_width
+    begin
+      width_string = `tput cols`
+    rescue StandardError => e # for cases where systems don't respond to the tput command
+      width_string = "80"
+    end
+    width_string.strip.to_i
   end
 
   def print_unexpected_end_of_input_explanation

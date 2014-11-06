@@ -19,14 +19,7 @@ class MethodDefinitionQuestion < Question
   end
 
   def print_prompt
-    puts [
-      'Define a method called '.blue,
-      method_name.yellow,
-      ' that takes '.blue,
-      arg_count.to_s.yellow,
-      ' argument(s) and '.blue,
-      spec.blue,
-    ].join + "\n\n"
+    battleprint('Define a method called '.blue + method_name.yellow +  ' that takes '.blue + arg_count.to_s.yellow + ' argument(s) and '.blue + spec.blue + "\n\n")
   end
 
   def handle_name_error_exceptions(error, user_submission)

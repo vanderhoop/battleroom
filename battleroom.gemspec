@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activesupport', '4.1.6'
   s.add_runtime_dependency 'pry',           '~> 0'
   s.add_runtime_dependency 'coderay',       '1.1.0'
+  s.add_runtime_dependency 'word_wrap',     '0.2.1'
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'
