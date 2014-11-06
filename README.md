@@ -8,7 +8,7 @@ A simple command-line REPL designed to give Ruby newbies countless reps doing si
 This project takes its name from the battleroom in Ender's Game, to which students of Battleschool go to train.
 
 ### Config
-_____________
+===
 
 __For the production version:__
 
@@ -27,7 +27,7 @@ __For the development version:__
 1. run `ruby lib/battleroom.rb`
 
 ### Contribute!
-_________
+===
 1. Fork this project
 2. Create a feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
