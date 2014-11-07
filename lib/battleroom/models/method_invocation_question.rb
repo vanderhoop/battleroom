@@ -2,8 +2,8 @@ require_relative './question'
 
 class MethodInvocationQuestion < Question
 
-  attr_reader :original_question, :desired_answer_formatted,
-              :desired_answer_class_formatted
+  attr_reader   :original_question, :desired_answer_formatted,
+                :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
     @evaluation_scope = evaluation_scope
@@ -33,14 +33,20 @@ class MethodInvocationQuestion < Question
   def print_name_error_prompt(error, user_submission)
     battleprint "You just triggered a common Ruby error that reads:\n".red
     battleprint "\tNameError: #{error.message}\n".green
-    /`(.+)'/i.match(error.message)
-    referenced_variable = $1
-    passed_as_argument_pattern = Regexp.new("\(.*#{$1}.*\)")
-    if user_submission.match(passed_as_argument_pattern)
-      battleprint "You're trying to pass the '#{original_question.method_name}' method the value stored in the variable '#{referenced_variable}', but that variable hasn't been assigned a value.\n".red
+    referenced_variable = isolate_variable_name_from_name_error(error)
+    parameters = isolate_argument_names_from_method_def
+    if parameters.find { |parameter| parameter == referenced_variable }
+      battleprint "Looks like the variable you referenced was one of the argument names in your method #{'definition'.red.underline}. The arguments in method definitions are just placeholders for whatever values end up getting passed in when the method is called. Think on this for a moment before trying again.\n".red
+      # restore_pry_defaults
+      # binding.pry
     else
-      battleprint "Basically, you're referencing a variable, #{$1}, that hasn't been defined.\n".red
+      # battleprint "You're trying to pass the '#{original_question.method_name}' method the value stored in the variable '#{referenced_variable}', but that variable hasn't been assigned a value.\n".red
+      battleprint "Basically, you're referencing a variable, \"#{referenced_variable}\", that hasn't been assigned a value.\n".red
     end
+  end
+
+  def isolate_variable_name_from_name_error(error)
+    error.name.to_s
   end
 
   def print_argument_error_prompt(e)
@@ -53,10 +59,12 @@ class MethodInvocationQuestion < Question
   end
 
   def isolate_argument_names_from_method_def
-    restore_pry_defaults
+    isolate_parameter_list_string_from_method_def.scan(/([^,\s]+)+/x).flatten
+  end
 
-    binding.pry
-
+  def isolate_parameter_list_string_from_method_def
+    original_question.user_answer_verified.match /\((.+)\)/
+    $1
   end
 
   def evaluate_user_input
@@ -71,8 +79,6 @@ class MethodInvocationQuestion < Question
       rescue NoMethodError => e
         print_no_method_error_prompt
       rescue NameError => e
-        restore_pry_defaults
-        binding.pry
         print_name_error_prompt(e, user_submission)
       rescue ArgumentError => e
         print_argument_error_prompt(e)

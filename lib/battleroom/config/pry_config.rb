@@ -20,6 +20,7 @@ def configure_pry
 end
 
 def restore_pry_defaults
+  Pry.config.quiet = false
   Pry.prompt = Pry::DEFAULT_PROMPT
   Pry.config.hooks.delete_hook :before_eval, :self_terminate
 end

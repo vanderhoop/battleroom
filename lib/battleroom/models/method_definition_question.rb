@@ -4,7 +4,7 @@ require_relative './question'
 class MethodDefinitionQuestion < Question
 
   attr_accessor :method_name, :arg_count, :spec, :eval_string, :eval_answer,
-                :return_value
+                :return_value, :user_answer_verified
 
   @questions = METHOD_QUESTONS.shuffle
 
@@ -81,6 +81,7 @@ class MethodDefinitionQuestion < Question
           evaluation_scope.eval(user_submission)
           return_value = evaluation_scope.eval(eval_string)
           if (return_value == eval_answer)
+            self.user_answer_verified = user_submission
             true
           else
             handle_incorrect_method_definition(return_value)

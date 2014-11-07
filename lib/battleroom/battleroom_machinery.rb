@@ -65,6 +65,10 @@ module BattleroomMachinery
     puts dynamic_word_wrap(string)
   end
 
+  def isolate_variable_name_from_name_error(error)
+    /`(.+)'/i.match(error.message)
+  end
+
   def window_width
     begin
       width_string = `tput cols`
