@@ -37,10 +37,7 @@ class MethodInvocationQuestion < Question
     parameters = isolate_argument_names_from_method_def
     if parameters.find { |parameter| parameter == referenced_variable }
       battleprint "Looks like the variable you referenced was one of the argument names in your method #{'definition'.red.underline}. The arguments in method definitions are just placeholders for whatever values end up getting passed in when the method is called. Think on this for a moment before trying again.\n".red
-      # restore_pry_defaults
-      # binding.pry
     else
-      # battleprint "You're trying to pass the '#{original_question.method_name}' method the value stored in the variable '#{referenced_variable}', but that variable hasn't been assigned a value.\n".red
       battleprint "Basically, you're referencing a variable, \"#{referenced_variable}\", that hasn't been assigned a value.\n".red
     end
   end

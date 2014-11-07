@@ -31,7 +31,7 @@ module DataGenerationMachinery
   def gen_user
     password_or_pw = [:password, :pw].sample
     admin_or_is_admin = [:admin, :is_admin].sample
-    phone_of_phone_num = [:phone, :phone_num, :phone_number].sample
+    phone_or_phone_num = [:phone, :phone_num, :phone_number].sample
     occupation_or_job_title = [:occupation, :job_title].sample
     zip_or_zip_code = [:zip, :zip_code].sample
     first_name = Faker::Name::first_name
@@ -43,7 +43,7 @@ module DataGenerationMachinery
       password_or_pw => gen_password,
       email: Faker::Internet.free_email(first_name),
       admin_or_is_admin => [true, false].sample,
-      phone_of_phone_num => gen_phone_number,
+      phone_or_phone_num => gen_phone_number,
       accepts_marketing: [true, false].sample,
       accepts_promotional_emails: [true, false].sample,
       occupation_or_job_title => Faker::Name.title,
