@@ -2,7 +2,8 @@ require_relative './question'
 
 class MethodInvocationQuestion < Question
 
-  attr_reader   :original_question, :desired_answer_formatted, :desired_answer_class_formatted
+  attr_reader :original_question, :desired_answer_formatted,
+              :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
     @evaluation_scope = evaluation_scope
@@ -51,6 +52,13 @@ class MethodInvocationQuestion < Question
     battleprint "Basically, you defined the '#{original_question.method_name}' method to expect #{expected_arg_count} argument(s), and you're only passing #{passed_arg_count}. Try again.\n".red
   end
 
+  def isolate_argument_names_from_method_def
+    restore_pry_defaults
+
+    binding.pry
+
+  end
+
   def evaluate_user_input
     enter_evaluation_loop do |user_submission|
       begin
@@ -63,6 +71,8 @@ class MethodInvocationQuestion < Question
       rescue NoMethodError => e
         print_no_method_error_prompt
       rescue NameError => e
+        restore_pry_defaults
+        binding.pry
         print_name_error_prompt(e, user_submission)
       rescue ArgumentError => e
         print_argument_error_prompt(e)

@@ -68,7 +68,8 @@ module BattleroomMachinery
   def window_width
     begin
       width_string = `tput cols`
-    rescue StandardError => e # for cases where systems don't respond to the tput command
+    # for cases where systems don't respond to the tput command
+    rescue StandardError => e
       width_string = "80"
     end
     width_string.strip.to_i
@@ -117,4 +118,5 @@ module BattleroomMachinery
     return 'Boolean' if klass.to_s.match /(TrueClass|FalseClass)/
     klass.to_s
   end
+
 end

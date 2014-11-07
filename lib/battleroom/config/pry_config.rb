@@ -9,8 +9,6 @@ def configure_pry
 
   Pry::Commands.delete("exit")
 
-  # Pry::Hooks.new.clear_all
-
   Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
     $input = last_input
     battleprint ''
@@ -19,6 +17,11 @@ def configure_pry
     end
   end
 
+end
+
+def restore_pry_defaults
+  Pry.prompt = Pry::DEFAULT_PROMPT
+  Pry.config.hooks.delete_hook :before_eval, :self_terminate
 end
 
 configure_pry

@@ -34,8 +34,8 @@ class MethodDefinitionQuestion < Question
     battleprint 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
-  def print_battleprint_explanation
-    battleprint 'The last line of your method definition uses Ruby\'s "battleprint" method. The "battleprint" method is helpful for logging errors and statuses to the console, but its actual '.red + "return".red.underline + " value is always nil, and thus your method returns nil. Try again, this time without using \"battleprint\".\n".red
+  def print_puts_explanation
+    battleprint 'The last line of your method definition uses Ruby\'s "puts" method. The "puts" method is helpful for logging errors and statuses to the console, but its actual '.red + "return".red.underline + " value is always nil, and thus your method returns nil. Try again, this time without using \"puts\".\n".red
   end
 
   def print_no_method_error_prompt
@@ -74,9 +74,9 @@ class MethodDefinitionQuestion < Question
     enter_evaluation_loop do |user_submission|
       begin
         clean_eval_scope_of_method_definition
-        # I want to make sure that the user's method isn't invoked if it uses the battleprint method
-        if user_submission.include?('battleprint')
-          print_battleprint_explanation
+        # I want to make sure that the user's method isn't invoked if it uses the puts method
+        if user_submission.include?('puts')
+          print_puts_explanation
         else
           evaluation_scope.eval(user_submission)
           return_value = evaluation_scope.eval(eval_string)
