@@ -2,6 +2,13 @@ require_relative '../data_generation_machinery'
 include DataGenerationMachinery
 require 'active_support/inflector'
 
+#=======================================
+# Contribution Guidelines
+#=======================================
+
+# 1. All hashes must have *at least* 5 key values pairs.
+# 2. All questions must have a possible variables names key, be hashes with *at least* 5 key values pairs
+
 HASH_QUESTIONS = [
   {
     data_structure: {
@@ -35,6 +42,8 @@ HASH_QUESTIONS = [
       stars: ['Nicholas Cage', 'Meryl Streep'],
       rt_rating: 98.0,
       released: 2002,
+      director: 'Spike Jonze',
+      based_on: 'The Orchid Thief',
       screenwriters: ['Charlie Kaufman', 'Donald Kaufman'],
     },
     possible_variable_names: ['adaptation'],

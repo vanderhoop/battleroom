@@ -68,13 +68,21 @@ module DataGenerationMachinery
     biz_email_address = "#{intro_word}@#{business_name.parameterize}.com"
   end
 
+  def gen_business_name_under_16_characters
+    name = Faker::Company.name
+    while name.length > 15
+      name = Faker::Company.name
+    end
+    name
+  end
+
   def gen_business
     name_or_business_name = [:name, :business_name].sample
     email_key = [:email, :public_email, :info_email, :contact_email].sample
     web_key = [:url, :website, :homepage_url].sample
     address_key = [:street_address, :address].sample
     established_key = [:established, :inception_year].sample
-    name = Faker::Company.name
+    name = gen_business_name_under_16_characters
     email_address = gen_business_email_address(name)
     business = {
       name_or_business_name => name,
