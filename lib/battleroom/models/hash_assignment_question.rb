@@ -29,7 +29,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      battleprint 'Nope! Try again!'.red
+      battleprint "Nope! Try again!\n".red
     end
   end
 
