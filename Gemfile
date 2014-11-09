@@ -8,3 +8,4 @@ gem 'rspec',                   '3.0.0'
 gem 'faker',                   '1.4.3'
 gem 'coderay',                 '1.1.0'
 gem 'word_wrap',               '0.2.1'
+gem 'coveralls', require: false

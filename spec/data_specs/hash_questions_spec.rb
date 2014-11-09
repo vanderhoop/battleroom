@@ -42,7 +42,6 @@ describe "HASH_QUESTIONS" do
           expect(data_structure.values.size).to be >= 5
         end
       end
-
     end
 
   end # describe 'a question'
