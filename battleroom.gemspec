@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'faker',                   '1.4.3'
   s.add_runtime_dependency 'colorize',                '0.7.3'
   s.add_runtime_dependency 'awesome_print',           '1.2.0'
-  s.add_runtime_dependency 'activesupport-inflector', '0.1.0'
+  s.add_runtime_dependency 'activesupport',           '4.1.6'
   s.add_runtime_dependency 'pry',                     '~> 0'
   s.add_runtime_dependency 'coderay',                 '1.1.0'
   s.add_runtime_dependency 'word_wrap',               '0.2.1'
