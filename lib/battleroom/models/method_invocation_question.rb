@@ -52,7 +52,7 @@ class MethodInvocationQuestion < Question
     expected_arg_count = $2.to_i
     battleprint "You just triggered a common Ruby error that reads:\n".red
     battleprint "\tArgumentError: #{e.message}\n".green
-    battleprint "Basically, you defined the '#{original_question.method_name}' method to expect #{expected_arg_count} argument(s), and you're only passing #{passed_arg_count}. Try again.\n".red
+    battleprint "Basically, you defined the '#{original_question.method_name}' method to expect #{expected_arg_count} argument(s), and you're only passing it #{passed_arg_count}. Try again.\n".red
   end
 
   def isolate_argument_names_from_method_def
