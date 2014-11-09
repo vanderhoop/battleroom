@@ -21,7 +21,8 @@ class VariableQuestion < Question
       ' and assign it the '.blue,
       formatted_class.blue,
       ' value '.blue,
-      formatted_value.yellow
+      formatted_value.yellow,
+      ".\n\n".blue
     ]
     battleprint substrings.join
   end
