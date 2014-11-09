@@ -50,7 +50,7 @@ module DataGenerationMachinery
       zip_or_zip_code => Faker::Address.zip
     }
 
-    data = {
+    {
       data_structure: user,
       possible_variable_names: [
         snake_case(first_name),
@@ -65,7 +65,7 @@ module DataGenerationMachinery
   def gen_business_email_address(business_name)
     possible_intro_words = ['info', 'hello', 'greetings', 'contact', 'team']
     intro_word = possible_intro_words.sample
-    biz_email_address = "#{intro_word}@#{business_name.parameterize}.com"
+    "#{intro_word}@#{business_name.parameterize}.com"
   end
 
   def gen_business_name_under_16_characters
@@ -86,7 +86,7 @@ module DataGenerationMachinery
     email_address = gen_business_email_address(name)
     business = {
       name_or_business_name => name,
-      public_email: email_address,
+      email_key => email_address,
       web_key => Faker::Internet.url("#{name.parameterize}.com", ''),
       phone_num: gen_phone_number,
       address_key => Faker::Address.street_address,
@@ -94,7 +94,7 @@ module DataGenerationMachinery
       state: Faker::Address.state_abbr,
       established_key => rand(1901..2014),
     }
-    data = {
+    {
       data_structure: business,
       possible_variable_names: [
         snake_case(name),
@@ -120,7 +120,7 @@ module DataGenerationMachinery
       latitude[which_key_to_use] => Faker::Address.latitude.slice(0, rand(7..9)).to_f,
       longitude[which_key_to_use] => Faker::Address.longitude.slice(0, rand(7..9)).to_f
     }
-    data = {
+    {
       data_structure: location,
       possible_variable_names: [
         snake_case(city),

@@ -31,8 +31,8 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
 
   def print_replace_array_value_prompt
     battleprint "Given the data structure below, replace the #{replacement_value_class_formatted} value ".blue +
-         value_to_replace_formatted.yellow + " with the #{assignment_value_class} value ".blue +
-         formatted_assignment_value.yellow + ".\n\n"
+                value_to_replace_formatted.yellow + " with the #{assignment_value_class} value ".blue +
+                formatted_assignment_value.yellow + ".\n\n"
   end
 
   def print_data_structure_assignment_prompt
