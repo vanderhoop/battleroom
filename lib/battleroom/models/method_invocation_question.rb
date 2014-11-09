@@ -21,7 +21,7 @@ class MethodInvocationQuestion < Question
   def print_method_invocation_prompt
     battleprint "You now have the method defined below at your disposal.\n".blue
     battleprint format_method_definition_for_stdout
-    battleprint "\nInvoke the '#{original_question.method_name}' method such that it returns the ".blue + desired_answer_class_formatted.blue + " value ".blue + desired_answer_formatted.yellow + "\n\n"
+    battleprint "\nInvoke the '#{original_question.method_name}' method such that it returns the ".blue + desired_answer_class_formatted.blue + " value ".blue + desired_answer_formatted.yellow + ".\n\n".blue
   end
 
   def print_no_method_error_prompt
