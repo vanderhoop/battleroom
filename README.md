@@ -1,5 +1,6 @@
 ![build_badge](https://travis-ci.org/vanderhoop/battleroom.svg?branch=master)
 [![Code Climate](https://codeclimate.com/github/vanderhoop/battleroom/badges/gpa.svg)](https://codeclimate.com/github/vanderhoop/battleroom)
+[![Coverage Status](https://coveralls.io/repos/vanderhoop/battleroom/badge.png)](https://coveralls.io/r/vanderhoop/battleroom)
 
 # Battleroom
 
