@@ -95,7 +95,6 @@ VARIABLE_QUESTIONS = [
     possible_variable_names: [
       'pilot_name',
       'point_guard',
-      'gardener',
       'cook',
       'chef',
       'boss',
@@ -117,7 +116,6 @@ VARIABLE_QUESTIONS = [
       'team_captain',
       'instructor_name',
       'friend_for_life',
-      'thief',
       'dancer',
       'lead_singer',
       'drummer',
