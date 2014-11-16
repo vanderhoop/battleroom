@@ -18,7 +18,6 @@ def configure_pry
       pry_instance.run_command("continue")
     end
   end
-
 end
 
 def restore_pry_defaults
