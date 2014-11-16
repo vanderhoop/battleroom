@@ -1,7 +1,7 @@
 require_relative 'question'
 require_relative '../data/variable_assignment_questions'
 
-class VariableQuestion < Question
+class VariableAssignmentQuestion < Question
   attr_accessor :formatted_value
   # using a class instance variable, as manipulating a single class var
   # in the parent class is troublesome
