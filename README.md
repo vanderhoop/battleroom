@@ -1,16 +1,17 @@
 ![build_badge](https://travis-ci.org/vanderhoop/battleroom.svg?branch=master)
 [![Code Climate](https://codeclimate.com/github/vanderhoop/battleroom/badges/gpa.svg)](https://codeclimate.com/github/vanderhoop/battleroom)
 [![Coverage Status](https://coveralls.io/repos/vanderhoop/battleroom/badge.png)](https://coveralls.io/r/vanderhoop/battleroom)
+![Gem Version](http://img.shields.io/gem/v/battleroom.svg)
 
 # The Battleroom Gem
 
-A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods.
+Battleroom is a training program designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods. Special attention has been paid to providing plain English explanations for common Ruby exceptions (think `NoMethodError`, `NameError`, and so on). The program also introduces novice programmers to semantic naming, proper Ruby indentation, and a number of conventions they will find in Ruby frameworks like Sinatra and Rails.  
 
-This project takes its name from the battleroom in Ender's Game, to which students of Battleschool go to train.
+The program takes its name from the Battle Room in Ender's Game, to which students of Battle School go to train.
 
 ===
 
-### Config
+### Installation
 
 __For the production version:__
 
