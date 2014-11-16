@@ -4,7 +4,10 @@ I18n.config.enforce_available_locales = false
 def configure_pry
   Pry.config.default_window_size = 0
   Pry.config.quiet = true
-  Pry.prompt = [proc { "> ".blue }, proc { "* ".blue }]
+  Pry.prompt = [
+    proc { "> ".blue },
+    proc { "* ".blue }
+  ]
   Pry.config.memory_size = 10
 
   Pry::Commands.delete("exit")
