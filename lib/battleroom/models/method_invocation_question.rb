@@ -1,6 +1,6 @@
-require_relative './question'
+require_relative './follow_up_question'
 
-class MethodInvocationQuestion < Question
+class MethodInvocationQuestion < FollowUpQuestion
 
   attr_reader   :original_question, :desired_answer_formatted,
                 :desired_answer_class_formatted
@@ -31,7 +31,7 @@ class MethodInvocationQuestion < Question
   end
 
   def print_name_error_prompt(error, user_submission)
-    battleprint "You just triggered a common Ruby error that reads:\n".red
+    battleprint "\nYou just triggered a common Ruby error that reads:\n".red
     battleprint "\tNameError: #{error.message}\n".green
     referenced_variable = isolate_variable_name_from_name_error(error)
     parameters = isolate_argument_names_from_method_def
@@ -71,7 +71,7 @@ class MethodInvocationQuestion < Question
         if return_from_eval == original_question.eval_answer
           true
         else
-          battleprint "Remember, to call a method, you simply enter its name followed by any arguments it might need. Try again.\n".red
+          battleprint "\nRemember, to call a method, you simply enter its name followed by any arguments it might need. Try again.\n".red
         end
       rescue NoMethodError => e
         print_no_method_error_prompt
