@@ -5,8 +5,7 @@ class MethodInvocationQuestion < FollowUpQuestion
   attr_reader   :desired_answer_formatted, :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
-    @evaluation_scope = evaluation_scope
-    @original_question = question_to_follow_up_on
+    super(evaluation_scope, question_to_follow_up_on)
     @desired_answer_formatted = format_value_for_stdout_and_eval(original_question.eval_answer)
     @desired_answer_class_formatted = format_class_for_output(original_question.eval_answer.class)
   end
