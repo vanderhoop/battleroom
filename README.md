@@ -4,9 +4,9 @@
 
 # The Battleroom Gem
 
-A training program designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods. Special attention has been paid to catching common exceptions (`NoMethodError`, `NameError`, `ArgumentError`, et cetera) and providing plain English explanations. 
+Battleroom is a training program designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods. Special attention is paid to providing plain English explains for common Ruby exceptions like `NoMethodError`, `NameError`, `ArgumentError`. It also exposes users to semantic naming, proper indentation, and a number of conventions they will find in Ruby frameworks like Sinatra and Rails.  
 
-The program takes its name from the battleroom in Ender's Game, to which students of an intergalactic Battleschool go to train.
+The program takes its name from the battleroom in Ender's Game, to which students of an intergalactic Battleschool go to train. I think it's appropriate.
 
 ===
 
