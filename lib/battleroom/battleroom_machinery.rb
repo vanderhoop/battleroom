@@ -27,11 +27,10 @@ module BattleroomMachinery
 
   def print_menu_options
     battleprint ' What would you like to work on?'.blue
-    battleprint '1. Variable assignment'
-    battleprint '2. Accessing values in arrays and hashes'
-    battleprint '3. Adding values to arrays and hashes'
-    battleprint '4. Accessing values from within nested data structures'
-    battleprint '5. Defining methods'
+    battleprint '1. Variable Assignment'
+    battleprint '2. Accessing Values in Arrays and Hashes'
+    battleprint '3. Adding Values to Arrays and Hashes'
+    battleprint '4. Working with Methods'
     battleprint "Q. Quit\r\n\n"
   end
 

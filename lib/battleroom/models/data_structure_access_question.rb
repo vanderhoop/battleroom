@@ -27,7 +27,7 @@ class DataStructureAccessQuestion < DataStructureQuestion
         if evaluation_scope.eval(user_submission) == answer_value && user_submission.include?(variable_name)
           true
         else
-          battleprint "Remember, #{hint} Try again.\n".red
+          battleprint "Remember, #{hint} Try again.".red
         end
       rescue NameError => e
         print_colorized_error_prompt(e)

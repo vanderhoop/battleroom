@@ -47,13 +47,13 @@ loop do
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input
     end
-  when '4'
+  when '5'
     5.times do
       q = NestedDataStructureAccessQuestion.new(b)
       q.print_data_structure_access_prompt
       q.evaluate_data_structure_access_input
     end
-  when '5'
+  when '4'
     # 5.times do
     #   q = MethodDefinitionQuestion.new(b)
     #   q.print_prompt

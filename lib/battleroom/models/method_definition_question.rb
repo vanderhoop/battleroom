@@ -19,7 +19,7 @@ class MethodDefinitionQuestion < Question
   end
 
   def print_prompt
-    battleprint('Define a method called '.blue + method_name.yellow +  ' that takes '.blue + arg_count.to_s.yellow + " argument(s) and #{spec}.\n\n".blue)
+    battleprint('Define a method called '.blue + method_name.yellow +  ' that takes '.blue + arg_count.to_s.yellow + " argument(s) and #{spec}.\n".blue)
   end
 
   def handle_name_error_exceptions(error, user_submission)
@@ -53,7 +53,7 @@ class MethodDefinitionQuestion < Question
     if user_submission.match(definition_pattern)
       handle_incorrect_method_definition(user_submission)
     else
-      battleprint "\nYou defined the wrong method, probably as the result of a mispelling. Try again.\n".red
+      battleprint "You defined the wrong method, probably as the result of a mispelling. Try again.".red
     end
   end
 
