@@ -35,7 +35,7 @@ class VariableQuestion < Question
            'Strings are always surrounded by quotes. Otherwise, Ruby will ' +
            'think you\'re referencing a variable or method name. Try again.'.red
     else
-      battleprint 'Looks like you mistyped the variable name. Check for misspellings and try again.'.red
+      battleprint "Looks like you mistyped the variable name. Check for misspellings and try again.\n".red
     end
   end
 

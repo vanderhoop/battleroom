@@ -5,6 +5,9 @@ module BattleroomMachinery
     'Beautiful!',
     'Lovely!',
     'Splendid!',
+    'Awesome.',
+    'Stand up job, my friend.',
+    'Nailed it.',
     'Nice job! Keep it rolling!',
     'Capital work, battlestar!',
     'Exemplary work!',
@@ -38,7 +41,7 @@ module BattleroomMachinery
 
 
   def print_congratulation
-    battleprint "#{random_congratulation}\n".green
+    battleprint "\n#{random_congratulation}\n".green
   end
 
   def rotate_array(array)
