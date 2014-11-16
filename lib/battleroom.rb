@@ -47,22 +47,7 @@ loop do
       q.print_data_structure_assignment_prompt
       q.evaluate_data_structure_assignment_input
     end
-  when '5'
-    5.times do
-      q = NestedDataStructureAccessQuestion.new(b)
-      q.print_data_structure_access_prompt
-      q.evaluate_data_structure_access_input
-    end
   when '4'
-    # 5.times do
-    #   q = MethodDefinitionQuestion.new(b)
-    #   q.print_prompt
-    #   q.evaluate_method_definition_input
-    # end
-
-    #========================================
-    # Method Defintiion Follow Up Development
-    #========================================
     2.times do
       q = MethodDefinitionQuestion.new(b)
       q.print_prompt
@@ -71,7 +56,12 @@ loop do
       follow_up_question.print_method_invocation_prompt
       follow_up_question.evaluate_user_input
     end
-
+  when '5'
+    5.times do
+      q = NestedDataStructureAccessQuestion.new(b)
+      q.print_data_structure_access_prompt
+      q.evaluate_data_structure_access_input
+    end
   else
     battleprint 'You entered a non-option. Try again.'.red
   end

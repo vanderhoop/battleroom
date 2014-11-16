@@ -31,7 +31,7 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_incorrect_method_definition(return_value)
-    battleprint 'When calling '.red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
+    battleprint "\nWhen calling ".red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
   def print_puts_explanation
@@ -61,7 +61,7 @@ class MethodDefinitionQuestion < Question
     e.message.match(/wrong number of arguments \((\d) for (\d)\)/)
     passed_arg_count = $1.to_i
     expected_arg_count = $2.to_i
-    battleprint "Looks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.\n".red
+    battleprint "\nLooks like you defined #{method_name} to take #{expected_arg_count} argument(s), when it should take #{arg_count}. Try again.\n".red
   end
 
   def clean_eval_scope_of_method_definition
