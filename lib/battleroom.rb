@@ -8,10 +8,10 @@ require 'colorize'
 require 'coderay'
 require 'word_wrap'
 
-require_relative './battleroom/config/pry_config'
-
 path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
 Dir[path].each { |file| require file }
+
+require_relative './battleroom/config/pry_config'
 
 require_relative 'battleroom/battleroom_machinery'
 include BattleroomMachinery
@@ -31,9 +31,11 @@ loop do
   case choice
   when '1'
     10.times do
-      q = VariableQuestion.new(b)
+      q = VariableAssignmentQuestion.new(b)
       q.print_variable_assignment_prompt
       q.evaluate_variable_assignment_input
+      follow_up_question = VariableReferenceQuestion(b, q)
+      follow_up_question.print_variable_reference_prompt
     end
   when '2'
     5.times do
