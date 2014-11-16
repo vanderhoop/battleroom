@@ -2,7 +2,7 @@
 [![Code Climate](https://codeclimate.com/github/vanderhoop/battleroom/badges/gpa.svg)](https://codeclimate.com/github/vanderhoop/battleroom)
 [![Coverage Status](https://coveralls.io/repos/vanderhoop/battleroom/badge.png)](https://coveralls.io/r/vanderhoop/battleroom)
 
-# Battleroom
+# The Battleroom Gem
 
 A simple command-line REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods.
 
