@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.79'
-  s.date        = '2014-11-05'
+  s.version     = '0.0.80'
+  s.date        = '2014-11-17'
   s.description = "A command-line REPL designed to give novice Ruby programmers countless reps doing simple tasks like assigning variables, working with data structures, and defining and invoking methods."
   s.summary     = "A command-line REPL designed to give novice Ruby programmers countless reps doing simple tasks like assigning variables, working with data structures, and defining and invoking methods."
   s.authors     = ["Travis Vander Hoop"]
