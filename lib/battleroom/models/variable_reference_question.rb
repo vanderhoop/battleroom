@@ -17,12 +17,20 @@ class VariableReferenceQuestion < FollowUpQuestion
   end
 
   def develop_prompt
-    prompt = case original_question.variable_value.class
-             when String
-             when Fixnum
-             when Symbol
-             when Float
-             when TrueClass, FalseClass
+    restore_pry_defaults
+    prompt = case original_question.variable_value.class.to_s
+             when 'String'
+               binding.pry
+             when 'Fixnum'
+               binding.pry
+             when 'Symbol'
+               binding.pry
+             when 'Float'
+               binding.pry
+             when 'TrueClass', 'FalseClass'
+               binding.pry
+             else
+               binding.pry
              end
   end
 
