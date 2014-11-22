@@ -41,6 +41,7 @@ loop do
       else
         follow_up_question = VariableReferenceQuestion.new(b, q)
         follow_up_question.print_variable_reference_prompt
+        follow_up_question.evaluate_variable_reference_input
         restore_pry_defaults
         binding.pry
 
