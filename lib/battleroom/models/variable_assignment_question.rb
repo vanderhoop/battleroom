@@ -47,13 +47,19 @@ class VariableAssignmentQuestion < Question
     battleprint "To assign a value to a variable, you'll need to use the assignment operator ".red + ' = '.black.on_light_white + ", followed by a valid Ruby value.\n".red
   end
 
+  def handle_base_exception(exception)
+    if exception.message.match(/unterminated string/)
+      battleprint 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
+    else
+      battleprint exception.message
+    end
+  end
+
   def evaluate_variable_assignment_input
     enter_evaluation_loop do |user_submission|
       begin
         evaluation_scope.eval(user_submission)
         if evaluation_scope.eval("#{variable_name} == #{formatted_value}")
-          # this last returned value of 'true' is vital;
-          # the return value of yield is used in a conditional
           true
         else
           battleprint "You assigned the wrong value to #{variable_name}. Try again!".red
@@ -61,11 +67,7 @@ class VariableAssignmentQuestion < Question
       rescue NameError => e
         reveal_name_error_follies_to_user(user_submission, e)
       rescue Exception => e
-        if e.message.match(/unterminated string/)
-          battleprint 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
-        else
-          battleprint e.message
-        end
+        handle_base_exception(e)
       end
     end
   end
