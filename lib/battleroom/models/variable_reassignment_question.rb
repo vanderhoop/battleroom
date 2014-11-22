@@ -15,7 +15,7 @@ class VariableReassignmentQuestion < FollowUpQuestion
 
   def evaluate_variable_reassignment_input
     enter_evaluation_loop do |user_submission|
-      input = user_submission.chomp
+      input = user_submission
       evaluation_scope.eval(input)
       if (evaluation_scope.eval(original_question.variable_name) == toggled_boolean)
         true

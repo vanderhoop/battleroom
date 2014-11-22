@@ -36,10 +36,10 @@
 
   def get_input
     if input_mechanism == 'readline'
-      Readline.readline('> '.blue, true)
+      Readline.readline('> '.blue, true).chomp
     else
       Pry.start_without_pry_debugger(evaluation_scope)
-      $input
+      $input.chomp
     end
   end
 
