@@ -1,6 +1,14 @@
 ## Todos
 
-- use the "sex machine" gem to add gender to user hashes based on their first name
+- I want to keep THIS from happening: 
+
+        Assign the variable tells_lies to the Boolean value
+        true.
+
+        > tells_lies
+        You're not using the assignment operator!
+
+        #users should be told that they just trigged a common ruby error (NameError)
 
 - I want to refactor all things having to do with errors
 
@@ -20,9 +28,7 @@ you're defining a method, you'll use the the "def" keyword, and end your method 
 
 - I want to write tests for the the variable question data.
 
-- I want to standardize the spacing across all question prompts and congratulations
-  - The congratulation in data structure access questions appears on the very next line. Perhaps it should be given some extra space.
-  - The error appears on the very next line as well. Add a new line after 
+- I want to quite the congratulation on DataStructureAssignment questions
 
 
 

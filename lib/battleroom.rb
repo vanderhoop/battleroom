@@ -34,8 +34,11 @@ loop do
       q = VariableAssignmentQuestion.new(b)
       q.print_variable_assignment_prompt
       q.evaluate_variable_assignment_input
-      follow_up_question = VariableReferenceQuestion.new(b, q)
-      follow_up_question.print_variable_reference_prompt
+        reassignment_q = VariableReassignmentQuestion.new(b, q)
+        reassignment_q.print_variable_reassignment_prompt
+        reassignment_q.evaluate_variable_reassignment_input
+      # follow_up_question = VariableReferenceQuestion.new(b, q)
+      # follow_up_question.print_variable_reference_prompt
     end
   when '2'
     5.times do

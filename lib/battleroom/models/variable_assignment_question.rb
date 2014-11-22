@@ -16,9 +16,9 @@ class VariableAssignmentQuestion < Question
   def print_variable_assignment_prompt
     formatted_class = format_class_for_output(variable_value.class)
     substrings = [
-      'Create a variable '.blue,
+      'Assign the variable '.blue,
       variable_name.yellow,
-      ' and assign it the '.blue,
+      ' to the '.blue,
       formatted_class.blue,
       ' value '.blue,
       formatted_value.yellow,
