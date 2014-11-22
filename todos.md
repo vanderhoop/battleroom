@@ -1,5 +1,7 @@
 ## Todos
 
+- use the "sex machine" gem to add gender to user hashes based on their first name
+
 - I want to refactor all things having to do with errors
 
 - I want to come up with a solution for the erroring word_wrap in the method definition question: "Basically, you tried to use a method before you defined it, and Ruby said, "You haven't told me how to do that yet." To let Ruby know that
