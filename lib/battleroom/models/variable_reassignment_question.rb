@@ -22,8 +22,6 @@ class VariableReassignmentQuestion < FollowUpQuestion
       else
         battleprint "Nope. Try again.".red
       end
-      # restore_pry_defaults
-      # binding.pry
     end
   end
 end

@@ -1,10 +1,10 @@
 require_relative 'question'
 require_relative '../data/variable_assignment_questions'
+require_relative '../helpers/assignable'
 
 class VariableAssignmentQuestion < Question
+
   attr_accessor :formatted_value
-  # using a class instance variable, as manipulating a single class var
-  # in the parent class is troublesome
   @questions = VARIABLE_QUESTIONS.shuffle
 
   def initialize(eval_scope)
@@ -27,16 +27,24 @@ class VariableAssignmentQuestion < Question
     battleprint substrings.join
   end
 
-  def reveal_name_error_follies_to_user(user_input)
-    if user_input.include?(variable_name) && !user_input.match(/[^=]=[^=]/i)
-      battleprint 'You\'re not using the assignment operator!'.red
+  def reveal_name_error_follies_to_user(user_input, errorbefor)
+    if user_input.include?(variable_name)
+      if !user_input.match(/[^=]=[^=]/i)
+        undefined_local_variable_prompt_for_correct_variable
+      else
+        misassignment_prompt
+      end
     elsif !user_input.match(/("|')/) && variable_value.class == String
-      battleprint 'Rats! You\'ve just made a common rookie mistake! ' +
-           'Strings are always surrounded by quotes. Otherwise, Ruby will ' +
-           'think you\'re referencing a variable or method name. Try again.'.red
+      battleprint 'Rats! You\'ve just made a common rookie mistake! Strings are always surrounded by quotes. Otherwise, Ruby will think you\'re referencing a variable or method name. Try again.'.red
     else
       battleprint "Looks like you mistyped the variable name. Check for misspellings and try again.\n".red
     end
+  end
+
+  def undefined_local_variable_prompt_for_correct_variable
+    battleprint "\nYou're referencing a variable that hasn't been assigned yet. This results in a common error that says: \n".red
+    battleprint "\tundefined local variable or method \'#{variable_name}\'\n".green
+    battleprint "To assign a value to a variable, you'll need to use the assignment operator ".red + ' = '.black.on_light_white + ", followed by a valid Ruby value.\n".red
   end
 
   def evaluate_variable_assignment_input
@@ -48,10 +56,10 @@ class VariableAssignmentQuestion < Question
           # the return value of yield is used in a conditional
           true
         else
-          battleprint "You mis-assigned #{variable_name}. Try again!".red
+          battleprint "You assigned the wrong value to #{variable_name}. Try again!".red
         end
       rescue NameError => e
-        reveal_name_error_follies_to_user(user_submission)
+        reveal_name_error_follies_to_user(user_submission, e)
       rescue Exception => e
         if e.message.match(/unterminated string/)
           battleprint 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
