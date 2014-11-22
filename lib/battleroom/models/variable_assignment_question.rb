@@ -1,6 +1,5 @@
 require_relative 'question'
 require_relative '../data/variable_assignment_questions'
-require_relative '../helpers/assignable'
 
 class VariableAssignmentQuestion < Question
 
