@@ -10,7 +10,7 @@ class VariableReassignmentQuestion < FollowUpQuestion
   end
 
   def print_variable_reassignment_prompt
-    battleprint "Times have changed. Reassign ".blue + original_question.variable_name.yellow + " to the Boolean value ".blue + toggled_boolean.to_s.yellow + ".\n".blue
+    battleprint "Times have changed! Reassign ".blue + original_question.variable_name.yellow + " to the Boolean value ".blue + toggled_boolean.to_s.yellow + ".\n".blue
   end
 
   def evaluate_variable_reassignment_input
