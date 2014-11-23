@@ -16,6 +16,8 @@ class MethodDefinitionQuestion < Question
     @eval_string = data[:eval_string]
     @eval_answer = data[:eval_answer]
     @input_mechanism = 'pry'
+    print_prompt
+    evaluate_method_definition_input
   end
 
   def print_prompt

@@ -49,8 +49,6 @@ loop do
   when '4'
     5.times do
       q = MethodDefinitionQuestion.new(b)
-      q.print_prompt
-      q.evaluate_method_definition_input
       follow_up_question = MethodInvocationQuestion.new(b, q)
       follow_up_question.print_method_invocation_prompt
       follow_up_question.evaluate_user_input
