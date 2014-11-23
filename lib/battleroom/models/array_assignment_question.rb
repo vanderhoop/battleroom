@@ -8,6 +8,8 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
   def initialize(scope)
     super(scope)
     format_array_for_assignment
+    print_data_structure_assignment_prompt
+    evaluate_data_structure_assignment_input
   end
 
   def format_array_for_assignment

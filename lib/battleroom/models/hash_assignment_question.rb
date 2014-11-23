@@ -8,6 +8,8 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
   def initialize(scope)
     super(scope)
     format_hash_for_assignment
+    print_data_structure_assignment_prompt
+    evaluate_data_structure_assignment_input
   end
 
   def format_hash_for_assignment
@@ -29,7 +31,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      battleprint "Nope! Try again!\n".red
+      battleprint "Nope! Try again!".red
     end
   end
 

@@ -45,8 +45,6 @@ loop do
   when '3'
     5.times do
       q = [ArrayAssignmentQuestion.new(b), HashAssignmentQuestion.new(b)].sample
-      q.print_data_structure_assignment_prompt
-      q.evaluate_data_structure_assignment_input
     end
   when '4'
     5.times do
