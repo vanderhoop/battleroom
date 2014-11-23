@@ -63,10 +63,7 @@ class MethodInvocationQuestion < FollowUpQuestion
   end
 
   def print_incorrect_input_prompt(return_from_eval)
-    # restore_pry_defaults
-    # binding.pry
     battleprint "Your code returned the #{format_class_for_output(return_from_eval.class)} value #{return_from_eval.to_s} when it should have returned the #{desired_answer_class_formatted} value #{desired_answer_formatted}. Try again.".red
-    # battleprint "\nRemember, to call a method, you simply enter its name followed by any arguments it might need. Try again.\n".red
   end
 
   def evaluate_user_input

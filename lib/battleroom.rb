@@ -42,9 +42,6 @@ loop do
         follow_up_question = VariableReferenceQuestion.new(b, q)
         follow_up_question.print_variable_reference_prompt
         follow_up_question.evaluate_variable_reference_input
-        restore_pry_defaults
-        binding.pry
-
       end
     end
   when '2'
@@ -60,7 +57,7 @@ loop do
       q.evaluate_data_structure_assignment_input
     end
   when '4'
-    2.times do
+    5.times do
       q = MethodDefinitionQuestion.new(b)
       q.print_prompt
       q.evaluate_method_definition_input

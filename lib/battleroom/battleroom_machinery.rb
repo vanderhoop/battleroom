@@ -50,7 +50,7 @@ module BattleroomMachinery
 
   def print_colorized_error_prompt(error)
     method_or_variable = (error.class == NoMethodError) ? "method" : "variable"
-    battleprint "\nYou're referencing a #{method_or_variable} that doesn't exist, probably as the result of a mispelling. This results in a common error that says: \n".red
+    battleprint "\nYou're referencing a #{method_or_variable} that doesn't exist, probably as the result of a mispelling. This results in a common Ruby error that reads: \n".red
     battleprint "\tundefined local variable or method \'WHATEVER_YOU_MISTYPED\'\n".green
     battleprint "Get used to it and try again.\n".red
   end
