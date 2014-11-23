@@ -36,15 +36,11 @@ loop do
         reassignment_q = VariableReassignmentQuestion.new(b, q)
       else
         follow_up_question = VariableReferenceQuestion.new(b, q)
-        follow_up_question.print_variable_reference_prompt
-        follow_up_question.evaluate_variable_reference_input
       end
     end
   when '2'
     5.times do
       q = [ArrayAccessQuestion.new(b), HashAccessQuestion.new(b)].sample
-      q.print_data_structure_access_prompt
-      q.evaluate_data_structure_access_input
     end
   when '3'
     5.times do

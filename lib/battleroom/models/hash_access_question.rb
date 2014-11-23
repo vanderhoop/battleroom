@@ -8,6 +8,8 @@ class HashAccessQuestion < DataStructureAccessQuestion
   def initialize(scope)
     super(scope)
     format_hash
+    print_data_structure_access_prompt
+    evaluate_data_structure_access_input
   end
 
   def format_hash
