@@ -51,11 +51,15 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
       print_resulting_data_structure
       true
     else
-      battleprint "\nNope! Here's what the data stucture would look like given your code:\n".red
-      resulting_data_structure = evaluation_scope.eval(variable_name)
-      ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
-      battleprint "\nCheck your index and assignment values and try again.\n".red
+      print_incorrect_input_prompt
     end
+  end
+
+  def print_incorrect_input_prompt
+    battleprint "\nNope! Here's what the data stucture would look like given your code:\n".red
+    resulting_data_structure = evaluation_scope.eval(variable_name)
+    ap(resulting_data_structure, { indent: -2, index: false, multiline: true, plain: true })
+    battleprint "\nCheck your index and assignment values and try again.\n".red
   end
 
   def handles_user_workarounds(user_input)
