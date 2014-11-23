@@ -2,7 +2,7 @@ require_relative './follow_up_question'
 
 class MethodInvocationQuestion < FollowUpQuestion
 
-  attr_reader   :desired_answer_formatted, :desired_answer_class_formatted
+  attr_reader :desired_answer_formatted, :desired_answer_class_formatted
 
   def initialize(evaluation_scope, question_to_follow_up_on)
     super(evaluation_scope, question_to_follow_up_on)
@@ -62,6 +62,13 @@ class MethodInvocationQuestion < FollowUpQuestion
     $1
   end
 
+  def print_incorrect_input_prompt(return_from_eval)
+    # restore_pry_defaults
+    # binding.pry
+    battleprint "Your code returned the #{format_class_for_output(return_from_eval.class)} value #{return_from_eval.to_s} when it should have returned the #{desired_answer_class_formatted} value #{desired_answer_formatted}. Try again.".red
+    # battleprint "\nRemember, to call a method, you simply enter its name followed by any arguments it might need. Try again.\n".red
+  end
+
   def evaluate_user_input
     enter_evaluation_loop do |user_submission|
       begin
@@ -69,7 +76,7 @@ class MethodInvocationQuestion < FollowUpQuestion
         if return_from_eval == original_question.eval_answer
           true
         else
-          battleprint "\nRemember, to call a method, you simply enter its name followed by any arguments it might need. Try again.\n".red
+          print_incorrect_input_prompt(return_from_eval)
         end
       rescue NoMethodError => e
         print_no_method_error_prompt
