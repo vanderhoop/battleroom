@@ -3,7 +3,7 @@ require_relative '../data/variable_assignment_questions'
 
 class VariableAssignmentQuestion < Question
 
-  attr_accessor :formatted_value
+  attr_accessor :formatted_value, :formatted_class
   @questions = VARIABLE_QUESTIONS.shuffle
 
   def initialize(eval_scope)
@@ -13,7 +13,7 @@ class VariableAssignmentQuestion < Question
   end
 
   def print_variable_assignment_prompt
-    formatted_class = format_class_for_output(variable_value.class)
+    self.formatted_class = format_class_for_output(variable_value.class)
     substrings = [
       'Assign the variable '.blue,
       variable_name.yellow,
