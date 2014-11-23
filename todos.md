@@ -28,5 +28,11 @@ you're defining a method, you'll use the the "def" keyword, and end your method 
 
 - I want to quiet the congratulation on DataStructureAssignment questions
 
+- I could remove the stint-length question and just roll with names (so I can use faker for a follow-up question), but then I only 
+
+- Or I could remove the stint-length variable values that don't include 'month', 'year', or 'day', and then have users concatenate "3 months" with a dynamically generated alternative, like "and 5 years". Then, for names, have users concatenate a first name with a last name
+
+- Or I could have the initialize method short circuit variableReferenceQuestion if it's a string.
+
 
 
