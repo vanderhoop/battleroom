@@ -67,11 +67,10 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     # checks if user reassigned the variable to a new array of identical values
     if user_input.match(cheater_regex)
       if $1
-        battleprint 'You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby\'s Array#push method and try again!'.red
+        battleprint "You reassigned the variable to a new array object, when you could have worked with the array provided! Look up Ruby's Array#push method and try again!\n".red
       else
-        battleprint 'You reassigned the variable '.red + variable_name.green + ' rather than working with the array provided. Try again.'.red
+        battleprint 'You reassigned the variable '.red + variable_name.green + " rather than working with the array provided. Try again.\n".red
       end
-      battleprint ''
       true
     end
   end
