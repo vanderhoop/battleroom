@@ -7,6 +7,8 @@ class VariableReassignmentQuestion < FollowUpQuestion
   def initialize(evaluation_scope, original_question)
     super(evaluation_scope, original_question)
     @toggled_boolean = !(original_question.variable_value)
+    print_variable_reassignment_prompt
+    evaluate_variable_reassignment_input
   end
 
   def print_variable_reassignment_prompt

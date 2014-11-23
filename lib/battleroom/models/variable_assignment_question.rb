@@ -10,6 +10,8 @@ class VariableAssignmentQuestion < Question
     super(eval_scope)
     @variable_value = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
+    print_variable_assignment_prompt
+    evaluate_variable_assignment_input
   end
 
   def print_variable_assignment_prompt
