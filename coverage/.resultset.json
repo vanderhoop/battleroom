@@ -392,7 +392,7 @@
         1,
         5,
         5,
-        4,
+        3,
         null,
         5,
         null,
@@ -586,6 +586,32 @@
         1,
         1,
         null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
+        1,
+        2,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        2,
+        null,
+        null,
+        null,
+        null,
         null
       ],
       "/Users/vanderhoop/dev/projects/battleroom/lib/battleroom/data/variable_assignment_questions.rb": [
@@ -622,7 +648,10 @@
         null,
         null,
         null,
-        1,
+        null,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -750,6 +779,6 @@
         null
       ]
     },
-    "timestamp": 1416755915
+    "timestamp": 1416756579
   }
 }
