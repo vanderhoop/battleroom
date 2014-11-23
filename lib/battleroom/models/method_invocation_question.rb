@@ -8,6 +8,8 @@ class MethodInvocationQuestion < FollowUpQuestion
     super(evaluation_scope, question_to_follow_up_on)
     @desired_answer_formatted = format_value_for_stdout_and_eval(original_question.eval_answer)
     @desired_answer_class_formatted = format_class_for_output(original_question.eval_answer.class)
+    print_method_invocation_prompt
+    evaluate_user_input
   end
 
   def format_method_definition_for_stdout

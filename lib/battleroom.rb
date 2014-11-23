@@ -50,8 +50,6 @@ loop do
     5.times do
       q = MethodDefinitionQuestion.new(b)
       follow_up_question = MethodInvocationQuestion.new(b, q)
-      follow_up_question.print_method_invocation_prompt
-      follow_up_question.evaluate_user_input
     end
   when '5'
     5.times do
