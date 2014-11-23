@@ -20,21 +20,17 @@ class VariableReferenceQuestion < FollowUpQuestion
   end
 
   def develop_prompt
-    prompt = case original_question.variable_value.class.to_s
-             when 'String'
-               binding.pry
-             when 'Fixnum'
-              self.required_return_value = a_value_12_more_or_12_less_than_the_original_assigned_value
-              prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", ".blue + " / ".black.on_light_white + ", or ".blue + " ** ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
-             when 'Symbol'
-               binding.pry
-             when 'Float'
-               binding.pry
-             when 'TrueClass', 'FalseClass'
-               binding.pry
-             else
-               binding.pry
-             end
+    case original_question.variable_value.class.to_s
+    when 'String'
+      binding.pry
+    when 'Fixnum', 'Float'
+     self.required_return_value = a_value_12_more_or_12_less_than_the_original_assigned_value
+     prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", ".blue + " / ".black.on_light_white + ", or ".blue + " ** ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
+    when 'Symbol'
+      binding.pry
+    else
+      binding.pry
+    end
   end
 
   def provide_evaluation_scope_with_original_variable_assignment
