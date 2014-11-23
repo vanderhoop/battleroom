@@ -14,6 +14,8 @@ class NestedDataStructureAccessQuestion < DataStructureAccessQuestion
     else
       self.answer_value = data_structure[data_structure.keys.sample]
     end
+    print_data_structure_access_prompt
+    evaluate_data_structure_access_input
   end
 end
 
