@@ -22,7 +22,7 @@
 you're defining a method, you'll use the the "def" keyword, and end your method definition with the "end" keyword.
   - I've temporarily moved back to straight "puts"ing in cases where the text requires multiple lines
 
-- I want to add follow up questions to variable assignment, to hammer home the idea that variables store a reference to an object in memory. Look for common language explanations.
+- I want to add follow up questions to variable assignment, to hammer home the idea that variables store a reference to an object in memory.
 
 - I want to write tests for the the variable question data.
 

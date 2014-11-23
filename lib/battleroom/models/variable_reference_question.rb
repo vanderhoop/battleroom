@@ -6,6 +6,8 @@ class VariableReferenceQuestion < FollowUpQuestion
 
   def initialize(scope, original_question)
     super(scope, original_question)
+    print_variable_reference_prompt
+    evaluate_variable_reference_input
   end
 
   def print_variable_reference_prompt

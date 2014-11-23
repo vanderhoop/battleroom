@@ -8,6 +8,8 @@ class ArrayAccessQuestion < DataStructureAccessQuestion
   def initialize(scope)
     super(scope)
     format_array_for_access
+    print_data_structure_access_prompt
+    evaluate_data_structure_access_input
   end
 
   def format_array_for_access
