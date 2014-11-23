@@ -54,7 +54,7 @@ loop do
   when '5'
     5.times do
       q = NestedDataStructureAccessQuestion.new(b)
-    end
+
   else
     battleprint 'You entered a non-option. Try again.'.red
   end
