@@ -1,19 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'readline'
-require 'faker'
-require 'awesome_print'
-require 'pry'
-require 'colorize'
-require 'coderay'
-require 'word_wrap'
-
-path = File.expand_path("./battleroom/models/*.rb", File.dirname(__FILE__))
-Dir[path].each { |file| require file }
-
-require_relative './battleroom/config/pry_config'
-
-require_relative 'battleroom/battleroom_machinery'
+require_relative './battleroom/config/boot'
 include BattleroomMachinery
 
 clear_display
