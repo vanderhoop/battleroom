@@ -87,6 +87,14 @@ module BattleroomMachinery
     battleprint "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.\n".red
   end
 
+  def determine_variable_follow_up_question(eval_scope, question)
+    if question.variable_value == true || question.variable_value == false
+      VariableReassignmentQuestion.new(eval_scope, question)
+    else
+      VariableReferenceQuestion.new(eval_scope, question)
+    end
+  end
+
   def print_colorized_type_error_prompt(error)
     battleprint "\nNope! You just triggered a common Ruby error that reads:\n".red
     battleprint "\tin '[]', #{error.message}".green

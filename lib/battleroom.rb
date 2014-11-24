@@ -32,11 +32,7 @@ loop do
   when '1'
     10.times do
       q = VariableAssignmentQuestion.new(b)
-      if q.variable_value == true || q.variable_value == false
-        reassignment_q = VariableReassignmentQuestion.new(b, q)
-      else
-        follow_up_question = VariableReferenceQuestion.new(b, q)
-      end
+      determine_variable_follow_up_question(b, q)
     end
   when '2'
     5.times do
@@ -52,9 +48,7 @@ loop do
       follow_up_question = MethodInvocationQuestion.new(b, q)
     end
   when '5'
-    5.times do
-      q = NestedDataStructureAccessQuestion.new(b)
-
+    5.times { NestedDataStructureAccessQuestion.new(b) }
   else
     battleprint 'You entered a non-option. Try again.'.red
   end
