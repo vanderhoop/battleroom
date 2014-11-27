@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative './battleroom/config/boot'
-include BattleroomMachinery
 
 clear_display
 print 'Welcome to the Battleroom.'.blue

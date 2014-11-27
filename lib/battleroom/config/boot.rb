@@ -13,3 +13,6 @@ require_relative './pry_config'
 
 require_relative '../battleroom_machinery'
 
+include BattleroomMachinery
+
+

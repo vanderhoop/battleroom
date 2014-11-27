@@ -17,8 +17,10 @@ class VariableReferenceQuestion < FollowUpQuestion
     puts prompt
   end
 
-  def a_value_12_more_or_12_less_than_the_original_assigned_value
-    original_question.variable_value + rand(-12..12)
+  def a_value_within_12_more_or_12_less_than_the_original_assigned_value
+    range = (-12..12).to_a
+    range.delete(0)
+    original_question.variable_value + range.sample
   end
 
   def generate_appropriate_value
@@ -33,10 +35,10 @@ class VariableReferenceQuestion < FollowUpQuestion
           value / 2
         end
       else
-        a_value_12_more_or_12_less_than_the_original_assigned_value
+        a_value_within_12_more_or_12_less_than_the_original_assigned_value
       end
     else
-      a_value_12_more_or_12_less_than_the_original_assigned_value
+      a_value_within_12_more_or_12_less_than_the_original_assigned_value
     end
   end
 
