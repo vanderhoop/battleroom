@@ -21,13 +21,32 @@ class VariableReferenceQuestion < FollowUpQuestion
     original_question.variable_value + rand(-12..12)
   end
 
+  def generate_appropriate_value
+    value = original_question.variable_value
+    if value.class == Fixnum
+      if value.even? # && [1,2,3,4,5].sample.even?
+        if value < 12
+          value * [3,4,5,6].sample
+        elsif value < 50
+          value * 2
+        else
+          value / 2
+        end
+      else
+        a_value_12_more_or_12_less_than_the_original_assigned_value
+      end
+    else
+      a_value_12_more_or_12_less_than_the_original_assigned_value
+    end
+  end
+
   def develop_prompt
     case original_question.variable_value.class.to_s
     when 'String'
       binding.pry
     when 'Fixnum', 'Float'
-     self.required_return_value = a_value_12_more_or_12_less_than_the_original_assigned_value
-     prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", ".blue + " / ".black.on_light_white + ", or ".blue + " ** ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
+     self.required_return_value = generate_appropriate_value()
+     prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", or ".blue + " / ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
     when 'Symbol'
       binding.pry
     else

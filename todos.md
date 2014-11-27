@@ -12,9 +12,18 @@
 
     > unlucky_number = 44
     Your code returned the Fixnum value 44 when it should have returned the Fixnum value 44. Try again.
-    > 
 
-- I want to refactor all things having to do with errors
+- I want to keep this from happening:
+
+    You now have the variable assignment below at your disposal.
+
+            sum = 21.6
+
+    Use sum in combination with an arithmetic operator like  + ,  - ,  * ,  / , or  **  to return the Fixnum value 13.600000000000001.
+
+- Within `evaluate_variable_reference_input`, I want to check for the variable being reassigned. If the user reassigns the variable to the required return value, they're told they answered the question correctly, which they haven't.
+
+
 
 - I want to come up with a solution for the erroring word_wrap in the method definition question: "Basically, you tried to use a method before you defined it, and Ruby said, "You haven't told me how to do that yet." To let Ruby know that
 you're defining a method, you'll use the the "def" keyword, and end your method definition with the "end" keyword.
