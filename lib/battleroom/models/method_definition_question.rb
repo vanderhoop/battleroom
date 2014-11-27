@@ -43,7 +43,7 @@ class MethodDefinitionQuestion < Question
   def print_no_method_error_prompt
     battleprint "\nYou just trigged a common Ruby error that reads: \n".red
     battleprint "\tundefined method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
-    battleprint "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword, and end your method definition with the \"end\" keyword.\n".red
+    battleprint "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword followed by the desired method name and an optional list of arguments between parentheses. Once you've finished writing the method's inner code, you'll let Ruby know that your method definition is finished by using the \"end\" keyword.\n".red
   end
 
   def fresh_binding
