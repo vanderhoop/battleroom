@@ -33,7 +33,7 @@ class MethodDefinitionQuestion < Question
   end
 
   def handle_incorrect_method_definition(return_value)
-    battleprint "\nWhen calling ".red + eval_string + ",  your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
+    battleprint "\nWhen invoking your method via ".red + eval_string + ", your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
   def print_puts_explanation
@@ -43,7 +43,7 @@ class MethodDefinitionQuestion < Question
   def print_no_method_error_prompt
     battleprint "\nYou just trigged a common Ruby error that reads: \n".red
     battleprint "\tundefined method \'WHATEVER_METHOD_YOU_TRIED_TO_INVOKE\'\n".green
-    battleprint "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword followed by the desired method name and an optional list of arguments between parentheses. Once you've finished writing the method's inner code, you'll let Ruby know that your method definition is finished by using the \"end\" keyword.\n".red
+    battleprint "Basically, you tried to use a method before you defined it, and Ruby said, \"You haven't told me how to do that yet.\" To let Ruby know that you're defining a method, you'll use the the \"def\" keyword, followed by the desired method name, and in many cases an optional list of arguments between parentheses. Once you've finished writing the method's inner code, you'll let Ruby know that your method definition is finished by using the \"end\" keyword.\n".red
   end
 
   def fresh_binding
@@ -55,7 +55,7 @@ class MethodDefinitionQuestion < Question
     if user_submission.match(definition_pattern)
       handle_incorrect_method_definition(user_submission)
     else
-      battleprint "You defined the wrong method, probably as the result of a mispelling. Try again.".red
+      battleprint "\nYou defined the wrong method, probably as the result of a mispelling. Try again.".red
     end
   end
 
