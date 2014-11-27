@@ -64,7 +64,7 @@ class VariableReferenceQuestion < FollowUpQuestion
         if !user_submission.include?(original_question.variable_name)
           battleprint "You didn't make use of the '#{original_question.variable_name}' variable, which is the entire purpose of this exercise. Try again.".red
         elsif user_submission.include?("=")
-          battleprint "Looks like you simply assigned or reassigned a value to a variable. Reread the directions and try again.".red
+          battleprint "Looks like you simply assigned or reassigned a value to a variable. Reread the directions and try again!".red
         elsif (returned_value == required_return_value)
           true
         else

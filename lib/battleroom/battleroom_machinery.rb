@@ -85,7 +85,7 @@ module BattleroomMachinery
     battleprint "\nNope! You just triggered a common Ruby error that reads:\n".red
     battleprint "\tsyntax error, unexpected end-of-input\n".green
     if error.message.include?(']')
-      battleprint "Basically, you used an opening square bracket '[', but didn't pair it with a closing square bracket, which Ruby expected. Try again.\n".red
+      battleprint "Basically, you used an opening square bracket '[', but didn't pair it with a closing square bracket. Try again.\n".red
     else
       battleprint "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.\n".red
     end
