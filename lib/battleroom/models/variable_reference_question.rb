@@ -44,15 +44,11 @@ class VariableReferenceQuestion < FollowUpQuestion
 
   def develop_prompt
     case original_question.variable_value.class.to_s
-    when 'String'
-      binding.pry
     when 'Fixnum', 'Float'
      self.required_return_value = generate_appropriate_value()
      prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", or ".blue + " / ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
-    when 'Symbol'
-      binding.pry
     else
-      binding.pry
+      battleprint "Something's gone wrong. This code should never run.".red
     end
   end
 
@@ -70,7 +66,7 @@ class VariableReferenceQuestion < FollowUpQuestion
         elsif (returned_value == required_return_value)
           true
         else
-          puts "Your code returned the #{format_class_for_output(returned_value.class)} value #{returned_value.to_s} when it should have returned the #{original_question.formatted_class} value #{original_question.formatted_value}. Try again.".red
+          puts "Your code returned the #{format_class_for_output(returned_value.class)} value #{returned_value.to_s} when it should have returned the #{original_question.formatted_class} value #{format_value_for_stdout_and_eval(required_return_value)}. Try again.".red
         end
       rescue NameError, NoMethodError => e
         print_colorized_error_prompt(e)

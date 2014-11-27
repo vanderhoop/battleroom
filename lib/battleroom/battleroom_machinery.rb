@@ -90,6 +90,8 @@ module BattleroomMachinery
   def determine_variable_follow_up_question(eval_scope, question)
     if question.variable_value == true || question.variable_value == false
       VariableReassignmentQuestion.new(eval_scope, question)
+    elsif question.variable_value.class == Symbol || question.variable_value.class == String
+      nil
     else
       VariableReferenceQuestion.new(eval_scope, question)
     end

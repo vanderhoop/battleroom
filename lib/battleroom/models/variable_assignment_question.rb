@@ -38,7 +38,7 @@ class VariableAssignmentQuestion < Question
     elsif !user_input.match(/("|')/) && variable_value.class == String
       battleprint 'Rats! You\'ve just made a common rookie mistake! Strings are always surrounded by quotes. Otherwise, Ruby will think you\'re referencing a variable or method name. Try again.'.red
     else
-      battleprint "Looks like you mistyped the variable name. Check for misspellings and try again.\n".red
+      battleprint "Looks like you mistyped the variable name. Check for misspellings and try again.".red
     end
   end
 
