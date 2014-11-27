@@ -50,7 +50,8 @@ ARRAY_QUESTIONS = [
       'lovers',
       'admirers',
       'haters',
-      'stalker_names'
+      'stalker_names',
+      'teammates'
     ].shuffle,
   },
   {
@@ -62,7 +63,8 @@ ARRAY_QUESTIONS = [
       'fav_ages',
       'jersey_numbers',
       'lucky_numbers',
-      'unlucky_numbers'
+      'unlucky_numbers',
+      'totals',
     ].shuffle,
   },
   {
