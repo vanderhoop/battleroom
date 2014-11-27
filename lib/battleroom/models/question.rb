@@ -28,7 +28,7 @@
 
   def handle_syntax_error_exceptions(error)
     if error.message.match /unexpected end-of-input/
-      print_unexpected_end_of_input_explanation
+      print_unexpected_end_of_input_explanation(error)
     elsif error.message.include?('unterminated string meets end of file')
       battleprint 'Blurg! You neglected to provide closing quotes for your string. Try again!'.red
     end

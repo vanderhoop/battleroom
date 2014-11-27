@@ -81,10 +81,14 @@ module BattleroomMachinery
     width_string.strip.to_i
   end
 
-  def print_unexpected_end_of_input_explanation
+  def print_unexpected_end_of_input_explanation(error)
     battleprint "\nNope! You just triggered a common Ruby error that reads:\n".red
     battleprint "\tsyntax error, unexpected end-of-input\n".green
-    battleprint "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.\n".red
+    if error.message.include?(']')
+      battleprint "Basically, you used an opening square bracket '[', but didn't pair it with a closing square bracket, which Ruby expected. Try again.\n".red
+    else
+      battleprint "Basically, you told Ruby you were going to assign a value to a variable, but you neglected to provide a valid value. Try again.\n".red
+    end
   end
 
   def determine_variable_follow_up_question(eval_scope, question)
