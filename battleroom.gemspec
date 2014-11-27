@@ -2,16 +2,16 @@ Gem::Specification.new do |s|
   s.name        = 'battleroom'
   s.version     = '0.0.80'
   s.date        = '2014-11-27'
-  s.description = "A command-line REPL designed to give novice Ruby programmers countless reps doing simple tasks like assigning variables, working with data structures, and defining and invoking methods."
-  s.summary     = "A command-line REPL designed to give novice Ruby programmers countless reps doing simple tasks like assigning variables, working with data structures, and defining and invoking methods."
+  s.description = "A REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods."
+  s.summary     = "A REPL designed to give Ruby newbies countless reps doing simple tasks like working with variables, manipulating data structures, and defining and invoking methods."
   s.authors     = ["Travis Vander Hoop"]
   s.email       = 'vanderhoop@me.com'
-  s.files = Dir['lib/   *.rb']                    +
-            Dir['lib/battleroom/config/   *.rb']  +
-            Dir['lib/battleroom/data/   *.rb']    +
-            Dir['lib/battleroom/helpers/   *.rb'] +
-            Dir['lib/battleroom/models/   *.rb']  +
-            Dir['bin/*']
+  s.files       = Dir['lib/   *.rb']                    +
+                  Dir['lib/battleroom/config/   *.rb']  +
+                  Dir['lib/battleroom/data/   *.rb']    +
+                  Dir['lib/battleroom/helpers/   *.rb'] +
+                  Dir['lib/battleroom/models/   *.rb']  +
+                  Dir['bin/*']
   s.required_ruby_version = '>= 1.9.3'
   s.add_runtime_dependency 'faker',                   '1.4.3'
   s.add_runtime_dependency 'colorize',                '0.7.3'
