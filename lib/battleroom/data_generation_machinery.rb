@@ -81,7 +81,7 @@ module DataGenerationMachinery
     email_key = [:email, :public_email, :info_email, :contact_email].sample
     web_key = [:url, :website, :homepage_url].sample
     address_key = [:street_address, :address].sample
-    established_key = [:established, :inception_year].sample
+    established_key = [:established].sample
     name = gen_business_name_under_16_characters
     email_address = gen_business_email_address(name)
     business = {

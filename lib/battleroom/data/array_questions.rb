@@ -36,6 +36,7 @@ ARRAY_QUESTIONS = [
       'sci_fi_titles',
       'books',
       'paperback_titles',
+      'fav_books',
     ].shuffle,
   },
   {
