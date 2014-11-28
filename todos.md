@@ -1,18 +1,5 @@
 ## Todos
 
-- I want to look over the variable assignment questions and try to identify ways in which I can add a follow up question 
-
-- I want to keep this from happening:
-
-    You now have the variable assignment below at your disposal.
-
-            unlucky_number = 44
-
-    Use unlucky_number in combination with an arithmetic operator like  + ,  - ,  * ,  / , or  **  to return the Fixnum value 43.
-
-    > unlucky_number = 44
-    Your code returned the Fixnum value 44 when it should have returned the Fixnum value 44. Try again.
-
 - I want to keep this from happening:
 
     You now have the variable assignment below at your disposal.

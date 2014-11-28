@@ -46,7 +46,7 @@ class VariableReferenceQuestion < FollowUpQuestion
     case original_question.variable_value.class.to_s
     when 'Fixnum', 'Float'
      self.required_return_value = generate_appropriate_value()
-     prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", or ".blue + " / ".black.on_light_white + " to return the Fixnum value ".blue + required_return_value.to_s.green + ".\n".blue
+     prompt = "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  " + ".black.on_light_white + ", ".blue + " - ".black.on_light_white + ", ".blue + " * ".black.on_light_white + ", or ".blue + " / ".black.on_light_white + " to return the #{original_question.formatted_class} value ".blue + required_return_value.to_s.green + ".\n".blue
     else
       battleprint "Something's gone wrong. This code should never run.".red
     end
