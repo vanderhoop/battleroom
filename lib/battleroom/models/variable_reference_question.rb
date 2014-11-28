@@ -23,6 +23,16 @@ class VariableReferenceQuestion < FollowUpQuestion
     original_question.variable_value + range.sample
   end
 
+  def a_value_that_doesnt_result_from_imprecise_float_arithmetic
+    new_target_value = original_question.variable_value + rand(1..15)
+    count = 1
+    while new_target_value.to_s.split(".").last.length > 4
+      new_target_value = original_question.variable_value + count
+      count += 1
+    end
+    new_target_value
+  end
+
   def generate_appropriate_value
     value = original_question.variable_value
     if value.class == Fixnum
@@ -38,7 +48,11 @@ class VariableReferenceQuestion < FollowUpQuestion
         a_value_within_12_more_or_12_less_than_the_original_assigned_value
       end
     else
-      a_value_within_12_more_or_12_less_than_the_original_assigned_value
+      puts "Here's the old value that would have been targeted: #{a_value_within_12_more_or_12_less_than_the_original_assigned_value}".red
+      # positive value only for floats, as the math is just hard enough to deter from the purpose of this exercise
+      new_proposed_value = a_value_that_doesnt_result_from_imprecise_float_arithmetic()
+      puts "Here's the new value, per my proposed solution: #{new_proposed_value}".red
+      new_proposed_value
     end
   end
 
@@ -64,7 +78,7 @@ class VariableReferenceQuestion < FollowUpQuestion
         if !user_submission.include?(original_question.variable_name)
           battleprint "You didn't make use of the '#{original_question.variable_name}' variable, which is the entire purpose of this exercise. Try again.".red
         elsif user_submission.include?("=")
-          battleprint "Looks like you simply assigned or reassigned a value to a variable. Reread the directions and try again!".red
+          battleprint "Looks like you simply assigned (or reassigned) a value to a variable, rather than making use of the value stored in '#{original_question.variable_name}'. Reread the directions and try again!".red
         elsif (returned_value == required_return_value)
           true
         else
