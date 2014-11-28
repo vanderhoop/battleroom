@@ -48,10 +48,8 @@ class VariableReferenceQuestion < FollowUpQuestion
         a_value_within_12_more_or_12_less_than_the_original_assigned_value
       end
     else
-      puts "Here's the old value that would have been targeted: #{a_value_within_12_more_or_12_less_than_the_original_assigned_value}".red
       # positive value only for floats, as the math is just hard enough to deter from the purpose of this exercise
       new_proposed_value = a_value_that_doesnt_result_from_imprecise_float_arithmetic()
-      puts "Here's the new value, per my proposed solution: #{new_proposed_value}".red
       new_proposed_value
     end
   end
