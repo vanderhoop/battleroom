@@ -24,7 +24,11 @@ class VariableReferenceQuestion < FollowUpQuestion
   end
 
   def a_value_that_doesnt_result_from_imprecise_float_arithmetic
-    new_target_value = original_question.variable_value + rand(1..15)
+    if original_question.variable_value < 15
+      new_target_value = original_question.variable_value + rand(1..15)
+    else
+      new_target_value = a_value_within_12_more_or_12_less_than_the_original_assigned_value
+    end
     count = 1
     while new_target_value.to_s.split(".").last.length > 4
       new_target_value = original_question.variable_value + count
@@ -48,9 +52,7 @@ class VariableReferenceQuestion < FollowUpQuestion
         a_value_within_12_more_or_12_less_than_the_original_assigned_value
       end
     else
-      # positive value only for floats, as the math is just hard enough to deter from the purpose of this exercise
-      new_proposed_value = a_value_that_doesnt_result_from_imprecise_float_arithmetic()
-      new_proposed_value
+      a_value_that_doesnt_result_from_imprecise_float_arithmetic()
     end
   end
 
