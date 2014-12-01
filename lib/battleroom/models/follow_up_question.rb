@@ -7,6 +7,7 @@ class FollowUpQuestion < Question
   def initialize(evaluation_scope, original_question)
     @evaluation_scope = evaluation_scope
     @original_question = original_question
+    @input_mechanism = 'readline'
   end
 
 end

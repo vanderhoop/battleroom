@@ -1,4 +1,4 @@
-  class Question
+class Question
   attr_reader   :data
   attr_accessor :variable_name, :variable_value, :data_structure,
                 :data_structure_class, :answer_value, :explanation,
