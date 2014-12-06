@@ -48,7 +48,7 @@ VARIABLE_QUESTIONS = [
       'authorized',
       'heartbroken',
       'ecstatic',
-      'admin_user',
+      'is_admin_user',
       'likes_dogs',
       'takes_baths',
       'can_swim',
