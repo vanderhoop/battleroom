@@ -6,12 +6,12 @@ volume_arg_three = rand(1..9)
 double_arg = rand(2..50)
 square_arg = rand(2..12)
 cube_arg = rand(2..5)
-meters_to_centimeters_arg = rand(1..99)
-grams_to_milligrams_arg = rand(2..11)
+meters_to_centimeters_arg = rand(11..99)
+grams_to_milligrams_arg = rand(3..11)
 convert_bytes_to_bits_arg = ((6..11).to_a + [100, 1000]).sample
 
 # values explicitly chosen to avoid values that would result in imprecise floating point arithmetic
-kilograms_to_pounds_arg = [1, 2, 4, 10, 20, 30, 1000].shuffle.sample
+kilograms_to_pounds_arg = [2, 4, 10, 20, 30, 1000].shuffle.sample
 
 METHOD_QUESTONS = [
   {
@@ -105,13 +105,13 @@ METHOD_QUESTONS = [
     eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
     eval_answer: grams_to_milligrams_arg * 1000
   },
-  {
-    method_name: "convert_weeks_to_minutes",
-    arg_count: 1,
-    spec: "returns its lone argument multiplied the product of the Fixnum values 7, 24, and 60",
-    eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
-    eval_answer: grams_to_milligrams_arg * 1000
-  },
+  # {
+  #   method_name: "convert_weeks_to_minutes",
+  #   arg_count: 1,
+  #   spec: "returns its lone argument multiplied the product of the Fixnum values 7, 24, and 60",
+  #   eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
+  #   eval_answer: grams_to_milligrams_arg * 1000
+  # },
   {
     method_name: "convert_bytes_to_bits",
     arg_count: 1,
