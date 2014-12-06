@@ -1,5 +1,5 @@
 require_relative '../data/hash_questions'
-require_relative './data_structure_access_question'
+require_relative './data_structure_assignment_question'
 
 class HashAssignmentQuestion < DataStructureAssignmentQuestion
 

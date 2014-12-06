@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.84'
+  s.version     = '0.0.85'
   s.date        = '2014-12-06'
   s.description = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
   s.summary     = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
