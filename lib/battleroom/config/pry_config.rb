@@ -10,15 +10,22 @@ def configure_pry
   ]
   Pry.config.memory_size = 10
 
+  # removes pry's exit command, which is run before any of the before_eval hooks, resulting in a pry session users can't escape
   Pry::Commands.delete("exit")
 
+  # # quiets pry error caused by self_termination (below)
+  Pry.config.exception_handler = proc { |output, exception, _| }
+
+  # short circuits pry REPL before eval, saving eval for Question
   Pry.config.hooks.add_hook :before_eval, :self_terminate do |last_input, pry_instance|
     begin
+      # exports user input for availability
       $input = last_input
       unless last_input.include?("revert_pry_to_defaults")
         pry_instance.run_command("continue")
       end
-    rescue ArgumentError, NoMethodError
+    # quiets ArgumentError thrown by pry-byebug as a result of self_termination hook (above)
+    rescue ArgumentError
     end
   end
 end
