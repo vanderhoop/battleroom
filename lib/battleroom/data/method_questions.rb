@@ -7,7 +7,8 @@ double_arg = rand(2..50)
 square_arg = rand(2..12)
 cube_arg = rand(2..5)
 meters_to_centimeters_arg = rand(1..99)
-grams_to_milligrams_arg = rand(1..11)
+grams_to_milligrams_arg = rand(2..11)
+convert_bytes_to_bits_arg = ((6..11).to_a + [100, 1000]).sample
 
 # values explicitly chosen to avoid values that would result in imprecise floating point arithmetic
 kilograms_to_pounds_arg = [1, 2, 4, 10, 20, 30, 1000].shuffle.sample
@@ -58,14 +59,14 @@ METHOD_QUESTONS = [
   # {
   #   method_name: "square",
   #   arg_count: 1,
-  #   spec: "returns its lone argument to the 2nd power, i.e. multiplied by itself",
+  #   spec: "returns its lone argument to the second power",
   #   eval_string: "square(#{square_arg})",
   #   eval_answer: square_arg ** 2
   # },
   # {
   #   method_name: "cube",
   #   arg_count: 1,
-  #   spec: "returns its lone argument to the 3rd power",
+  #   spec: "returns its lone argument to the third power",
   #   eval_string: "cube(#{cube_arg})",
   #   eval_answer: cube_arg ** 3
   # },
@@ -97,11 +98,25 @@ METHOD_QUESTONS = [
   #   eval_string: "meters_to_centimeters(#{kilograms_to_pounds_arg})",
   #   eval_answer: kilograms_to_pounds_arg * 100
   # },
+  # {
+  #   method_name: "grams_to_milligrams",
+  #   arg_count: 1,
+  #   spec: "returns its lone argument multiplied by the Fixnum value 1000",
+  #   eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
+  #   eval_answer: grams_to_milligrams_arg * 1000
+  # },
+  # {
+  #   method_name: "convert_weeks_to_minutes",
+  #   arg_count: 1,
+  #   spec: "returns its lone argument multiplied the product of the Fixnum values 7, 24, and 60",
+  #   eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
+  #   eval_answer: grams_to_milligrams_arg * 1000
+  # },
   {
-    method_name: "grams_to_milligrams",
+    method_name: "convert_bytes_to_bits",
     arg_count: 1,
-    spec: "returns its lone argument multiplied by the Fixnum value 1000",
-    eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
-    eval_answer: grams_to_milligrams_arg * 1000
+    spec: "returns its lone argument multiplied by the Fixnum value 8",
+    eval_string: "convert_bytes_to_bits(#{convert_bytes_to_bits_arg})",
+    eval_answer: convert_bytes_to_bits_arg * 8
   },
 ].shuffle
