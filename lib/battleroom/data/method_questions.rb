@@ -6,6 +6,8 @@ volume_arg_three = rand(1..9)
 double_arg = rand(2..50)
 square_arg = rand(2..12)
 cube_arg = rand(2..5)
+meters_to_centimeters_arg = rand(1..99)
+grams_to_milligrams_arg = rand(1..11)
 
 # values explicitly chosen to avoid values that would result in imprecise floating point arithmetic
 kilograms_to_pounds_arg = [1, 2, 4, 10, 20, 30, 1000].shuffle.sample
@@ -81,11 +83,25 @@ METHOD_QUESTONS = [
   #   eval_string: "celcius_to_kelvin(#{square_arg})",
   #   eval_answer: square_arg + 273.15
   # },
-    {
-    method_name: "kilograms_to_pounds",
+  #   {
+  #   method_name: "kilograms_to_pounds",
+  #   arg_count: 1,
+  #   spec: "returns its lone argument multiplied by the Float value " + "\e[0;33;49m2.2\e[0m",
+  #   eval_string: "kilograms_to_pounds(#{kilograms_to_pounds_arg})",
+  #   eval_answer: kilograms_to_pounds_arg * 2.2
+  # },
+  # {
+  #   method_name: "meters_to_centimeters",
+  #   arg_count: 1,
+  #   spec: "returns its lone argument multiplied by the Fixnum value " + "\e[0;33;49m100\e[0m",
+  #   eval_string: "meters_to_centimeters(#{kilograms_to_pounds_arg})",
+  #   eval_answer: kilograms_to_pounds_arg * 100
+  # },
+  {
+    method_name: "grams_to_milligrams",
     arg_count: 1,
-    spec: "returns its lone argument multiplied by the Float value \e[0;33;49m2.2\e[0m",
-    eval_string: "kilograms_to_pounds(#{kilograms_to_pounds_arg})",
-    eval_answer: kilograms_to_pounds_arg * 2.2
+    spec: "returns its lone argument multiplied by the Fixnum value 1000",
+    eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
+    eval_answer: grams_to_milligrams_arg * 1000
   },
 ].shuffle
