@@ -6,6 +6,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
   @questions = HASH_QUESTIONS.shuffle
 
   def post_initialize
+    super
     format_hash_for_assignment
     print_data_structure_assignment_prompt
     evaluate_data_structure_assignment_input

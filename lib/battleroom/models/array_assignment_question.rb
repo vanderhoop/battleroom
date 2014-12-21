@@ -6,6 +6,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
   @questions = ARRAY_QUESTIONS
 
   def post_initialize
+    super
     format_array_for_assignment
     print_data_structure_assignment_prompt
     evaluate_data_structure_assignment_input

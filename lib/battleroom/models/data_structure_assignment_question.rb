@@ -19,6 +19,10 @@ class DataStructureAssignmentQuestion < DataStructureQuestion
     'Terrific'
   ]
 
+  def post_initialize
+    super
+  end
+
   def print_data_structure
     print "#{variable_name} = ".green
     ap(data_structure, { indent: -2, index: false, multiline: true, plain: true })
