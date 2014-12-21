@@ -4,8 +4,7 @@ class VariableReferenceQuestion < FollowUpQuestion
 
   attr_accessor :required_return_value
 
-  def initialize(scope, original_question)
-    super(scope, original_question)
+  def post_initialize
     print_variable_reference_prompt
     evaluate_variable_reference_input
   end

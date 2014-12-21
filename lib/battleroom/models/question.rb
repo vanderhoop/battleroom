@@ -9,10 +9,14 @@ class Question
     @data = self.class.generate_question
     @variable_name = rotate_array(data[:possible_variable_names] || []).first
     @input_mechanism = 'readline'
+    post_initialize
   end
 
-  # retrieves question from front of the array and rotates it to the back
-  # to avoid immediate re-sampling of questions
+  def post_initialize
+    nil
+  end
+
+  # to avoids immediate re-sampling of questions
   def self.generate_question
     # calls upon *class instance* variable assigned in the subclasses
     question = @questions.shift

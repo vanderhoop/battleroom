@@ -6,8 +6,7 @@ class VariableAssignmentQuestion < Question
   attr_accessor :formatted_value, :formatted_class
   @questions = VARIABLE_QUESTIONS.shuffle
 
-  def initialize(eval_scope)
-    super(eval_scope)
+  def post_initialize
     @variable_value = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
     print_variable_assignment_prompt

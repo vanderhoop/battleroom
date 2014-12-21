@@ -4,8 +4,7 @@ class VariableReassignmentQuestion < FollowUpQuestion
 
   attr_accessor :toggled_boolean
 
-  def initialize(evaluation_scope, original_question)
-    super(evaluation_scope, original_question)
+  def post_initialize
     @toggled_boolean = !(original_question.variable_value)
     print_variable_reassignment_prompt
     evaluate_variable_reassignment_input
