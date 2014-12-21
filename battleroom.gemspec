@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.86'
+  s.version     = '0.0.87'
   s.date        = '2014-12-06'
   s.description = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
   s.summary     = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'activesupport',           '4.1.6'
   s.add_runtime_dependency 'pry',                     '~> 0.10'
   # s.add_runtime_dependency 'pry',                   '~> 0.9' # version necessary for inclusion in battleroom for MRI 2.0
-  s.add_runtime_dependency 'pry-byebug',              '~> 2.0'
+  # s.add_runtime_dependency 'pry-byebug',              '~> 2.0'
   # s.add_runtime_dependency 'pry-debugger',          '0.2.3'  # version necessary for inclusion in battleroom for MRI 1.9.3
   s.add_runtime_dependency 'coderay',                 '1.1.0'
   s.add_runtime_dependency 'word_wrap',               '0.2.1'

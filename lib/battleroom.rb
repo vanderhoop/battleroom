@@ -28,12 +28,12 @@ loop do
     5.times do
       q = [ArrayAssignmentQuestion.new(b), HashAssignmentQuestion.new(b)].sample
     end
+  # when '4'
+    # 5.times do
+    #   q = MethodDefinitionQuestion.new(b)
+    #   follow_up_question = MethodInvocationQuestion.new(b, q)
+    # end
   when '4'
-    5.times do
-      q = MethodDefinitionQuestion.new(b)
-      follow_up_question = MethodInvocationQuestion.new(b, q)
-    end
-  when '5'
     5.times { NestedDataStructureAccessQuestion.new(b) }
   else
     battleprint 'You entered a non-option. Try again.'.red
