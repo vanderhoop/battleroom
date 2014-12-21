@@ -5,8 +5,8 @@ class ArrayAccessQuestion < DataStructureAccessQuestion
 
   @questions = ARRAY_QUESTIONS.shuffle
 
-  def initialize(scope)
-    super(scope)
+  def post_initialize
+    super
     format_array_for_access
     print_data_structure_access_prompt
     evaluate_data_structure_access_input

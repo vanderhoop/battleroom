@@ -2,10 +2,6 @@ require_relative './data_structure_question'
 
 class DataStructureAccessQuestion < DataStructureQuestion
 
-  def initialize(eval_scope)
-    super(eval_scope)
-  end
-
   def print_data_structure_access_prompt
     answer_value_class = format_class_for_output(answer_value.class)
     answer_value_string = format_value_for_stdout_and_eval(answer_value)

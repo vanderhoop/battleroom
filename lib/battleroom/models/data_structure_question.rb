@@ -3,8 +3,7 @@ require_relative './question'
 class DataStructureQuestion < Question
   attr_accessor :data_structure, :hint, :possible_assignments
 
-  def initialize(eval_scope)
-    super(eval_scope)
+  def post_initialize
     @data_structure = data[:data_structure].clone
     if data_structure.class == Array
       # randomizes and shuffles the items in the arrays, so repeats remain interesting

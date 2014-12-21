@@ -8,8 +8,7 @@ require_relative './question'
 
 #   @questions = METHOD_QUESTONS.shuffle
 
-#   def initialize(scope)
-#     super(scope)
+#   def post_initialize
 #     @method_name = data[:method_name]
 #     @arg_count = data[:arg_count]
 #     @spec = data[:spec]

@@ -37,4 +37,4 @@ def restore_pry_defaults
   Pry.config.hooks.delete_hook :before_eval, :self_terminate
 end
 
-configure_pry
+# configure_pry

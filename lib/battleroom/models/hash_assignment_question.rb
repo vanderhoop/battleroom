@@ -5,8 +5,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
 
   @questions = HASH_QUESTIONS.shuffle
 
-  def initialize(scope)
-    super(scope)
+  def post_initialize
     format_hash_for_assignment
     print_data_structure_assignment_prompt
     evaluate_data_structure_assignment_input
@@ -14,11 +13,11 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
 
   def format_hash_for_assignment
     cull_hash_to_valid_size_for_output
-    assignment = possible_assignments.sample
-    self.assignment_value = assignment.values[0]
-    self.assignment_value_class = format_class_for_output(assignment_value.class)
+    assignment                      = possible_assignments.sample
+    self.assignment_value           = assignment.values[0]
+    self.assignment_value_class     = format_class_for_output(assignment_value.class)
     self.formatted_assignment_value = format_value_for_stdout_and_eval(assignment_value)
-    self.assignment_key = format_value_for_stdout_and_eval(assignment.keys[0])
+    self.assignment_key             = format_value_for_stdout_and_eval(assignment.keys[0])
   end
 
   def print_data_structure_assignment_prompt

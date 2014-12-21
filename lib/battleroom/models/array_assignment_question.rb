@@ -5,8 +5,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
 
   @questions = ARRAY_QUESTIONS
 
-  def initialize(scope)
-    super(scope)
+  def post_initialize
     format_array_for_assignment
     print_data_structure_assignment_prompt
     evaluate_data_structure_assignment_input
