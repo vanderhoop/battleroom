@@ -5,6 +5,8 @@ require 'pry'
 require 'colorize'
 require 'coderay'
 require 'word_wrap'
+require 'rubygems'
+require 'rubygems/dependency_installer'
 
 path = File.expand_path("../models/*.rb", File.dirname(__FILE__))
 Dir[path].each { |file| require file }
