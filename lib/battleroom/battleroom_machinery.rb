@@ -30,7 +30,7 @@ module BattleroomMachinery
     battleprint '1. Working with Variables'
     battleprint '2. Accessing Values in Arrays and Hashes'
     battleprint '3. Adding Values to Arrays and Hashes'
-    # battleprint '4. Working with Methods'
+    battleprint '4. Working with Methods'
     battleprint "Q. Quit\r\n\n"
   end
 
