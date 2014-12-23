@@ -1,4 +1,4 @@
-require_relative '../data_generation_machinery'
+require_relative '../helpers/data_generation_machinery'
 include DataGenerationMachinery
 require 'active_support/inflector'
 
