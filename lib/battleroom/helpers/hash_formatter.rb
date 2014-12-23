@@ -1,3 +1,0 @@
-module HashFormatter
-
-end
