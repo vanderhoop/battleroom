@@ -70,5 +70,9 @@ module Battleroom
       klass.to_s
     end
 
+    def codify(str)
+      str.black.on_light_white
+    end
+
   end
 end
