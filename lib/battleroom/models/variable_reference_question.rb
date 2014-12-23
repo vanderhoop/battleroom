@@ -75,19 +75,27 @@ class VariableReferenceQuestion < FollowUpQuestion
     evaluation_scope.eval("#{variable_name} = #{formatted_variable_value}")
   end
 
+  def user_doesnt_use_variable?(user_input)
+    !user_input.include?(variable_name)
+  end
+
+  def coach_user_and_reprompt(return_value_of_user_input)
+    puts "Your code returned the #{format_class_for_output(return_value_of_user_input.class)} value #{return_value_of_user_input.to_s} when it should have returned the #{formatted_variable_class} value #{format_value_for_stdout_and_eval(required_return_value)}. Try again.".red
+  end
+
   def evaluate_variable_reference_input
     enter_evaluation_loop do |user_submission|
       begin
         provide_evaluation_scope_with_original_variable_assignment
         returned_value = evaluation_scope.eval(user_submission)
-        if !user_submission.include?(variable_name)
+        if user_doesnt_use_variable?(user_submission)
           battleprint "You didn't make use of the '#{variable_name}' variable, which is the entire purpose of this exercise. Try again.".red
         elsif user_submission.include?("=")
           battleprint "Looks like you simply assigned (or reassigned) a value to a variable, rather than making use of the value stored in '#{variable_name}'. Reread the directions and try again!".red
         elsif (returned_value == required_return_value)
           true
         else
-          puts "Your code returned the #{format_class_for_output(returned_value.class)} value #{returned_value.to_s} when it should have returned the #{formatted_variable_class} value #{format_value_for_stdout_and_eval(required_return_value)}. Try again.".red
+          coach_user_and_reprompt(returned_value)
         end
       rescue NameError, NoMethodError => e
         print_colorized_error_prompt(e)
