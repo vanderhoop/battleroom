@@ -15,11 +15,9 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'awesome_print',           '1.2.0'
   s.add_runtime_dependency 'activesupport',           '4.1.6'
   s.add_runtime_dependency 'pry',                     '~> 0.10'
-  # s.add_runtime_dependency 'pry',                   '~> 0.9' # version necessary for inclusion in battleroom for MRI 2.0
-  s.add_runtime_dependency 'pry-byebug',              '~> 2.0'
-  # s.add_runtime_dependency 'pry-debugger',          '0.2.3'  # version necessary for inclusion in battleroom for MRI 1.9.3
   s.add_runtime_dependency 'coderay',                 '1.1.0'
   s.add_runtime_dependency 'word_wrap',               '0.2.1'
+  # Note: pry-debugger and pry-byebug are dynamically retrieved and loaded at runtime based on the user's ruby version, as debugger is preferable but doesn't work beyond MRI 2.1.2
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'
