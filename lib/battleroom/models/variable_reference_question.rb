@@ -36,17 +36,22 @@ class VariableReferenceQuestion < FollowUpQuestion
     new_target_value
   end
 
+  def a_value_that_requires_low_arithmetic_complexity_to_arrive_at_via_multiplication_or_division
+    value = original_question.variable_value
+    if value < 12
+      value * [3,4,5,6].sample
+    elsif value < 50
+      value * 2
+    else
+      value / 2
+    end
+  end
+
   def generate_appropriate_value
     value = original_question.variable_value
     if value.class == Fixnum
-      if value.even? # && [1,2,3,4,5].sample.even?
-        if value < 12
-          value * [3,4,5,6].sample
-        elsif value < 50
-          value * 2
-        else
-          value / 2
-        end
+      if value.even?
+        a_value_that_requires_low_arithmetic_complexity_to_arrive_at_via_multiplication_or_division
       else
         a_value_within_12_more_or_12_less_than_the_original_assigned_value
       end
