@@ -61,8 +61,10 @@ class VariableReferenceQuestion < FollowUpQuestion
   end
 
   def develop_prompt
+    variable_colorized = original_question.variable_name.green
     self.required_return_value = generate_appropriate_value()
-    "Use ".blue + original_question.variable_name.green + " in combination with an arithmetic operator like ".blue +  codify(" + ") + ", ".blue + codify(" - ") + ", ".blue + codify(" * ") + ", or ".blue + codify(" / ") + " to return the #{original_question.formatted_class} value ".blue + required_return_value.to_s.green + ".\n".blue
+    required_class = original_question.formatted_class
+    "Use ".blue + variable_colorized + " in combination with an arithmetic operator like ".blue + colorized_arithmetic_operator_list + " to return the #{required_class} value ".blue + required_return_value.to_s.green + ".\n".blue
   end
 
   def provide_evaluation_scope_with_original_variable_assignment

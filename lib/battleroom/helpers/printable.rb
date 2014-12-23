@@ -74,5 +74,9 @@ module Battleroom
       str.black.on_light_white
     end
 
+    def colorized_arithmetic_operator_list
+      codify(" + ") + ", ".blue + codify(" - ") + ", ".blue + codify(" * ") + ", or ".blue + codify(" / ")
+    end
+
   end
 end
