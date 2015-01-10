@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'battleroom'
-  s.version     = '0.0.87'
+  s.version     = '0.0.871'
   s.date        = '2014-12-06'
   s.description = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
   s.summary     = "A REPL designed to help novice Ruby programmers build muscle memory for working with variables, manipulating data structures, and defining and invoking methods."
@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'awesome_print',           '1.2.0'
   s.add_runtime_dependency 'activesupport',           '4.1.6'
   s.add_runtime_dependency 'pry',                     '~> 0.10'
+  s.add_runtime_dependency 'pry-byebug',              '1.3.3'
   s.add_runtime_dependency 'coderay',                 '1.1.0'
   s.add_runtime_dependency 'word_wrap',               '0.2.1'
   # Note: pry-debugger and pry-byebug are dynamically retrieved and loaded at runtime based on the user's ruby version, as debugger is preferable but doesn't work beyond MRI 2.1.2
