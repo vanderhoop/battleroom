@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.files       = Dir['lib/battleroom/**/*.rb'] +
                   Dir['lib/*.rb']               +
                   Dir['bin/*']
-  s.required_ruby_version = '>= 2.1'
+  s.required_ruby_version = '>= 2.0'
   s.add_runtime_dependency 'faker',                   '1.4.3'
   s.add_runtime_dependency 'colorize',                '0.7.3'
   s.add_runtime_dependency 'awesome_print',           '1.2.0'
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'pry-byebug',              '1.3.3'
   s.add_runtime_dependency 'coderay',                 '1.1.0'
   s.add_runtime_dependency 'word_wrap',               '0.2.1'
-  # Note: pry-debugger and pry-byebug are dynamically retrieved and loaded at runtime based on the user's ruby version, as debugger is preferable but doesn't work beyond MRI 2.1.2
   s.executables << 'battleroom'
   s.homepage    = 'https://github.com/vanderhoop/battleroom'
   s.license     = 'MIT'

@@ -42,8 +42,7 @@ class Question
     if input_mechanism == 'readline'
       Readline.readline('> '.blue, true).chomp
     else
-      Pry.start_without_pry_byebug(evaluation_scope)   if PRY_DEBUGGER_GEM == 'pry-byebug'
-      Pry.start_without_pry_debugger(evaluation_scope) if PRY_DEBUGGER_GEM == 'pry-debugger'
+      Pry.start_without_pry_byebug(evaluation_scope)
       $input.chomp
     end
   end
