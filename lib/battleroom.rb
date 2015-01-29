@@ -33,7 +33,7 @@ loop do
       q = MethodDefinitionQuestion.new(b)
       follow_up_question = MethodInvocationQuestion.new(b, q)
     end
-  when '4'
+  when '5'
     5.times { NestedDataStructureAccessQuestion.new(b) }
   else
     battleprint 'You entered a non-option. Try again.'.red
