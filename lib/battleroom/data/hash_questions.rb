@@ -7,7 +7,7 @@ require 'active_support/inflector'
 #=======================================
 
 # 1. All hashes must have *at least* 5 key values pairs.
-# 2. All questions must have a possible variables names key, be hashes with *at least* 5 key values pairs
+# 2. All questions must have a possible_variables_names key
 
 HASH_QUESTIONS = [
   {
