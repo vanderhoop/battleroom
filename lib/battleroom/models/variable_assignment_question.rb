@@ -27,7 +27,7 @@ class VariableAssignmentQuestion < Question
     battleprint substrings.join
   end
 
-  def reveal_name_error_follies_to_user(user_input, errorbefor)
+  def reveal_name_error_follies_to_user
     if user_input.include?(variable_name)
       if !user_input.match(/[^=]=[^=]/i)
         undefined_local_variable_prompt_for_correct_variable
@@ -56,16 +56,16 @@ class VariableAssignmentQuestion < Question
   end
 
   def evaluate_variable_assignment_input
-    enter_evaluation_loop do |user_submission|
+    enter_evaluation_loop do
       begin
-        evaluation_scope.eval(user_submission)
+        evaluation_scope.eval(user_input)
         if evaluation_scope.eval("#{variable_name} == #{formatted_value}")
           true
         else
           battleprint "You assigned the wrong value to #{variable_name}. Try again!".red
         end
       rescue NameError => e
-        reveal_name_error_follies_to_user(user_submission, e)
+        reveal_name_error_follies_to_user
       rescue Exception => e
         handle_base_exception(e)
       end

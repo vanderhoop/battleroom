@@ -45,6 +45,15 @@ class Question
     end
   end
 
+  # def naughty_input?
+  #   if user_input.match(/(require|`|binding)/)
+  #     battleprint "No way no how! Try again.\n".red
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
+
   def enter_evaluation_loop(&block)
     answered_correctly = false
     until answered_correctly

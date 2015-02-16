@@ -75,7 +75,7 @@ class VariableReferenceQuestion < FollowUpQuestion
     evaluation_scope.eval("#{variable_name} = #{formatted_variable_value}")
   end
 
-  def user_doesnt_use_variable?(user_input)
+  def user_doesnt_use_variable?
     !user_input.include?(variable_name)
   end
 
@@ -84,13 +84,13 @@ class VariableReferenceQuestion < FollowUpQuestion
   end
 
   def evaluate_variable_reference_input
-    enter_evaluation_loop do |user_submission|
+    enter_evaluation_loop do
       begin
         provide_evaluation_scope_with_original_variable_assignment
-        returned_value = evaluation_scope.eval(user_submission)
-        if user_doesnt_use_variable?(user_submission)
+        returned_value = evaluation_scope.eval(user_input)
+        if user_doesnt_use_variable?
           battleprint "You didn't make use of the '#{variable_name}' variable, which is the entire purpose of this exercise. Try again.".red
-        elsif user_submission.include?("=")
+        elsif user_input.include?("=")
           battleprint "Looks like you simply assigned (or reassigned) a value to a variable, rather than making use of the value stored in '#{variable_name}'. Reread the directions and try again!".red
         elsif (returned_value == required_return_value)
           true

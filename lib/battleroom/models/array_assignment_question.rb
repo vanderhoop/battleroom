@@ -79,7 +79,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
 
   def evaluate_user_input
     if handles_user_workarounds
-      false
+      return false
     end
     if value_to_replace
       handle_replacement_of_array_value_input
