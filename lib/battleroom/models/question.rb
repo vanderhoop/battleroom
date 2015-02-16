@@ -1,6 +1,6 @@
 class Question
   attr_reader   :data, :variable_name, :variable_value, :evaluation_scope
-  attr_accessor :data_structure, :answer_value, :input_mechanism, :user_input
+  attr_accessor :answer_value, :input_mechanism, :user_input
 
   def initialize(evaluation_scope)
     @evaluation_scope = evaluation_scope
