@@ -26,7 +26,7 @@ class HashAssignmentQuestion < DataStructureAssignmentQuestion
     print_data_structure
   end
 
-  def evaluate_user_input(user_input)
+  def evaluate_user_input
     if evaluation_scope.eval("#{variable_name}[#{assignment_key}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
       print_resulting_data_structure
       true

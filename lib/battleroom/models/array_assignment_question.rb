@@ -48,7 +48,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     print_data_structure
   end
 
-  def handle_replacement_of_array_value_input(user_input)
+  def handle_replacement_of_array_value_input
     if evaluation_scope.eval("#{variable_name}[#{replacement_index}] == #{formatted_assignment_value}") && user_input.include?(variable_name)
       print_resulting_data_structure
       true
@@ -64,7 +64,7 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     battleprint "\nCheck your index and assignment values and try again.\n".red
   end
 
-  def handles_user_workarounds(user_input)
+  def handles_user_workarounds
     cheater_regex = Regexp.new("#{variable_name}\s+?\=\s+?(\\[)?")
     # checks if user reassigned the variable to a new array of identical values
     if user_input.match(cheater_regex)
@@ -77,12 +77,12 @@ class ArrayAssignmentQuestion < DataStructureAssignmentQuestion
     end
   end
 
-  def evaluate_user_input(user_input)
-    if handles_user_workarounds(user_input)
+  def evaluate_user_input
+    if handles_user_workarounds
       false
     end
     if value_to_replace
-      handle_replacement_of_array_value_input(user_input)
+      handle_replacement_of_array_value_input
     elsif evaluation_scope.eval("#{variable_name}.last == #{formatted_assignment_value}") && user_input.include?(variable_name)
       print_resulting_data_structure
       true
