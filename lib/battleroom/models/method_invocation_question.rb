@@ -29,7 +29,7 @@ class MethodInvocationQuestion < FollowUpQuestion
     battleprint "Basically, you tried to invoke a method that doesn't exist. Try again.\n".red
   end
 
-  def print_name_error_prompt(error, user_submission)
+  def print_name_error_prompt(error)
     battleprint "\nYou just triggered a common Ruby error that reads:\n".red
     battleprint "\tNameError: #{error.message}\n".green
     referenced_variable = isolate_variable_name_from_name_error(error)
@@ -68,9 +68,9 @@ class MethodInvocationQuestion < FollowUpQuestion
   end
 
   def evaluate_user_input
-    enter_evaluation_loop do |user_submission|
+    enter_evaluation_loop do
       begin
-        return_from_eval = original_question.evaluation_scope.eval(user_submission)
+        return_from_eval = original_question.evaluation_scope.eval(user_input)
         if return_from_eval == original_question.eval_answer
           true
         else
@@ -79,7 +79,7 @@ class MethodInvocationQuestion < FollowUpQuestion
       rescue NoMethodError => e
         print_no_method_error_prompt
       rescue NameError => e
-        print_name_error_prompt(e, user_submission)
+        print_name_error_prompt(e)
       rescue ArgumentError => e
         print_argument_error_prompt(e)
       end

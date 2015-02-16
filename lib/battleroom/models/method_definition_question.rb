@@ -23,15 +23,15 @@ class MethodDefinitionQuestion < Question
     battleprint('Define a method called '.blue + method_name.yellow +  ' that takes '.blue + arg_count.to_s.yellow + " argument(s) and #{spec}.\n".blue)
   end
 
-  def handle_name_error_exceptions(error, user_submission)
-    if user_submission.include?('def') == false
+  def handle_name_error_exceptions(error)
+    if user_input.include?('def') == false
       print_no_method_error_prompt
     else
       print_colorized_error_prompt(error)
     end
   end
 
-  def handle_incorrect_method_definition(return_value)
+  def handle_incorrect_method_definition
     battleprint "\nWhen invoking your method via ".red + eval_string + ", your method returned #{return_value || 'nil'}. It should have returned #{eval_answer}. Try again.\n".red
   end
 
@@ -49,10 +49,10 @@ class MethodDefinitionQuestion < Question
     binding
   end
 
-  def print_wrong_method_error(error, user_submission)
+  def print_wrong_method_error(error)
     definition_pattern = Regexp.new("def\s*#{method_name}")
-    if user_submission.match(definition_pattern)
-      handle_incorrect_method_definition(user_submission)
+    if user_input.match(definition_pattern)
+      handle_incorrect_method_definition(user_input)
     else
       battleprint "\nYou defined the wrong method, probably as the result of a mispelling. Try again.".red
     end
@@ -72,28 +72,28 @@ class MethodDefinitionQuestion < Question
   end
 
   def evaluate_method_definition_input
-    enter_evaluation_loop do |user_submission|
+    enter_evaluation_loop do
       begin
         clean_eval_scope_of_method_definition
         # I want to make sure that the user's method isn't invoked if it uses the puts method
-        if user_submission.include?('puts')
+        if user_input.include?('puts')
           print_puts_explanation
         else
-          evaluation_scope.eval(user_submission)
-          return_value = evaluation_scope.eval(eval_string)
+          evaluation_scope.eval(user_input)
+          self.return_value = evaluation_scope.eval(eval_string)
           if (return_value == eval_answer)
-            self.user_answer_verified = user_submission
+            self.user_answer_verified = user_input
             true
           else
-            handle_incorrect_method_definition(return_value)
+            handle_incorrect_method_definition
           end
         end
       rescue ArgumentError => e
         print_argument_error_prompt(e)
       rescue NoMethodError => e
-        print_wrong_method_error(e, user_submission)
+        print_wrong_method_error(e)
       rescue NameError => e
-        handle_name_error_exceptions(e, user_submission)
+        handle_name_error_exceptions(e)
       end
     end
   end
