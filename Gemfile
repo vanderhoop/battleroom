@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'pry',                     '0.10.1'
+gem 'pry-byebug',              '1.3.3'
 gem 'activesupport',           '4.1.6'
 gem 'awesome_print',           '1.2.0'
 gem 'colorize',                '0.7.3'

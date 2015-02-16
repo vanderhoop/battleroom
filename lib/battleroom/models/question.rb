@@ -1,14 +1,12 @@
 class Question
-  attr_reader   :data
-  attr_accessor :variable_name, :variable_value, :data_structure,
-                :data_structure_class, :answer_value, :explanation,
-                :evaluation_scope, :input_mechanism, :user_input
+  attr_reader   :data, :variable_name, :variable_value, :evaluation_scope
+  attr_accessor :data_structure, :answer_value, :input_mechanism, :user_input
 
   def initialize(evaluation_scope)
     @evaluation_scope = evaluation_scope
-    @data = self.class.generate_question
-    @variable_name = rotate_array(data[:possible_variable_names] || []).first
-    @input_mechanism = 'readline'
+    @data             = self.class.generate_question
+    @variable_name    = rotate_array(data[:possible_variable_names] || []).first
+    @input_mechanism  = 'readline'
     post_initialize
   end
 
