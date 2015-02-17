@@ -71,17 +71,17 @@ METHOD_QUESTONS = [
     eval_answer: cube_arg ** 3
   },
   {
-    method_name: "kelvin_to_celcius",
+    method_name: "kelvin_to_celsius",
     arg_count: 1,
     spec: "returns its lone argument minus the Float value \e[0;33;49m273.15\e[0m",
-    eval_string: "kelvin_to_celcius(#{cube_arg})",
+    eval_string: "kelvin_to_celsius(#{cube_arg})",
     eval_answer: cube_arg - 273.15
   },
   {
-    method_name: "celcius_to_kelvin",
+    method_name: "celsius_to_kelvin",
     arg_count: 1,
     spec: "returns its lone argument added to the Float value \e[0;33;49m273.15\e[0m",
-    eval_string: "celcius_to_kelvin(#{square_arg})",
+    eval_string: "celsius_to_kelvin(#{square_arg})",
     eval_answer: square_arg + 273.15
   },
     {
