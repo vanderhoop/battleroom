@@ -35,9 +35,10 @@ __For the development version:__
 
 1. Fork this project
 2. Create a feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a pull request
+3. Write tests!
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a pull request
 
 ===
 
