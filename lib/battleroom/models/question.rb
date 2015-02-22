@@ -52,7 +52,7 @@ class Question
     answered_correctly = false
     until answered_correctly
       begin
-        self.user_input = get_input unless $BATTLE_ENV == 'test'
+        self.user_input = get_input
         abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
         if !naughty_input? && yield
           printer.init_congratulation_sequence(1.6)
