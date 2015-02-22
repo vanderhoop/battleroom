@@ -16,11 +16,11 @@ class Question
     nil
   end
 
-  def congratulation_sequence(duration)
-    print_congratulation
-    sleep(duration)
-    clear_display
-  end
+  # def congratulation_sequence(duration)
+  #   print_congratulation
+  #   sleep(duration)
+  #   clear_display
+  # end
 
   def handle_syntax_error_exceptions(error)
     if error.message.match /unexpected end-of-input/
@@ -52,10 +52,10 @@ class Question
     answered_correctly = false
     until answered_correctly
       begin
-        self.user_input = get_input
+        self.user_input = get_input unless $BATTLE_ENV == 'test'
         abort('Goodbye!'.green) if user_input.match(/^(q|exit|!!!\s?)\z/i)
         if !naughty_input? && yield
-          congratulation_sequence(1.6)
+          printer.init_congratulation_sequence(1.6)
           answered_correctly = true
         end
       rescue SyntaxError => e

@@ -9,8 +9,11 @@ class VariableAssignmentQuestion < Question
   def post_initialize
     @variable_value  = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
+  end
+
+  def init
     printer.print_prompt(variable_name, variable_value, formatted_value)
-    evaluate_variable_assignment_input
+    evaluate_user_input
   end
 
   def reveal_name_error_follies_to_user
@@ -41,7 +44,7 @@ class VariableAssignmentQuestion < Question
     end
   end
 
-  def evaluate_variable_assignment_input
+  def evaluate_user_input
     enter_evaluation_loop do
       begin
         evaluation_scope.eval(user_input)

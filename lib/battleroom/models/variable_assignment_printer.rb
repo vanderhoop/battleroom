@@ -1,4 +1,6 @@
-class VariableAssignmentPrinter
+require_relative 'question_printer'
+
+class VariableAssignmentPrinter < QuestionPrinter
 
   def print_prompt(variable_name, variable_value, formatted_value)
     formatted_class = format_class_for_output(variable_value.class)

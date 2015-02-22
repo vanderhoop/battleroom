@@ -28,8 +28,7 @@ loop do
         evaluation_scope: b,
         printer: VariableAssignmentPrinter.new
       )
-      restore_pry_defaults
-      binding.pry
+      q.init()
       determine_variable_follow_up_question(b, q)
     end
   when '2'
