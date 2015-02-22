@@ -5,6 +5,11 @@ require_relative './battleroom/config/boot'
 clear_display
 print 'Welcome to the Battleroom.'.blue
 
+VARIABLE_QUESTIONS.shuffle!
+ARRAY_QUESTIONS.shuffle!
+HASH_QUESTIONS.shuffle!
+VARIABLE_QUESTIONS.shuffle!
+
 loop do
   print_menu_options
   choice = Readline.readline('> '.blue, true)
@@ -17,8 +22,14 @@ loop do
   case choice
   when '1'
     10.times do
-      p = VariableAssignmentPrinter.new
-      q = VariableAssignmentQuestion.new(evaluation_scope: b, printer: p)
+      question_data = rotate_array(VARIABLE_QUESTIONS).first
+      q = VariableAssignmentQuestion.new(
+        question_data: question_data,
+        evaluation_scope: b,
+        printer: VariableAssignmentPrinter.new
+      )
+      restore_pry_defaults
+      binding.pry
       determine_variable_follow_up_question(b, q)
     end
   when '2'

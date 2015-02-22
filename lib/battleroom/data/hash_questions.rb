@@ -6,8 +6,7 @@ require 'active_support/inflector'
 # Contribution Guidelines
 #=======================================
 
-# 1. All hashes must have *at least* 5 key values pairs.
-# 2. All questions must have a possible_variables_names key
+# 1. All hashes must have *at least* 5 key value pairs.
 
 HASH_QUESTIONS = [
   {
@@ -63,5 +62,3 @@ end
   location = gen_location
   HASH_QUESTIONS.push(location)
 end
-
-HASH_QUESTIONS.shuffle!

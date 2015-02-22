@@ -6,7 +6,7 @@ class Question
   def initialize(args = {})
     @evaluation_scope = args[:evaluation_scope]
     @printer          = args[:printer]
-    @data             = self.class.generate_question
+    @data             = args[:question_data]
     @variable_name    = rotate_array(data[:possible_variable_names] || []).first
     @input_mechanism  = 'readline'
     post_initialize
@@ -14,14 +14,6 @@ class Question
 
   def post_initialize
     nil
-  end
-
-  # avoids immediate re-sampling of questions
-  def self.generate_question
-    # calls upon *class instance* variable assigned in the subclasses
-    question = @questions.shift
-    @questions.push(question)
-    question
   end
 
   def congratulation_sequence(duration)

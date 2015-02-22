@@ -119,4 +119,4 @@ METHOD_QUESTONS = [
     eval_string: "convert_bytes_to_bits(#{convert_bytes_to_bits_arg})",
     eval_answer: convert_bytes_to_bits_arg * 8
   },
-].shuffle
+]

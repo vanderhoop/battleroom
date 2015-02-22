@@ -6,8 +6,6 @@ class VariableAssignmentQuestion < Question
   attr_reader   :formatted_value
   attr_accessor :formatted_class
 
-  @questions = VARIABLE_QUESTIONS.shuffle
-
   def post_initialize
     @variable_value  = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
@@ -59,4 +57,4 @@ class VariableAssignmentQuestion < Question
       end
     end
   end
-end # VariableQuestion
+end
