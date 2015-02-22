@@ -1,9 +1,11 @@
 class Question
-  attr_reader   :data, :variable_name, :variable_value, :evaluation_scope
+  attr_reader   :evaluation_scope, :printer, :data, :variable_name,
+                :variable_value
   attr_accessor :answer_value, :input_mechanism, :user_input
 
-  def initialize(evaluation_scope)
-    @evaluation_scope = evaluation_scope
+  def initialize(args = {})
+    @evaluation_scope = args[:evaluation_scope]
+    @printer          = args[:printer]
     @data             = self.class.generate_question
     @variable_name    = rotate_array(data[:possible_variable_names] || []).first
     @input_mechanism  = 'readline'

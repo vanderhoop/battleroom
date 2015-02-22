@@ -17,7 +17,8 @@ loop do
   case choice
   when '1'
     10.times do
-      q = VariableAssignmentQuestion.new(b)
+      p = VariableAssignmentPrinter.new
+      q = VariableAssignmentQuestion.new(evaluation_scope: b, printer: p)
       determine_variable_follow_up_question(b, q)
     end
   when '2'

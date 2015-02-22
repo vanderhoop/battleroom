@@ -1,30 +1,18 @@
 require_relative 'question'
+require_relative 'variable_assignment_printer'
 require_relative '../data/variable_assignment_questions'
 
 class VariableAssignmentQuestion < Question
+  attr_reader   :formatted_value
+  attr_accessor :formatted_class
 
-  attr_accessor :formatted_value, :formatted_class
   @questions = VARIABLE_QUESTIONS.shuffle
 
   def post_initialize
-    @variable_value = rotate_array(data[:possible_variable_values]).first
+    @variable_value  = rotate_array(data[:possible_variable_values]).first
     @formatted_value = format_value_for_stdout_and_eval(variable_value)
-    print_variable_assignment_prompt
+    printer.print_prompt(variable_name, variable_value, formatted_value)
     evaluate_variable_assignment_input
-  end
-
-  def print_variable_assignment_prompt
-    self.formatted_class = format_class_for_output(variable_value.class)
-    substrings = [
-      'Assign the variable '.blue,
-      variable_name.yellow,
-      ' to the '.blue,
-      formatted_class.blue,
-      ' value '.blue,
-      formatted_value.yellow,
-      ".\n".blue
-    ]
-    battleprint substrings.join
   end
 
   def reveal_name_error_follies_to_user

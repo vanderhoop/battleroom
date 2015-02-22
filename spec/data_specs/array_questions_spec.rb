@@ -55,6 +55,6 @@ describe "ARRAY_QUESTIONS" do
 
     end
 
-  end # describe 'a question'
+  end
 
 end
