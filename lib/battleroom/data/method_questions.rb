@@ -105,13 +105,6 @@ METHOD_QUESTONS = [
     eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
     eval_answer: grams_to_milligrams_arg * 1000
   },
-  # {
-  #   method_name: "convert_weeks_to_minutes",
-  #   arg_count: 1,
-  #   spec: "returns its lone argument multiplied the product of the Fixnum values 7, 24, and 60",
-  #   eval_string: "grams_to_milligrams(#{grams_to_milligrams_arg})",
-  #   eval_answer: grams_to_milligrams_arg * 1000
-  # },
   {
     method_name: "convert_bytes_to_bits",
     arg_count: 1,
